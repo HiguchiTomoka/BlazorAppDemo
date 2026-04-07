@@ -212,3 +212,4 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\refint
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\BlazorAppDemo.pdb
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\BlazorAppDemo.genruntimeconfig.cache
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\ref\BlazorAppDemo.dll
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\BlazorAppDemo.sourcelink.json

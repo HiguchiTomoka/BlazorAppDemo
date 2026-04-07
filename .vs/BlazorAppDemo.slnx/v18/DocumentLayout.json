@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\another.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\another.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\services\\connectionstateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\services\\connectionstateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -48,11 +56,15 @@
         },
         {
           "DockedWidth": 332,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Test.razor",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\Test.razor",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\Test.razor",
@@ -64,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Program.cs",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Program.cs",
@@ -76,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Users.razor",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\Users.razor",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\Users.razor",
@@ -88,7 +100,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T04:21:27.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Another.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\Another.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\Another.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\Another.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\Another.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T04:20:59.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Startup.cs",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Startup.cs",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Startup.cs",
@@ -100,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "UsersCRUD.razor",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\UsersCRUD.razor",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\UsersCRUD.razor",
@@ -112,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ConnectionHub.cs",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Hubs\\ConnectionHub.cs",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Hubs\\ConnectionHub.cs",
@@ -124,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ConnectionStateService.cs",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Services\\ConnectionStateService.cs",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Services\\ConnectionStateService.cs",

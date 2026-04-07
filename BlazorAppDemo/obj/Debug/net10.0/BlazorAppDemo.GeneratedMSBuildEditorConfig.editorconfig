@@ -34,20 +34,8 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Another.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBbm90aGVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Chat.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/CircuitTest.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaXJjdWl0VGVzdC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Confirm.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb25maXJtLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Error.razor]
@@ -58,40 +46,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/InputForm.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJbnB1dEZvcm0ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Login.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbi5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/NotFound.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/ServerTest.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTZXJ2ZXJUZXN0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Test.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUZXN0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/TodoList.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUb2RvTGlzdC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Users.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2Vycy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/UsersCRUD.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2Vyc0NSVUQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Routes.razor]

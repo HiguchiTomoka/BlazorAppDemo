@@ -20,9 +20,6 @@ builder.Services.AddSingleton<UserInfo>();
 // signalRハブの作成(リアルタイム通信を行うため)
 builder.Services.AddSignalR();
 
-// UserInputStateの寿命(ライフサイクル)はScopeで登録
-builder.Services.AddScoped<BlazorAppDemo.Components.Services.UserInputState>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
