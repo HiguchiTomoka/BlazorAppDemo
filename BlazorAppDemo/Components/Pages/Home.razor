@@ -1,0 +1,28 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject NavigationManager navigationManager
+
+<h3>ログイン画面</h3>
+<p>ログインしてください</p>
+
+<input type="text" @bind="userName" placeholder="ユーザー名"/>
+<input type="password" @bind="password" placeholder="パスワード" />
+<input type="button" @onclick="login" value="ログイン" />
+
+@code
+{
+    string userName = string.Empty;
+    string password = string.Empty;
+
+    private void login()
+    {
+        if (userName.Equals("aa") && password.Equals("aa"))
+        {
+            navigationManager.NavigateTo("/login");
+        } 
+        else
+        {
+            
+        }
+    }
+}

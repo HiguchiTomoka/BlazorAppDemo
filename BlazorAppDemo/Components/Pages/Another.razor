@@ -1,0 +1,23 @@
+﻿@page "/another"
+@inject BlazorAppDemo.Components.Services.UserInputState InputState
+@implements IDisposable
+
+<h3>確認ページ</h3>
+
+<p>入力された値: @InputState.InputText</p>
+
+@code {
+    protected override void OnInitialized()
+    {
+        // 値の変更があったら UI を更新
+        InputState.OnChange += StateHasChanged;
+
+        // 追加：初期描画時にも StateHasChanged を呼ぶ
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        InputState.OnChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,59 @@
+﻿@page "/inputForm"
+@rendermode InteractiveServer
+
+<h3>入力フォーム</h3>
+
+<p></p>
+<button @onclick="ClickMe">ボタン押したら文言が変わるよ</button>
+<input @bind="componyName" type ="text"/>
+
+<p>@message</p>
+<p>@componyName</p>
+
+<input @bind="newItem" type="text" placeholder="Todoを入力" />
+<button @onclick="AddItem">追加</button>
+
+<ul>
+    @foreach (var item in items)
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code {
+    string message = "こんにちは";
+    string componyName = "";
+
+    /// <summary>
+    /// 文言を変える
+    /// </summary>
+    void ClickMe()
+    {
+        if (message.Equals("こんばんは"))
+        {
+            message = "こんにちは";
+        } else
+        {
+            message = "こんばんは";
+        }
+    }
+
+    // テキストボックスに入力された値
+    private string newItem = string.Empty;
+
+    // リストとして保持する
+    private List<string> items = new List<string>();
+
+    /// <summary>
+    /// ボタン押下時リストに追加処理
+    /// </summary>
+    void AddItem()
+    {
+        // テキストボックス内の値が空でなければリストに追加
+        if (!string.IsNullOrWhiteSpace(newItem))
+        {
+            items.Add(newItem);
+            newItem = string.Empty; // 追加後にテキストボックスをクリア
+        }
+    }
+}

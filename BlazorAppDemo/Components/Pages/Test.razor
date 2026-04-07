@@ -1,0 +1,43 @@
+﻿@page "/test"
+@inject ConnectionStateService ConnectionStateService
+
+<h3>SignalR 接続状態テスト</h3>
+
+<p>接続／切断イベントをリアルタイムで表示します。</p>
+
+<ul>
+    @foreach (var e in events)
+    {
+        <li>@e</li>
+    }
+</ul>
+
+@code {
+    private List<string> events = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        ConnectionStateService.OnChange += UpdateEvents;
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            events = ConnectionStateService.Events.ToList();
+            StateHasChanged();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void UpdateEvents()
+    {
+        events = ConnectionStateService.Events.ToList();
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        ConnectionStateService.OnChange -= UpdateEvents;
+    }
+}
