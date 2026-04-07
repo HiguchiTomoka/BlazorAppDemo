@@ -19,8 +19,10 @@ if (!app.Environment.IsDevelopment())
     // HTTPS強制
     app.UseHsts();
 }
+
 // HTTPステータスコードごとにエラーページ表示
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
+
 // HTTPをHTTPSに強制リダイレクト 
 app.UseHttpsRedirection();
 
