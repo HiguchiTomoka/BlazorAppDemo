@@ -14,6 +14,7 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 // AddDbContextをSQLサーバーの受口として登録
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // UserInfoをアプリ全体で共有
 builder.Services.AddSingleton<UserInfo>();
 

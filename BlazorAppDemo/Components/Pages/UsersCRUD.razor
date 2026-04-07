@@ -12,6 +12,7 @@
 <div>
     <input @bind="newUserName" placeholder="名前を入力" />
     <button class="btn btn-primary" @onclick="AddUser">追加</button>
+    <button class="btn btn-primary" @onclick="SelectUsers">この名前で検索</button>
 </div>
 
 <!-- ユーザー一覧 -->
@@ -73,6 +74,26 @@ else
     private async Task LoadUsers()
     {
         users = await DbContext.Users.ToListAsync<UserInfo>();
+    }
+
+    /// <summary>
+    /// 名前検索
+    /// </summary>
+    /// <returns></returns>
+    private async Task SelectUsers()
+    {
+        // クエリの作成
+        var query = DbContext.Users.AsQueryable();
+
+        // 検索用条件に名前があったら、クエリの更新
+        if (!string.IsNullOrEmpty(newUserName))
+        {
+            query = query.Where(u => u.Name.Contains(newUserName));
+        }
+
+        var result = await query.ToListAsync();
+        users = result;
+
     }
 
     /// <summary>

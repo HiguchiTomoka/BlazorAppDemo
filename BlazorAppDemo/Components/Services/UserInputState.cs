@@ -2,7 +2,7 @@ namespace BlazorAppDemo.Components.Services
 {
     public class UserInputState
     {
-        public string? InputText { get; private set; }
+        public string? InputText { get; set; }
 
         public event Action? OnChange;
 
