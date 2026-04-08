@@ -1,12 +1,19 @@
 using BlazorAppDemo.Components;
+using BlazorAppDemo.Components.Data;
 
 // アプリ起動
 var builder = WebApplication.CreateBuilder(args);
 
 // DI注入
 // AddRazorComponentsメソッド(コンポーネントを登録、ルーティング・レンダリング基盤を作る)
-// AddInteractiveServerComponentsメソッド(イベントや状態保持をサーバーで有効化、動的UIが可能になる)
+// AddInteractiveServerComponentsメソッド(BlazorServerを使用可能に。イベントや状態保持をサーバーで有効化、動的UIが可能になる)
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+
+// DIコンテナに登録
+builder.Services.AddScoped<LocalStorageService>();
+
+// API(Controller)の使用
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -31,7 +38,10 @@ app.UseAntiforgery();
 
 // 静的ファイルの配信設定
 app.MapStaticAssets();
-// ルーティング登録,インタラクティブ機能の登録
+
+// ルーティング登録,インタラクティブ機能の登録,
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+// 
+app.MapControllers();
 
 app.Run();

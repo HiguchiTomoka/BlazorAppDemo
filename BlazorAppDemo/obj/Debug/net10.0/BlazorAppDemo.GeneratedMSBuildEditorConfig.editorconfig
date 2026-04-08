@@ -50,6 +50,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/SaveLocalStorage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYXZlTG9jYWxTdG9yYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/WebAssembly.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWJBc3NlbWJseS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

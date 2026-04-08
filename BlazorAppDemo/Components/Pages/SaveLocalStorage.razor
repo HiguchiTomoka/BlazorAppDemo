@@ -1,0 +1,42 @@
+﻿@page "/saveLocalStorage"
+@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Data
+
+<input value="@text" @oninput="OnInput" />
+<button @onclick="Clear">クリア</button>
+
+<p>入力内容: @text</p>
+
+@code {
+    private string text = "";
+
+    [Inject]
+    private LocalStorageService Storage { get; set; } = default!;
+
+    // 入力のたび保存（入力値保持期間：1時間）
+    private async Task OnInput(ChangeEventArgs e)
+    {
+        text = e.Value?.ToString() ?? "";
+        await Storage.SetAsync("formData", text, TimeSpan.FromHours(1));
+    }
+
+    // 初期化時に復元
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var saved = await Storage.GetAsync<string>("formData");
+            if (saved != null)
+            {
+                text = saved;
+                StateHasChanged();
+            }
+        }
+    }
+
+    private async Task Clear()
+    {
+        await Storage.DeleteAsync("formData");
+        text = "";
+    }
+}
