@@ -4,11 +4,11 @@ namespace BlazorAppDemo.Components.Data
 {
 
     /// <summary>
-    /// LocalStorageの扱いをまとめたクラス
+    ///   LocalStorageの扱いをまとめたクラス
     /// 
-    /// 1.LocalStorageへの保存
-    /// 2.LocalStorageからの取得
-    /// 3.LocalStorageの削除
+    ///   1.LocalStorageへの保存
+    ///   2.LocalStorageからの取得
+    ///   3.LocalStorageの削除
     /// </summary>
     public class LocalStorageService
     {

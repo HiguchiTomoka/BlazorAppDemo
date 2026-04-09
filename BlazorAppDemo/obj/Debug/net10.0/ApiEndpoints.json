@@ -1,18 +1,1 @@
-[
-  {
-    "ContainingType": "BlazorAppDemo.Components.Controllers.FormController",
-    "Method": "Save",
-    "RelativePath": "api/form",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "text",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  }
-]
+[]
