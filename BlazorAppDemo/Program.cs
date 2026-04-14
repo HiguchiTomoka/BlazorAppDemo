@@ -1,5 +1,5 @@
 using BlazorAppDemo.Components;
-using BlazorAppDemo.Components.Data;
+using Microsoft.AspNetCore.Components.Server;
 
 // アプリ起動
 var builder = WebApplication.CreateBuilder(args);
@@ -7,13 +7,28 @@ var builder = WebApplication.CreateBuilder(args);
 // DI注入
 // AddRazorComponentsメソッド(コンポーネントを登録、ルーティング・レンダリング基盤を作る)
 // AddInteractiveServerComponentsメソッド(BlazorServerを使用可能に。イベントや状態保持をサーバーで有効化、動的UIが可能になる)
-builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+// AddHubOptionsメソッド(BlazorServerにて使用するSignalR Hubの設定を追加する)
+builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddHubOptions(options =>
+{
+    // クライアントが応答しなくなってから切断と判断するまでの時間
+    options.ClientTimeoutInterval = TimeSpan.FromSeconds(60);
 
-// DIコンテナに登録
-builder.Services.AddScoped<LocalStorageService>();
+    // サーバーがクライアントにPing送る間隔
+    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
 
-// API(Controller)の使用
-builder.Services.AddControllers();
+    // ハンドシェイクタイムアウト
+    options.HandshakeTimeout = TimeSpan.FromSeconds(30);
+});
+
+// Circuit自体の保持時間
+builder.Services.Configure<CircuitOptions>(options =>
+{
+    // 切断後、再接続できる猶予
+    options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(5); // 規定値3分
+
+    // 保持するCircuit数（負荷対策）
+    options.DisconnectedCircuitMaxRetained = 200; // 規定値100
+});
 
 var app = builder.Build();
 
