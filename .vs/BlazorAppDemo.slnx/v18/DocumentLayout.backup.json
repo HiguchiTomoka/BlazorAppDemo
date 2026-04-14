@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\savelocalstorage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\savelocalstorage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\data\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\data\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\data\\storageitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\data\\storageitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\savelocalstorage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\savelocalstorage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +21,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 100,
+          "DockedWidth": 70,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -27,22 +31,35 @@
           ]
         },
         {
-          "DockedWidth": 300,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 330,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LocalStorageService.cs",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Data\\LocalStorageService.cs",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Data\\LocalStorageService.cs",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Data\\LocalStorageService.cs",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Data\\LocalStorageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T04:40:17.086Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SaveLocalStorage.razor",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\SaveLocalStorage.razor",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\SaveLocalStorage.razor",
               "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\SaveLocalStorage.razor",
               "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\SaveLocalStorage.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-08T00:24:06.108Z",
               "EditorCaption": ""
@@ -50,14 +67,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Program.cs",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Program.cs",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Program.cs",
-              "RelativeToolTip": "BlazorAppDemo\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAADAAAAAAAAAA==",
+              "Title": "StorageItem.cs",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Data\\StorageItem.cs",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Data\\StorageItem.cs",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Data\\StorageItem.cs",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Data\\StorageItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T07:07:07.137Z"
+              "WhenOpened": "2026-04-09T04:40:55.703Z",
+              "EditorCaption": ""
             }
           ]
         }

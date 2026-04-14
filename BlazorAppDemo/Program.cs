@@ -41,7 +41,5 @@ app.MapStaticAssets();
 
 // ルーティング登録,インタラクティブ機能の登録,
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
-// 
-app.MapControllers();
 
 app.Run();
