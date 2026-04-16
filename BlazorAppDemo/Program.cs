@@ -1,4 +1,5 @@
 using BlazorAppDemo.Components;
+using BlazorAppDemo.Components.Service;
 using Microsoft.AspNetCore.Components.Server;
 
 // アプリ起動
@@ -24,11 +25,14 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddHubOpt
 builder.Services.Configure<CircuitOptions>(options =>
 {
     // 切断後、再接続できる猶予
-    options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(5); // 規定値3分
+    options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(30); // 規定値3分
 
     // 保持するCircuit数（負荷対策）
     options.DisconnectedCircuitMaxRetained = 200; // 規定値100
 });
+
+// カート機能想定
+builder.Services.AddScoped<CartService>();
 
 var app = builder.Build();
 
