@@ -1,0 +1,62 @@
+﻿@page "/users"
+@rendermode InteractiveServer
+@inject UserDto UserService
+@using BlazorAppDemo.Components.Service;
+@using BlazorAppDemo.Components.Model;
+
+<h3>ユーザー一覧</h3>
+
+<button @onclick="ShowAll">全員</button>
+<button @onclick="ShowAdults">成人のみ</button>
+<button @onclick="ShowActive">アクティブのみ</button>
+<button @onclick="ShowMale">男性のみ</button>
+<button @onclick="ShowFemale">女性のみ</button>
+
+@if (users !=  null)
+{
+    <ul>
+        @foreach (var user in users)
+        {
+            <li>@user.Name (@user.Age) - @(user.IsActive ? "Active" : "Inactive") - @user.Gender</li>
+        }
+    </ul>
+} 
+else
+{
+    <p>検索中・・</p>
+}
+
+
+@code {
+    private List<User> users = new();
+
+    protected override void OnInitialized()
+    {
+        ShowAll();
+    }
+
+    void ShowAll()
+    {
+        users = UserService.FindUsers(u => true);
+    }
+
+    void ShowAdults()
+    {
+        users = UserService.FindUsers(u => u.Age >= 20);
+    }
+
+    void ShowActive()
+    {
+        users = UserService.FindUsers(u => u.IsActive);
+    }
+
+    void ShowFemale()
+    {
+        users = UserService.FindUsers(u => u.Gender.Equals("female"));
+    }
+
+    void ShowMale()
+    {
+        users = UserService.FindUsers(u => u.Gender.Equals("male"));
+    }
+}

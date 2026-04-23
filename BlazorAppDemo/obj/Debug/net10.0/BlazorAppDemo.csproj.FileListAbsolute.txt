@@ -196,8 +196,6 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compre
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\xhwgpiy0bj-{0}-h1s4sie4z3-h1s4sie4z3.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\km6sigzdn0-{0}-63fj8s7r0e-63fj8s7r0e.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\bgtxe0nain-{0}-0j3bgjxly4-0j3bgjxly4.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\o7xj9p9jqp-{0}-b9228eflpl-b9228eflpl.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\jkq387rpir-{0}-2tj1sjhksk-2tj1sjhksk.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-zh04k8ybfz-zh04k8ybfz.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-zh04k8ybfz-zh04k8ybfz.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\staticwebassets.build.json
@@ -213,3 +211,5 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\Blazor
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\BlazorAppDemo.genruntimeconfig.cache
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\ref\BlazorAppDemo.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\BlazorAppDemo.sourcelink.json
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\o7xj9p9jqp-{0}-qcnkhbt5lj-qcnkhbt5lj.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\jkq387rpir-{0}-12rnbzdyyc-12rnbzdyyc.gz

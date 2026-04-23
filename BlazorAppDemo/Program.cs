@@ -1,4 +1,5 @@
 using BlazorAppDemo.Components;
+using BlazorAppDemo.Components.Extensions;
 using BlazorAppDemo.Components.Service;
 using Microsoft.AspNetCore.Components.Server;
 
@@ -31,8 +32,8 @@ builder.Services.Configure<CircuitOptions>(options =>
     options.DisconnectedCircuitMaxRetained = 200; // 規定値100
 });
 
-// カート機能想定
-builder.Services.AddScoped<CartService>();
+// Serviceの登録
+builder.Services.AddAppServices();
 
 var app = builder.Build();
 

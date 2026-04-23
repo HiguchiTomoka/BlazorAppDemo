@@ -34,8 +34,12 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/CircuitTest.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaXJjdWl0VGVzdC5yYXpvcg==
+[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Copyright.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDb3B5cmlnaHQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Bmi.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCbWkucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Error.razor]
@@ -50,8 +54,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Pages.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQYWdlcy5yYXpvcg==
+[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2Vycy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Routes.razor]
