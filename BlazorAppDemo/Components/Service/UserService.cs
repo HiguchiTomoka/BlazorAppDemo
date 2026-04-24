@@ -10,10 +10,29 @@ namespace BlazorAppDemo.Components.Service
 
         private List<User> _users = new()
         {
-            new User { Id = 1,  Name = "Alice", Age = 25, IsActive= true, Gender = GENDER_FEMALE},
-            new User { Id = 2, Name = "Bob", Age = 17, IsActive= false, Gender = GENDER_MALE},
-            new User { Id = 3, Name = "Charlie", Age = 30, IsActive= true, Gender = GENDER_FEMALE},
-            new User { Id = 4, Name = "Dave", Age = 15, IsActive= true, Gender = GENDER_MALE},
+            new User { Id = 1,  Name = "B.D", Age = 25, IsActive= true, Gender = GENDER_FEMALE},
+            new User { Id = 2, Name = "S.D", Age = 20, IsActive= false, Gender = GENDER_MALE},
+            new User { Id = 3, Name = "Chime", Age = 32, IsActive= true, Gender = GENDER_FEMALE},
+            new User { Id = 4, Name = "Tri", Age = 18, IsActive= false, Gender = GENDER_MALE},
+            new User { Id = 5, Name = "Timp", Age = 28, IsActive= true, Gender = GENDER_MALE},
+            new User { Id = 6, Name = "Vib", Age = 27, IsActive= true, Gender = GENDER_FEMALE},
+            new User { Id = 7, Name = "Xyl", Age = 25, IsActive= false, Gender = GENDER_FEMALE},
+            new User { Id = 8, Name = "Mari", Age = 29, IsActive= true, Gender = GENDER_FEMALE},
+            new User { Id = 9, Name = "S.B", Age = 17, IsActive= false, Gender = GENDER_FEMALE},
+            new User { Id = 10,  Name = "Clabess", Age = 18, IsActive= false, Gender = GENDER_FEMALE},
+            new User { Id = 11, Name = "Cym", Age = 20, IsActive= false, Gender = GENDER_MALE},
+            new User { Id = 12, Name = "S.Cym", Age = 21, IsActive= true, Gender = GENDER_FEMALE},
+            new User { Id = 13, Name = "Tamb", Age = 23, IsActive= false, Gender = GENDER_MALE},
+            new User { Id = 14, Name = "TomTom", Age = 22, IsActive= true, Gender = GENDER_FEMALE},
+            new User { Id = 15, Name = "Tam", Age = 22, IsActive= false, Gender = GENDER_FEMALE},
+            new User { Id = 16, Name = "Conga", Age = 26, IsActive= true, Gender = GENDER_MALE},
+            new User { Id = 17, Name = "Bonga", Age = 26, IsActive= true, Gender = GENDER_MALE},
+            new User { Id = 18, Name = "Drum", Age = 24, IsActive= false, Gender = GENDER_MALE},
+            new User { Id = 19, Name = "Glok", Age = 21, IsActive= true, Gender = GENDER_FEMALE},
+            new User { Id = 20, Name = "Shaker", Age = 25, IsActive= false, Gender = GENDER_FEMALE},
+            new User { Id = 21, Name = "Agogo", Age = 24, IsActive= true, Gender = GENDER_MALE},
+            new User { Id = 22, Name = "Cast", Age = 28, IsActive= true, Gender = GENDER_MALE},
+            new User { Id = 23, Name = "Whisle", Age = 19, IsActive= false, Gender = GENDER_MALE},
         };
 
         /// <summary>

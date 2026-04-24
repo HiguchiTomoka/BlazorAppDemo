@@ -54,10 +54,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Users.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2Vycy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -73,3 +69,7 @@ build_metadata.AdditionalFiles.CssScope = b-4cpqwd6eup
 [C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-es4gqa2qel
+
+[C:/Users/to-hi/source/repos/BlazorAppDemo/BlazorAppDemo/Components/Pages/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2Vycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-4ntzivt24x

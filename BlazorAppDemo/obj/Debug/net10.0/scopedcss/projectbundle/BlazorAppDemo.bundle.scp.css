@@ -203,3 +203,59 @@ main[b-4cpqwd6eup] {
         overflow-y: auto;
     }
 }
+/* /Components/Pages/Users.razor.rz.scp.css */
+.user-list[b-4ntzivt24x] {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-item[b-4ntzivt24x] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    background: #1e1e2f;
+    color: #fff;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+    .user-item:hover[b-4ntzivt24x] {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+    }
+
+.user-info[b-4ntzivt24x] {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name[b-4ntzivt24x] {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.user-meta[b-4ntzivt24x] {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.badge[b-4ntzivt24x] {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge-active[b-4ntzivt24x] {
+    background-color: #22c55e;
+    color: #fff;
+}
+
+.badge-inactive[b-4ntzivt24x] {
+    background-color: #ef4444;
+    color: #fff;
+}

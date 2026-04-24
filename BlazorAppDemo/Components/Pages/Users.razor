@@ -6,33 +6,104 @@
 
 <h3>ユーザー一覧</h3>
 
-<button @onclick="ShowAll">全員</button>
-<button @onclick="ShowAdults">成人のみ</button>
-<button @onclick="ShowActive">アクティブのみ</button>
-<button @onclick="ShowMale">男性のみ</button>
-<button @onclick="ShowFemale">女性のみ</button>
+<!-- 検索エリア -->
+<div class="search-box">
+    <input @bind="searchName" placeholder="名前で検索" />
+    <input type="number" @bind="minAge" placeholder="最小年齢" />
 
-@if (users !=  null)
+    <select @bind="isActive">
+        <option value="">すべて</option>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+    </select>
+
+    <button @onclick="Search">検索</button>
+</div>
+
+<!-- ユーザー一覧 -->
+@if (users != null)
 {
-    <ul>
+    <ul class="user-list">
         @foreach (var user in users)
         {
-            <li>@user.Name (@user.Age) - @(user.IsActive ? "Active" : "Inactive") - @user.Gender</li>
+            <li class="user-item">
+                <div class="user-info">
+                    <span class="user-name">@user.Name</span>
+                    <span class="user-meta">
+                        @user.Age 歳 / @user.Gender
+                    </span>
+                </div>
+
+                <span class="badge @(user.IsActive ? "badge-active" : "badge-inactive")">
+                    @(user.IsActive ? "Active" : "Inactive")
+                </span>
+            </li>
         }
     </ul>
-} 
+}
 else
 {
     <p>検索中・・</p>
 }
 
+<!-- ページング -->
+<div class="pager">
+    <button @onclick="PrevPage">←</button>
+    <span>Page @correntPage</span>
+    <button @onclick="NextPage">→</button>
+</div>
+
+<!-- 集計 -->
+<div class="summary">
+    <p>Active数: @activeCount</p>
+    <p>合計年齢: @totalAge</p>
+</div>
+
 
 @code {
     private List<User> users = new();
 
+    private string? searchName;
+    private int? minAge;
+    private bool? isActive;
+
+    private int correntPage = 1;
+    private int pageSize = 9;
+
+    private int activeCount;
+    private int totalAge;
+
     protected override void OnInitialized()
     {
-        ShowAll();
+        LoadData();
+    }
+
+    private void LoadData()
+    {
+        users = UserService.Search(searchName, minAge, isActive, correntPage, pageSize);
+        activeCount = UserService.GetActiveCount();
+        totalAge = UserService.GetTotalAge();
+    }
+
+    private void Search()
+    {
+        correntPage = 1;
+        LoadData();
+    }
+
+    private void NextPage()
+    {
+        correntPage++;
+        LoadData();
+    }
+
+    private void PrevPage()
+    {
+        if (correntPage > 1)
+        {
+            correntPage--;
+            LoadData();
+        }
     }
 
     void ShowAll()
