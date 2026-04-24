@@ -17,7 +17,7 @@ namespace BlazorAppDemo.Components.Extensions
         /// <returns></returns>
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
-            services.AddScoped<UserDto>();
+            services.AddScoped<UserService>();
             services.AddScoped<CartService>();
 
             return services;
