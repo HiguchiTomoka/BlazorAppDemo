@@ -72,7 +72,6 @@ namespace BlazorAppDemo.Components.Service
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
-
         }
 
         /// <summary>
@@ -161,6 +160,5 @@ namespace BlazorAppDemo.Components.Service
                 _users.OrderByDescending(u => u.Age).ToList()
                 : _users.OrderBy(u => u.Age).ToList();
         }
-
     }
 }

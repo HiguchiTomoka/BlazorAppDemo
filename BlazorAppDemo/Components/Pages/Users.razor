@@ -3,6 +3,7 @@
 @inject UserService UserService
 @using BlazorAppDemo.Components.Service;
 @using BlazorAppDemo.Components.Model;
+@using BlazorAppDemo.Components;
 
 <h3>ユーザー一覧</h3>
 
@@ -26,7 +27,7 @@
     <ul class="user-list">
         @foreach (var user in users)
         {
-            <li class="user-item">
+            <li class="user-item" @onclick="() => OpenModal(user)">
                 <div class="user-info">
                     <span class="user-name">@user.Name</span>
                     <span class="user-meta">
@@ -59,6 +60,10 @@ else
     <p>合計年齢: @totalAge</p>
 </div>
 
+@* モーダルのコンポーネント *@
+<UserDetailModal IsOpen="isModalOpen"
+                 User="selectedUser"
+                 OnClose="CloseModal" />
 
 @code {
     private List<User> users = new();
@@ -72,6 +77,10 @@ else
 
     private int activeCount;
     private int totalAge;
+
+    // モーダル表示フラグ
+    private bool isModalOpen = false;
+    private User? selectedUser;
 
     protected override void OnInitialized()
     {
@@ -91,6 +100,23 @@ else
         LoadData();
     }
 
+    /// <summary>
+    /// リストをクリックして詳細のモーダルを表示
+    /// </summary>
+    private void OpenModal(User user)
+    {
+        selectedUser = user;
+        isModalOpen = true;
+    }
+
+    /// <summary>
+    /// モーダルを閉じる
+    /// </summary>
+    private void CloseModal()
+    {
+        isModalOpen = false;
+    }
+
     private void NextPage()
     {
         correntPage++;
@@ -98,7 +124,7 @@ else
     }
 
     private void PrevPage()
-    {
+    {                 
         if (correntPage > 1)
         {
             correntPage--;

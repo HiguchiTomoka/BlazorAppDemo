@@ -1,0 +1,31 @@
+﻿@using BlazorAppDemo.Components.Model;
+@rendermode InteractiveServer
+
+@if (IsOpen && User != null)
+{
+    <div class="modal-overlay" @onclick="Close">
+        <div class="user-modal" @onclick:stopPropagation="true">
+            <h3>@User.Name の詳細</h3>
+
+            <p>TEST</p>
+            <p><b>ID:</b> @User.Id</p>
+            <p><b>年齢:</b> @User.Age</p>
+            <p><b>性別:</b> @User.Gender</p>
+            <p><b>状態:</b> @(User.IsActive ? "Active" : "Inactive")</p>
+
+            <button @onclick="Close">閉じる</button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public User? User { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    private async Task Close()
+    {
+        await OnClose.InvokeAsync();
+    }
+}
