@@ -87,6 +87,9 @@ else
         LoadData();
     }
 
+    /// <summary>
+    /// データ取得処理
+    /// </summary>
     private void LoadData()
     {
         users = UserService.Search(searchName, minAge, isActive, correntPage, pageSize);
@@ -101,7 +104,7 @@ else
     }
 
     /// <summary>
-    /// リストをクリックして詳細のモーダルを表示
+    /// リストをクリックして詳細情報モーダルを表示
     /// </summary>
     private void OpenModal(User user)
     {
