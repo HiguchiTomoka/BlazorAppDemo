@@ -7,6 +7,7 @@
         <div class="user-modal" @onclick:stopPropagation="true">
             <h3>@User.Name の詳細</h3>
 
+            <input type="text" placeholder="@User.Id"/>
             <p><b>ID:</b> @User.Id</p>
             <p><b>年齢:</b> @User.Age</p>
             <p><b>性別:</b> @User.Gender</p>

@@ -32,8 +32,12 @@
         },
         {
           "DockedWidth": 312,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -42,7 +46,7 @@
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\Users.razor",
               "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\Users.razor",
               "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\Users.razor",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAAAHgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAFEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-28T00:00:39.052Z",
               "EditorCaption": ""
@@ -55,9 +59,10 @@
               "RelativeDocumentMoniker": "BlazorAppDemo\\wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\wwwroot\\css\\site.css",
               "RelativeToolTip": "BlazorAppDemo\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-27T05:56:38.397Z"
+              "WhenOpened": "2026-04-27T05:56:38.397Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -67,7 +72,7 @@
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\UserDetailModal.razor",
               "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\UserDetailModal.razor",
               "RelativeToolTip": "BlazorAppDemo\\Components\\UserDetailModal.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-27T05:07:38.162Z",
               "EditorCaption": ""
