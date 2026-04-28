@@ -60,7 +60,7 @@ else
     <p>合計年齢: @totalAge</p>
 </div>
 
-@* モーダルのコンポーネント *@
+@* モーダルのコンポーネント(モーダルに渡す値をここでセットしてあげる) *@
 <UserDetailModal IsOpen="isModalOpen"
                  User="selectedUser"
                  OnClose="CloseModal" />
@@ -68,12 +68,15 @@ else
 @code {
     private List<User> users = new();
 
+    // 検索名称
     private string? searchName;
+    // 検索用最小年齢
     private int? minAge;
+
     private bool? isActive;
 
     private int correntPage = 1;
-    private int pageSize = 9;
+    private static readonly int pageSize = 9;
 
     private int activeCount;
     private int totalAge;
@@ -97,6 +100,9 @@ else
         totalAge = UserService.GetTotalAge();
     }
 
+    /// <summary>
+    /// 検索処理
+    /// </summary>
     private void Search()
     {
         correntPage = 1;
@@ -120,12 +126,18 @@ else
         isModalOpen = false;
     }
 
+    /// <summary>
+    /// 次へボタン押下時
+    /// </summary>
     private void NextPage()
     {
         correntPage++;
         LoadData();
     }
 
+    /// <summary>
+    /// 前へボタン押下時
+    /// </summary>
     private void PrevPage()
     {                 
         if (correntPage > 1)
@@ -135,26 +147,41 @@ else
         }
     }
 
+    /// <summary>
+    /// 全員表示する処理
+    /// </summary>
     void ShowAll()
     {
         users = UserService.FindUsers(u => true);
     }
 
+    /// <summary>
+    /// 大人のみ表示する処理
+    /// </summary>
     void ShowAdults()
     {
         users = UserService.FindUsers(u => u.Age >= 20);
     }
 
+    /// <summary>
+    /// Activeの人のみ表示する処理
+    /// </summary>
     void ShowActive()
     {
         users = UserService.FindUsers(u => u.IsActive);
     }
 
+    /// <summary>
+    /// 女性のみ表示する処理
+    /// </summary>
     void ShowFemale()
     {
         users = UserService.FindUsers(u => u.Gender.Equals("female"));
     }
 
+    /// <summary>
+    /// 男性のみ表示する処理
+    /// </summary>
     void ShowMale()
     {
         users = UserService.FindUsers(u => u.Gender.Equals("male"));
