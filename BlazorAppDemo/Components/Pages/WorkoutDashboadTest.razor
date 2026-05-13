@@ -1,9 +1,8 @@
 ﻿@page "/workoutRecords"
 @using BlazorAppDemo.Components.Data
-@using BlazorAppDemo.Components.Controller
-@using Microsoft.EntityFrameworkCore
 @inject BlazorAppDemo.Components.Data.AppDbContext DbContext
 @inject BlazorAppDemo.Components.Data.WorkoutRecordInfo WorkoutRecordInfo
+@inject BlazorAppDemo.Components.Services.WorkoutService WorkoutService
 
 <h3>WorkoutRecords テーブル</h3>
 
@@ -47,14 +46,16 @@ else
     protected override async Task OnInitializedAsync()
     {
         // DB に接続して WorkoutRecords テーブルのデータを取得
-        workoutRecords = await WorkoutRecordController.fecthWorkoutRecordInfo();
+        workoutRecords = await WorkoutService.FetchWorkoutRecordInfo();
 
         // テストデータが空なら追加
         if (!workoutRecords.Any())
         {
-            DbContext.WorkoutRecords.Add(new WorkoutRecordInfo { MenuName = "テストメニュー", Weight = 100, Reps = 10, Sets = 3, TrainingDate = DateTime.Now });
-            await DbContext.SaveChangesAsync();
-            workoutRecords = await DbContext.WorkoutRecords.ToListAsync();
+            WorkoutRecordInfo sampleData = new WorkoutRecordInfo { MenuName = "テストメニュー", Weight = 100, Reps = 10, Sets = 3, TrainingDate = DateTime.Now };
+            // テストデータの追加
+            await WorkoutService.AddWorkoutRecord(sampleData);
+            // データを再取得
+            workoutRecords = await WorkoutService.FetchWorkoutRecordInfo();
         }
     }
 }

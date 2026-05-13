@@ -1,9 +1,9 @@
 ﻿@page "/workout"
+@rendermode InteractiveServer
 @using BlazorAppDemo.Components.Data
-@using BlazorAppDemo.Components.Controller
-@using Microsoft.EntityFrameworkCore
 @inject BlazorAppDemo.Components.Data.AppDbContext DbContext
 @inject BlazorAppDemo.Components.Data.UserInfo UserInfo
+@inject BlazorAppDemo.Components.Services.WorkoutService WorkoutService
 
 <div class="workout-page">
 
@@ -13,12 +13,12 @@
             <p>今日のトレーニングを記録しよう</p>
         </div>
 
-        <button class="add-button">
+        <button class="add-button" @onclick="AddWorkoutRecord">
             ＋ Add Record
         </button>
     </div>
 
-    @if (workoutRecords == null || workoutRecords.Count == 0)
+@*     @if (workoutRecords == null || workoutRecords.Count == 0)
     {
         <p>No workout records found.</p>
     }
@@ -33,28 +33,74 @@
             </div>
         </div>
         }
+    } *@
+
+    @* AddRecordがクリックされた場合 *@
+    @if (pushAddRecord)
+    {
+        @* 編集値 *@
+        <div class="stats-grid">
+            <!-- インプット用：トレーニングメニュー -->
+            <div class="stat-card">
+                <span class="stat-title">Training Menu</span>
+                <input class="stat-value" placeholder="Bench Press" @bind="trainingMenu" />
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <!-- インプット用：重量 -->
+            <div class="stat-card">
+                <span class="stat-title">Weight</span>
+                <input class="stat-value" placeholder="120kg" @bind="weight" />
+            </div>
+            <!-- インプット用：回数 -->
+            <div class="stat-card">
+                <span class="stat-title">Reps</span>
+                <input class="stat-value" placeholder="10" @bind="reps" />
+            </div>
+            <!-- インプット用：セット数 -->
+            <div class="stat-card">
+                <span class="stat-title">Sets</span>
+                <input class="stat-value" placeholder="3" @bind="sets" />
+            </div>
+        </div>
+
+        @* キャンセルボタン、更新ボタン *@
+        <div class="action-buttons">
+            <!-- キャンセルボタン -->
+            <button class="add-button" @onclick="CancelUpdate">
+                × Cancel
+            </button>
+            <!-- 更新ボタン -->
+            <button class="add-button" @onclick="RegistWorkoutRecord">
+                ＋ Update
+            </button>
+        </div>
     }
+    else
+    {
+@*         <div class="stats-grid">
 
-    <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-title">Total Workouts</span>
+                <span class="stat-value"> 128</span>
+            </div>
 
-        <div class="stat-card">
-            <span class="stat-title">Total Workouts</span>
-            <span class="stat-value"> 128</span>
-        </div>
+            <div class="stat-card">
+                <span class="stat-title">This Week</span>
+                <span class="stat-value">5</span>
+            </div>
 
-        <div class="stat-card">
-            <span class="stat-title">This Week</span>
-            <span class="stat-value">5</span>
-        </div>
+            <div class="stat-card">
+                <span class="stat-title">Max Bench</span>
+                <span class="stat-value">100kg</span>
+            </div>
 
-        <div class="stat-card">
-            <span class="stat-title">Max Bench</span>
-            <span class="stat-value">100kg</span>
-        </div>
+        </div> *@
+    } 
 
-    </div>
-
-    <div class="content-grid">
+    @* 今日の記録 *@
+ @*    <div class="content-grid">
 
         <div class="record-card">
 
@@ -96,35 +142,39 @@
                         Back
                     </span>
                 </div>
-
             </div>
+        </div> *@
 
-        </div>
-
-        <div class="side-card">
-
+        @* 進捗 *@
+@*         <div class="side-card">
             <div class="section-header">
                 <h2>Progress</h2>
             </div>
-
             <div class="progress-box">
                 <span>Weekly Goal</span>
-
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
-
                 <p>5 / 7 Days</p>
             </div>
-
-        </div>
-
-    </div>
+        </div> 
+    </div>*@
 
 </div>
 
 @code{
+    // トレーニング記録のリスト
     private List<WorkoutRecordInfo> workoutRecords;
+    // AddRecord押下フラグ
+    private bool pushAddRecord = false;
+    // 入力値：Training Menu(トレーニングメニュー)
+    private string trainingMenu;
+    // 入力値：Weight(重量)
+    private string weight;
+    // 入力値：Reps(回数)
+    private string reps;
+    // 入力値：Sets(セット数)
+    private string sets;
 
     /// <summary>
     /// 初期表示の処理
@@ -135,8 +185,48 @@
     protected override async Task OnInitializedAsync()
     {
         // DB からトレーニングデータを取得して表示する処理をここに実装
-       workoutRecords = await DbContext.WorkoutRecords.ToListAsync();
+        workoutRecords = await WorkoutService.FetchWorkoutRecordInfo();
     }
 
+    /// <summary>
+    /// トレーニング記録入力フォームの表示
+    /// </summary>
+    /// <returns></returns>
+    private void AddWorkoutRecord()
+    {
+        // AddRecord 押下フラグの更新
+        pushAddRecord = true;
+    }
+
+    /// <summary>
+    /// トレーニング記録の更新をキャンセル
+    /// </summary>
+    private void CancelUpdate()
+    {
+        // AddRecord 押下フラグの更新
+        pushAddRecord = false;
+    }
+
+    /// <summary>
+    /// トレーニング記録を登録処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task RegistWorkoutRecord()
+    {
+        // トレーニング記録追加の処理をここに実装
+        WorkoutRecordInfo newRecord = new WorkoutRecordInfo
+        {
+            MenuName = trainingMenu,
+            Weight = int.Parse(weight),
+            Reps = int.Parse(reps),
+            Sets = int.Parse(sets),
+            TrainingDate = DateTime.Now
+        };
+        // DB に新しいトレーニング記録を追加する
+        await WorkoutService.AddWorkoutRecord(newRecord);
+
+        // トレーニング記録を再取得して表示を更新する
+        workoutRecords = await WorkoutService.FetchWorkoutRecordInfo();
+    }
 
 }

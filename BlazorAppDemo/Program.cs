@@ -18,11 +18,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // UserInfoをアプリ全体で共有
 builder.Services.AddSingleton<UserInfo>();
 
+builder.Services.AddSingleton<WorkoutRecordInfo>();
+
 // signalRハブの作成(リアルタイム通信を行うため)
 builder.Services.AddSignalR();
 
 // UserInputStateの寿命(ライフサイクル)はScopeで登録
 builder.Services.AddScoped<BlazorAppDemo.Components.Services.UserInputState>();
+
+// WorkoutServiceの登録
+builder.Services.AddScoped<BlazorAppDemo.Components.Services.WorkoutService>();
 
 var app = builder.Build();
 
