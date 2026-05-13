@@ -17,8 +17,45 @@
             ＋ Add Record
         </button>
     </div>
+    @* トレーニング記録がある場合 *@
+    @if (workoutRecords != null && workoutRecords.Count != 0)
+    {
+        <div class="record-card">
+            <div class="section-header">
+                <h2>Today's Records</h2>
+            </div>
+            <!-- 本日行ったトレーニングのみ表示 -->
+            @foreach (var record in workoutRecords)
+            {
+                // トレーニング記録の日付が今日かどうかを判定
+                bool isToday = record.TrainingDate >= DateTime.Today && record.TrainingDate < DateTime.Today.AddDays(1);
+                if (isToday)
+                {
+                    <div class="record-list">
+                        <div class="record-item">
+                            <div>
+                                <h3>@record.MenuName</h3>
+                                <p>@record.Weight kg × @record.Reps reps × @record.Sets sets</p>
+                            </div>
 
-@*     @if (workoutRecords == null || workoutRecords.Count == 0)
+                            <span class="muscle chest">
+                                Chest
+                            </span>
+                        </div>
+                    </div>
+                } 
+                else
+                {
+                    
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <p>No workout records found.</p>
+    }
+    @*     @if (workoutRecords == null || workoutRecords.Count == 0)
     {
         <p>No workout records found.</p>
     }
@@ -100,7 +137,7 @@
     } 
 
     @* 今日の記録 *@
- @*    <div class="content-grid">
+   @*  <div class="content-grid">
 
         <div class="record-card">
 
@@ -143,7 +180,7 @@
                     </span>
                 </div>
             </div>
-        </div> *@
+        </div>  *@
 
         @* 進捗 *@
 @*         <div class="side-card">
@@ -226,7 +263,7 @@
         await WorkoutService.AddWorkoutRecord(newRecord);
 
         // トレーニング記録を再取得して表示を更新する
-        workoutRecords = await WorkoutService.FetchWorkoutRecordInfo();
+        workoutRecords = await WorkoutService.FetchTodayWorkoutRecordInfo();
     }
 
 }

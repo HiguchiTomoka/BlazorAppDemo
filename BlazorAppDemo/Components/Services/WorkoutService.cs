@@ -13,11 +13,22 @@ namespace BlazorAppDemo.Components.Services
         }
 
         /// <summary>
-        /// トレーニング記録情報を取得する
+        /// トレーニング全記録情報を取得する
         /// </summary>
         public async Task<List<WorkoutRecordInfo>> FetchWorkoutRecordInfo()
         {
             return await _dbContext.WorkoutRecords.ToListAsync();
+        }
+
+        /// <summary>
+        /// トレーニング記録情報(本日行ったもののみ)を取得する
+        /// </summary>
+        public async Task<List<WorkoutRecordInfo>> FetchTodayWorkoutRecordInfo()
+        {
+            // 本日の日付を取得
+            var today = DateTime.Today;
+            // トレーニング日が本日の日付と一致する記録をデータベースから取得
+            return await _dbContext.WorkoutRecords.Where(r => r.TrainingDate == today).ToListAsync();
         }
 
         /// <summary>
