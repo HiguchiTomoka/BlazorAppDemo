@@ -1,8 +1,9 @@
 ﻿@page "/workoutRecords"
 @using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Controller
 @using Microsoft.EntityFrameworkCore
 @inject BlazorAppDemo.Components.Data.AppDbContext DbContext
-@inject BlazorAppDemo.Components.Data.UserInfo UserInfo
+@inject BlazorAppDemo.Components.Data.WorkoutRecordInfo WorkoutRecordInfo
 
 <h3>WorkoutRecords テーブル</h3>
 
@@ -40,12 +41,13 @@ else
 }
 
 @code {
+
     private List<WorkoutRecordInfo> workoutRecords;
 
     protected override async Task OnInitializedAsync()
     {
         // DB に接続して WorkoutRecords テーブルのデータを取得
-        workoutRecords = await DbContext.WorkoutRecords.ToListAsync();
+        workoutRecords = await WorkoutRecordController.fecthWorkoutRecordInfo();
 
         // テストデータが空なら追加
         if (!workoutRecords.Any())

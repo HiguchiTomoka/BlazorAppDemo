@@ -1,5 +1,6 @@
 ﻿@page "/workout"
 @using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Controller
 @using Microsoft.EntityFrameworkCore
 @inject BlazorAppDemo.Components.Data.AppDbContext DbContext
 @inject BlazorAppDemo.Components.Data.UserInfo UserInfo
@@ -17,11 +18,28 @@
         </button>
     </div>
 
+    @if (workoutRecords == null || workoutRecords.Count == 0)
+    {
+        <p>No workout records found.</p>
+    }
+    else
+    {
+        @foreach (var record in workoutRecords)
+        {
+        <div class="record-item">
+            <div>
+                <h3>@record.MenuName</h3>
+                <p>@record.Weight kg × @record.Reps reps × @record.Sets sets</p>
+            </div>
+        </div>
+        }
+    }
+
     <div class="stats-grid">
 
         <div class="stat-card">
             <span class="stat-title">Total Workouts</span>
-            <span class="stat-value">128</span>
+            <span class="stat-value"> 128</span>
         </div>
 
         <div class="stat-card">
@@ -106,5 +124,19 @@
 </div>
 
 @code{
+    private List<WorkoutRecordInfo> workoutRecords;
+
+    /// <summary>
+    /// 初期表示の処理
+    /// 
+    /// 一番古いトレーニングデータを表示する
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        // DB からトレーニングデータを取得して表示する処理をここに実装
+       workoutRecords = await DbContext.WorkoutRecords.ToListAsync();
+    }
+
 
 }
