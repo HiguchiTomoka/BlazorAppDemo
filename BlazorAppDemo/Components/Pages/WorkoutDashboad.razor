@@ -4,6 +4,7 @@
 @inject BlazorAppDemo.Components.Data.AppDbContext DbContext
 @inject BlazorAppDemo.Components.Data.UserInfo UserInfo
 @inject BlazorAppDemo.Components.Services.WorkoutService WorkoutService
+@inject IJSRuntime JS
 
 <div class="workout-page">
 
@@ -120,7 +121,7 @@
             <!-- インプット用：重量 -->
             <div class="stat-card">
                 <span class="stat-title">Weight</span>
-                <input class="stat-value" placeholder="120kg" @bind="weight" />
+                <input class="stat-value" placeholder="120" @bind="weight" />
             </div>
             <!-- インプット用：回数 -->
             <div class="stat-card">
@@ -147,6 +148,13 @@
         </div>
     }
 </div>
+
+<h3>筋トレ推移</h3>
+@* ここに線グラフを表示 *@
+<canvas id="workoutChart"></canvas>
+
+@* ここに線グラフを表示 *@
+<canvas id="muscleChart"></canvas>
 
 @code{
     // トレーニング記録のリスト
@@ -196,6 +204,65 @@
         // Benchの最大重量
         maxBenchWeight = await WorkoutService.FetchMaxBenchPressWeight();
 
+    }
+
+    /// <summary>
+    /// レンダリング後の処理
+    /// </summary>
+    /// <param name="firstRender"></param>
+    /// <returns></returns>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // x軸
+            var labels = new[]
+            {
+                "月",
+                "火",
+                "水",
+                "木",
+                "金"
+            };
+
+            // プロットするデータ
+            var data = new[]
+            {
+                80,
+                82,
+                85,
+                87,
+                90
+            };
+
+            // renderWorkoutChart関数に「label」と「data」を渡し、Chart.jsでグラフを描画する
+            // renderWorkoutChart関数はwwwroot/js/chart.jsに定義されている
+            await JS.InvokeVoidAsync(
+                "renderWorkoutChart",
+                labels,
+                data);
+
+            // 円グラフのラベル
+            var pieLabels = new[]
+            {
+                "Chest",
+                "Back",
+                "Leg"
+            };
+
+            var pieData = new[]
+            {
+                12,
+                8,
+                10
+            };
+
+            // 円グラフを描画する
+            await JS.InvokeVoidAsync(
+                "renderMuscleChart",
+                pieLabels,
+                pieData);
+            }
     }
 
     /// <summary>
