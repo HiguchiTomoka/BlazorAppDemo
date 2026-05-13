@@ -17,60 +17,92 @@
             ＋ Add Record
         </button>
     </div>
-    @* トレーニング記録がある場合 *@
+
+    @* 本日行ったトレーニング記録がある場合 *@
     @if (workoutRecords != null && workoutRecords.Count != 0)
     {
-        <div class="record-card">
-            <div class="section-header">
-                <h2>Today's Records</h2>
-            </div>
-            <!-- 本日行ったトレーニングのみ表示 -->
-            @foreach (var record in workoutRecords)
-            {
-                // トレーニング記録の日付が今日かどうかを判定
-                bool isToday = record.TrainingDate >= DateTime.Today && record.TrainingDate < DateTime.Today.AddDays(1);
-                if (isToday)
+        <div class="content-grid">
+            <div class="record-card">
+                <div class="section-header">
+                    <h2>Today's Records</h2>
+                </div>
+                <div class="record-list">
+                <!-- 本日行ったトレーニングのみ表示 -->
+                @foreach (var record in workoutRecords)
                 {
-                    <div class="record-list">
-                        <div class="record-item">
-                            <div>
-                                <h3>@record.MenuName</h3>
-                                <p>@record.Weight kg × @record.Reps reps × @record.Sets sets</p>
-                            </div>
+                    <div class="record-item">
+                        <div>
+                            <h3>@record.MenuName</h3>
+                            <p>@record.Weight kg × @record.Reps reps × @record.Sets sets</p>
+                        </div>
 
+                        @* 胸トレ *@
+                        @if (chestTrainingGroups.Contains(record.MenuName))
+                        {
                             <span class="muscle chest">
                                 Chest
                             </span>
-                        </div>
-                    </div>
-                } 
-                else
-                {
-                    
+                        }
+
+                        @* 脚トレ *@
+                        @if (legTrainingGroups.Contains(record.MenuName))
+                        {
+                            <span class="muscle leg">
+                                Leg
+                            </span>
+                        }
+
+                        @* 背中トレ *@
+                        @if (backTrainingGroups.Contains(record.MenuName))
+                        {
+                            <span class="muscle back">
+                                Back
+                            </span>
+                        }
+                    </div>  
+                
                 }
-            }
-        </div>
-    }
-    else
-    {
-        <p>No workout records found.</p>
-    }
-    @*     @if (workoutRecords == null || workoutRecords.Count == 0)
-    {
-        <p>No workout records found.</p>
-    }
-    else
-    {
-        @foreach (var record in workoutRecords)
-        {
-        <div class="record-item">
-            <div>
-                <h3>@record.MenuName</h3>
-                <p>@record.Weight kg × @record.Reps reps × @record.Sets sets</p>
+                </div>
             </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-title">Total Workouts</span>
+                    <span class="stat-value"> @totalWorkouts</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-title">This Week</span>
+                    <span class="stat-value"> @thisWeek</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-title">Max Bench</span>
+                    <span class="stat-value"> @maxBenchWeight kg</span>
+                </div>
+
+            </div>
+
+            @* 進捗 *@
+            <div class="side-card">
+                <div class="section-header">
+                    <h2>Progress</h2>
+                </div>
+                <div class="progress-box">
+                    <span>Weekly Goal</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p>@thisWeek / 7 Days</p>
+                </div>
+            </div> 
         </div>
-        }
-    } *@
+    }
+    else
+    {
+        <p>No workout records found.</p>
+    }
 
     @* AddRecordがクリックされた場合 *@
     @if (pushAddRecord)
@@ -114,94 +146,18 @@
             </button>
         </div>
     }
-    else
-    {
-@*         <div class="stats-grid">
-
-            <div class="stat-card">
-                <span class="stat-title">Total Workouts</span>
-                <span class="stat-value"> 128</span>
-            </div>
-
-            <div class="stat-card">
-                <span class="stat-title">This Week</span>
-                <span class="stat-value">5</span>
-            </div>
-
-            <div class="stat-card">
-                <span class="stat-title">Max Bench</span>
-                <span class="stat-value">100kg</span>
-            </div>
-
-        </div> *@
-    } 
-
-    @* 今日の記録 *@
-   @*  <div class="content-grid">
-
-        <div class="record-card">
-
-            <div class="section-header">
-                <h2>Today's Records</h2>
-            </div>
-
-            <div class="record-list">
-
-                <div class="record-item">
-                    <div>
-                        <h3>Bench Press</h3>
-                        <p>80kg × 8 reps × 3 sets</p>
-                    </div>
-
-                    <span class="muscle chest">
-                        Chest
-                    </span>
-                </div>
-
-                <div class="record-item">
-                    <div>
-                        <h3>Squat</h3>
-                        <p>100kg × 5 reps × 5 sets</p>
-                    </div>
-
-                    <span class="muscle leg">
-                        Leg
-                    </span>
-                </div>
-
-                <div class="record-item">
-                    <div>
-                        <h3>Deadlift</h3>
-                        <p>120kg × 5 reps × 3 sets</p>
-                    </div>
-
-                    <span class="muscle back">
-                        Back
-                    </span>
-                </div>
-            </div>
-        </div>  *@
-
-        @* 進捗 *@
-@*         <div class="side-card">
-            <div class="section-header">
-                <h2>Progress</h2>
-            </div>
-            <div class="progress-box">
-                <span>Weekly Goal</span>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                <p>5 / 7 Days</p>
-            </div>
-        </div> 
-    </div>*@
-
 </div>
 
 @code{
     // トレーニング記録のリスト
     private List<WorkoutRecordInfo> workoutRecords;
+    // 脚トレグループ
+    private String[] legTrainingGroups = { "Squat", "Leg Press", "Leg Curl" };
+    // 背中トレグループ
+    private String[] backTrainingGroups = { "Deadlift", "Lat Pulldown", "Back Extension" };
+    // 胸トレグループ
+    private String[] chestTrainingGroups = { "Bench Press", "Push-up", "Chest Fly" };
+
     // AddRecord押下フラグ
     private bool pushAddRecord = false;
     // 入力値：Training Menu(トレーニングメニュー)
@@ -213,6 +169,13 @@
     // 入力値：Sets(セット数)
     private string sets;
 
+    // 総トレーニング回数
+    private int totalWorkouts;
+    // 総トレーニング回数
+    private int thisWeek;
+    // 総トレーニング回数
+    private int maxBenchWeight;
+
     /// <summary>
     /// 初期表示の処理
     /// 
@@ -222,7 +185,17 @@
     protected override async Task OnInitializedAsync()
     {
         // DB からトレーニングデータを取得して表示する処理をここに実装
-        workoutRecords = await WorkoutService.FetchWorkoutRecordInfo();
+        workoutRecords = await WorkoutService.FetchTodayWorkoutRecordInfo();
+
+        // 総トレーニング回数
+        totalWorkouts = await WorkoutService.FetchTotalWorkoutCount();
+
+        // 今週は何日トレーニングしたか？
+        thisWeek = await WorkoutService.FetchThisWeeksWorkoutCount();
+
+        // Benchの最大重量
+        maxBenchWeight = await WorkoutService.FetchMaxBenchPressWeight();
+
     }
 
     /// <summary>

@@ -19,6 +19,36 @@ namespace BlazorAppDemo.Components.Services
         {
             return await _dbContext.WorkoutRecords.ToListAsync();
         }
+        /// <summary>
+        /// 総トレーニング回数を取得する
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> FetchTotalWorkoutCount()
+        {
+            return await _dbContext.WorkoutRecords.CountAsync();
+        }
+        /// <summary>
+        /// 今週何日トレーニングしたかを取得する
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> FetchThisWeeksWorkoutCount()
+        {
+            // 今週の開始日を取得
+            var startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+            // 今週の終了日を取得
+            var endOfWeek = startOfWeek.AddDays(7);
+            // 今週のトレーニング回数をデータベースから取得
+            return await _dbContext.WorkoutRecords.CountAsync(r => r.TrainingDate >= startOfWeek && r.TrainingDate < endOfWeek);
+        }
+
+        /// <summary>
+        /// Bnchの最大重量
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> FetchMaxBenchPressWeight()
+        {
+            return await _dbContext.WorkoutRecords.Where(r => r.MenuName == "Bench Press").MaxAsync(r => r.Weight);
+        }
 
         /// <summary>
         /// トレーニング記録情報(本日行ったもののみ)を取得する
@@ -28,7 +58,7 @@ namespace BlazorAppDemo.Components.Services
             // 本日の日付を取得
             var today = DateTime.Today;
             // トレーニング日が本日の日付と一致する記録をデータベースから取得
-            return await _dbContext.WorkoutRecords.Where(r => r.TrainingDate == today).ToListAsync();
+            return await _dbContext.WorkoutRecords.Where(r => r.TrainingDate >= today && r.TrainingDate < today.AddDays(1)).ToListAsync();
         }
 
         /// <summary>
