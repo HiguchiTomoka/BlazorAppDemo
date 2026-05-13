@@ -1,0 +1,110 @@
+﻿@page "/workout"
+@using BlazorAppDemo.Components.Data
+@using Microsoft.EntityFrameworkCore
+@inject BlazorAppDemo.Components.Data.AppDbContext DbContext
+@inject BlazorAppDemo.Components.Data.UserInfo UserInfo
+
+<div class="workout-page">
+
+    <div class="header-card">
+        <div>
+            <h1>Training Dashboard</h1>
+            <p>今日のトレーニングを記録しよう</p>
+        </div>
+
+        <button class="add-button">
+            ＋ Add Record
+        </button>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span class="stat-title">Total Workouts</span>
+            <span class="stat-value">128</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-title">This Week</span>
+            <span class="stat-value">5</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-title">Max Bench</span>
+            <span class="stat-value">100kg</span>
+        </div>
+
+    </div>
+
+    <div class="content-grid">
+
+        <div class="record-card">
+
+            <div class="section-header">
+                <h2>Today's Records</h2>
+            </div>
+
+            <div class="record-list">
+
+                <div class="record-item">
+                    <div>
+                        <h3>Bench Press</h3>
+                        <p>80kg × 8 reps × 3 sets</p>
+                    </div>
+
+                    <span class="muscle chest">
+                        Chest
+                    </span>
+                </div>
+
+                <div class="record-item">
+                    <div>
+                        <h3>Squat</h3>
+                        <p>100kg × 5 reps × 5 sets</p>
+                    </div>
+
+                    <span class="muscle leg">
+                        Leg
+                    </span>
+                </div>
+
+                <div class="record-item">
+                    <div>
+                        <h3>Deadlift</h3>
+                        <p>120kg × 5 reps × 3 sets</p>
+                    </div>
+
+                    <span class="muscle back">
+                        Back
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="side-card">
+
+            <div class="section-header">
+                <h2>Progress</h2>
+            </div>
+
+            <div class="progress-box">
+                <span>Weekly Goal</span>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <p>5 / 7 Days</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@code{
+
+}

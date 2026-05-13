@@ -1,0 +1,213 @@
+﻿.workout-page {
+    min-height: 100vh;
+    padding: 32px;
+    background: radial-gradient(circle at top left, #1e293b, #0f172a);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* =========================
+   Header
+========================= */
+
+.header-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    padding: 28px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+    .header-card h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .header-card p {
+        margin-top: 8px;
+        color: #94a3b8;
+    }
+
+.add-button {
+    border: none;
+    padding: 14px 22px;
+    border-radius: 14px;
+    background: linear-gradient( 135deg, #3b82f6, #8b5cf6 );
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+    .add-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(59,130,246,0.4);
+    }
+
+/* =========================
+   Stats
+========================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    padding: 24px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: 0.25s;
+}
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+    }
+
+.stat-title {
+    display: block;
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* =========================
+   Main Content
+========================= */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
+
+.record-card,
+.side-card {
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+}
+
+.section-header {
+    margin-bottom: 24px;
+}
+
+    .section-header h2 {
+        margin: 0;
+    }
+
+/* =========================
+   Records
+========================= */
+
+.record-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    transition: 0.2s;
+}
+
+    .record-item:hover {
+        background: rgba(255,255,255,0.08);
+    }
+
+    .record-item h3 {
+        margin: 0 0 6px 0;
+    }
+
+    .record-item p {
+        margin: 0;
+        color: #94a3b8;
+    }
+
+/* =========================
+   Muscle Tags
+========================= */
+
+.muscle {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.chest {
+    background: rgba(239,68,68,0.2);
+    color: #fca5a5;
+}
+
+.leg {
+    background: rgba(34,197,94,0.2);
+    color: #86efac;
+}
+
+.back {
+    background: rgba(59,130,246,0.2);
+    color: #93c5fd;
+}
+
+/* =========================
+   Progress
+========================= */
+
+.progress-box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.progress-bar {
+    height: 14px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+}
+
+.progress-fill {
+    width: 70%;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient( 90deg, #3b82f6, #8b5cf6 );
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}

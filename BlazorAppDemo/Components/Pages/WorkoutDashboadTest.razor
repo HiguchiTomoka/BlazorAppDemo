@@ -1,0 +1,58 @@
+﻿@page "/workoutRecords"
+@using BlazorAppDemo.Components.Data
+@using Microsoft.EntityFrameworkCore
+@inject BlazorAppDemo.Components.Data.AppDbContext DbContext
+@inject BlazorAppDemo.Components.Data.UserInfo UserInfo
+
+<h3>WorkoutRecords テーブル</h3>
+
+@if (workoutRecords == null)
+{
+    <p>読み込み中...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MenuName</th>
+                <th>Weight</th>
+                <th>Reps</th>
+                <th>Sets</th>
+                <th>TrainingDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var workoutRecord in workoutRecords)
+            {
+                <tr>
+                    <td>@workoutRecord.Id</td>
+                    <td>@workoutRecord.MenuName</td>
+                    <td>@workoutRecord.Weight</td>
+                    <td>@workoutRecord.Reps</td>
+                    <td>@workoutRecord.Sets</td>
+                    <td>@workoutRecord.TrainingDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<WorkoutRecordInfo> workoutRecords;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // DB に接続して WorkoutRecords テーブルのデータを取得
+        workoutRecords = await DbContext.WorkoutRecords.ToListAsync();
+
+        // テストデータが空なら追加
+        if (!workoutRecords.Any())
+        {
+            DbContext.WorkoutRecords.Add(new WorkoutRecordInfo { MenuName = "テストメニュー", Weight = 100, Reps = 10, Sets = 3, TrainingDate = DateTime.Now });
+            await DbContext.SaveChangesAsync();
+            workoutRecords = await DbContext.WorkoutRecords.ToListAsync();
+        }
+    }
+}
