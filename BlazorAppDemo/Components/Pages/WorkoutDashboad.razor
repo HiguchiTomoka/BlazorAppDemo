@@ -92,7 +92,8 @@
                 <div class="progress-box">
                     <span>Weekly Goal</span>
                     <div class="progress-bar">
-                        <div class="progress-fill"></div>
+                        <div class="progress-fill"
+                             style="width:@ProgressPercent%"></div>
                     </div>
                     <p>@thisWeek / 7 Days</p>
                 </div>
@@ -182,6 +183,9 @@
     private int thisWeek;
     // 総トレーニング回数
     private int maxBenchWeight;
+
+    // 週間目標に対する進捗率
+    private double ProgressPercent => (double)thisWeek / 7 * 100;
 
     /// <summary>
     /// 初期表示の処理
