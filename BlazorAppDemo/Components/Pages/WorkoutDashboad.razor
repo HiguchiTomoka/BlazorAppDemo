@@ -22,6 +22,25 @@
     @* 本日行ったトレーニング記録がある場合 *@
     @if (workoutRecords != null && workoutRecords.Count != 0)
     {
+        
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <span class="stat-title">Total Workouts</span>
+                <span class="stat-value"> @totalWorkouts</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-title">This Week</span>
+                <span class="stat-value"> @thisWeek</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-title">Max Bench</span>
+                <span class="stat-value"> @maxBenchWeight kg</span>
+            </div>
+        </div>
+
         <div class="content-grid">
             <div class="record-card">
                 <div class="section-header">
@@ -61,28 +80,8 @@
                             </span>
                         }
                     </div>  
-                
                 }
                 </div>
-            </div>
-
-            <div class="stats-grid">
-
-                <div class="stat-card">
-                    <span class="stat-title">Total Workouts</span>
-                    <span class="stat-value"> @totalWorkouts</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-title">This Week</span>
-                    <span class="stat-value"> @thisWeek</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-title">Max Bench</span>
-                    <span class="stat-value"> @maxBenchWeight kg</span>
-                </div>
-
             </div>
 
             @* 進捗 *@
@@ -160,11 +159,11 @@
     // トレーニング記録のリスト
     private List<WorkoutRecordInfo> workoutRecords;
     // 脚トレグループ
-    private String[] legTrainingGroups = { "Squat", "Leg Press", "Leg Curl" };
+    private String[] legTrainingGroups = { "Squat", "Leg Press", "Leg Curl", "Leg Extension", "Calf Raise", "Hip Thrust" };
     // 背中トレグループ
-    private String[] backTrainingGroups = { "Deadlift", "Lat Pulldown", "Back Extension" };
+    private String[] backTrainingGroups = { "Deadlift", "Lat Pulldown", "Back Extension", "Pull-up", "Row", "T-Bar Row" };
     // 胸トレグループ
-    private String[] chestTrainingGroups = { "Bench Press", "Push-up", "Chest Fly" };
+    private String[] chestTrainingGroups = { "Bench Press", "Push-up", "Chest Fly", "Incline Press", "Dips", "Machine Press" };
 
     // AddRecord押下フラグ
     private bool pushAddRecord = false;
@@ -304,6 +303,8 @@
 
         // トレーニング記録を再取得して表示を更新する
         workoutRecords = await WorkoutService.FetchTodayWorkoutRecordInfo();
+
+        pushAddRecord = false;
     }
 
 }

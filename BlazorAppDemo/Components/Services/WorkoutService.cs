@@ -28,17 +28,25 @@ namespace BlazorAppDemo.Components.Services
             return await _dbContext.WorkoutRecords.CountAsync();
         }
         /// <summary>
-        /// 今週何日トレーニングしたかを取得する
+        /// 1週間のうちに何日トレーニングしたかを取得する
         /// </summary>
         /// <returns></returns>
         public async Task<int> FetchThisWeeksWorkoutCount()
         {
             // 今週の開始日を取得
             var startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+
             // 今週の終了日を取得
             var endOfWeek = startOfWeek.AddDays(7);
-            // 今週のトレーニング回数をデータベースから取得
-            return await _dbContext.WorkoutRecords.CountAsync(r => r.TrainingDate >= startOfWeek && r.TrainingDate < endOfWeek);
+
+            // 今週のトレーニング日数をデータベースから取得
+            int thisWeek = await _dbContext.WorkoutRecords
+                .Where(r => r.TrainingDate >= startOfWeek && r.TrainingDate < endOfWeek)
+                .Select(r => r.TrainingDate.Date)// 日付だけ取り出し
+                .Distinct() // 重複除去
+                .CountAsync();
+
+            return thisWeek;
         }
 
         /// <summary>
