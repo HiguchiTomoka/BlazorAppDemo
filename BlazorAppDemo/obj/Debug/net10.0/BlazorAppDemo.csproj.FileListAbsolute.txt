@@ -152,7 +152,6 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scoped
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\bundle\BlazorAppDemo.styles.css
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\projectbundle\BlazorAppDemo.bundle.scp.css
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\h7dne0g5yn-{0}-khy4lop6wu-khy4lop6wu.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\r1j1i43fzx-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\iiy47is7wx-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\ggajmo6mfp-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -210,8 +209,8 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\Blazor
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\ref\BlazorAppDemo.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\o7xj9p9jqp-{0}-ej96puwv3k-ej96puwv3k.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\jkq387rpir-{0}-cj5793hgrt-cj5793hgrt.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\Components\Pages\workoutDashboad.razor.rz.scp.css
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\hra6k8cmoq-{0}-4agie2zi4p-4agie2zi4p.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-gv67dacrzj-gv67dacrzj.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-gv67dacrzj-gv67dacrzj.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-zh04k8ybfz-zh04k8ybfz.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-zh04k8ybfz-zh04k8ybfz.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\7f6v693xe0-{0}-mn8to8maz6-mn8to8maz6.gz

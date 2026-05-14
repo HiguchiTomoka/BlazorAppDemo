@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\workoutdashboad.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\workoutdashboad.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\common\\apptrainigpart.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\common\\apptrainigpart.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\common\\appbutton.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\common\\appbutton.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\workoutdashboad.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\workoutdashboad.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\services\\workoutservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\services\\workoutservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\wwwroot\\js\\chart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\wwwroot\\js\\chart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\users.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\users.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,7 +25,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 572,
+          "DockedWidth": 551,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -38,65 +38,61 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "workoutDashboad.razor.css",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\workoutDashboad.razor.css",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\workoutDashboad.razor.css",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\workoutDashboad.razor.css",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\workoutDashboad.razor.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-05-13T08:40:53.212Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "WorkoutDashboad.razor",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
               "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
               "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
-              "ViewState": "AgIAAE4AAAAAAAAAAADwv2AAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAADgAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-13T05:50:27.208Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WorkoutService.cs",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Services\\WorkoutService.cs",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Services\\WorkoutService.cs",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Services\\WorkoutService.cs",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Services\\WorkoutService.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAIAzwC4AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T06:09:22.114Z",
+              "WhenOpened": "2026-05-14T00:07:16.987Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "chart.js",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\wwwroot\\js\\chart.js",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\wwwroot\\js\\chart.js",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\wwwroot\\js\\chart.js",
-              "RelativeToolTip": "BlazorAppDemo\\wwwroot\\js\\chart.js",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACYAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-05-13T06:50:59.641Z",
+              "Title": "Users.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\Users.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\Users.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\Users.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\Users.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-14T00:05:39.341Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 756,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppButton.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppButton.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Common\\AppButton.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppButton.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Common\\AppButton.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-14T00:31:36.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppTrainigPart.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppTrainigPart.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Common\\AppTrainigPart.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppTrainigPart.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Common\\AppTrainigPart.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-14T00:26:20.225Z",
+              "EditorCaption": ""
             }
           ]
         }

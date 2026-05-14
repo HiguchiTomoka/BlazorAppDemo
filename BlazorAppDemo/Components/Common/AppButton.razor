@@ -1,1 +1,21 @@
-﻿
+﻿@rendermode InteractiveServer
+
+<button class="add-button" @onclick="Click">
+    @buttonValue
+</button>
+
+@code {
+    // パラメータの再定義(Userから渡ってくる値の定義)
+    [Parameter] public string? buttonValue { get; set; }
+    // パラメータから渡ってきた処理をonCloseとして定義
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    /// <summary>
+    /// ボタン押下時処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task Click()
+    {
+        await OnClick.InvokeAsync();
+    }
+}
