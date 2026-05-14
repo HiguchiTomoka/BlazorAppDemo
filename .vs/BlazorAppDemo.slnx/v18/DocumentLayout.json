@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\workoutdashboad.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\common\\apptrainigrecord.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\common\\apptrainigrecord.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\common\\appaddtrainingrecord.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\common\\appaddtrainingrecord.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +17,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 739,
+          "DockedWidth": 684,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -34,9 +34,9 @@
               "Title": "WorkoutDashboad.razor",
               "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
               "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAAAOAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor*",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\WorkoutDashboad.razor*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-14T00:07:16.987Z",
               "EditorCaption": ""
@@ -44,21 +44,31 @@
           ]
         },
         {
-          "DockedWidth": 581,
+          "DockedWidth": 636,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AppTrainigRecord.razor",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppTrainigRecord.razor",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Common\\AppTrainigRecord.razor",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppTrainigRecord.razor",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Common\\AppTrainigRecord.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAGAAAAAAAAAA==",
+              "Title": "AppAddTrainingRecord.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppAddTrainingRecord.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Common\\AppAddTrainingRecord.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppAddTrainingRecord.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Common\\AppAddTrainingRecord.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-14T02:06:55.909Z",
+              "WhenOpened": "2026-05-14T02:27:43.172Z",
               "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 676,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }

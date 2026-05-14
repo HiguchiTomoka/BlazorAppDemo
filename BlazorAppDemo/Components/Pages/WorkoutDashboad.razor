@@ -8,16 +8,8 @@
 @inject IJSRuntime JS
 
 <div class="workout-page">
-
-    <div class="header-card">
-        <div>
-            <h1>Training Dashboard</h1>
-            <p>今日のトレーニングを記録しよう</p>
-        </div>
-
-        @* 記録追加ボタン *@
-        <AppButton buttonValue="＋ Add Record" OnClick="AddWorkoutRecord"/>
-    </div>
+    @* トレーニング記録追加 *@
+    <AppAddTrainingRecord ClickEvent="AddWorkoutRecord" />
 
     @* 本日行ったトレーニング記録がある場合 *@
     @if (workoutRecords != null && workoutRecords.Count != 0)
@@ -38,9 +30,9 @@
                 @foreach (var record in workoutRecords)
                 {
                     <div class="record-item">
-
+                        @* トレーニング記録詳細 *@
                         <AppTrainigDetail record="@record" />
-
+                        @* トレーニング部位 *@
                         <AppTrainigPart menuName="@record.MenuName" />
                     </div>  
                 }
@@ -78,7 +70,6 @@
         @* キャンセルボタン、更新ボタン *@
         <div class="action-buttons">
             <!-- キャンセルボタン -->
-            @* 記録追加ボタン *@
             <AppButton buttonValue="× Cancel" OnClick="CancelUpdate"/>
             <!-- 更新ボタン -->
             <AppButton buttonValue="＋ Update" OnClick="RegistWorkoutRecord"/>

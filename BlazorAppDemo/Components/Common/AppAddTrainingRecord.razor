@@ -1,0 +1,20 @@
+﻿@rendermode InteractiveServer
+
+@* トレーニング追加コンポーネント *@
+<div class="header-card">
+    <div>
+        <h1>Training Dashboard</h1>
+        <p>今日のトレーニングを記録しよう</p>
+    </div>
+
+    @* 記録追加ボタン *@
+    <AppButton buttonValue="＋ Add Record" OnClick="ClickEvent" />
+</div>
+
+@code {
+    // パラメータの再定義
+    // ボタンクリックイベント
+    [Parameter] 
+    public EventCallback ClickEvent { get; set; }
+    
+}
