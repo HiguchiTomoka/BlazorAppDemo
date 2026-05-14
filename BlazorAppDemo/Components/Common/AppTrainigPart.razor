@@ -1,7 +1,8 @@
 ﻿@rendermode InteractiveServer
 
+@* トレーニング部位表示コンポーネント *@
 @* 胸トレ *@
-@if (chestTrainingGroups.Contains(@MenuName))
+@if (chestTrainingGroups.Contains(@menuName))
 {
     <span class="muscle chest">
         Chest
@@ -9,7 +10,7 @@
 }
 
 @* 脚トレ *@
-@if (legTrainingGroups.Contains(@MenuName))
+@if (legTrainingGroups.Contains(@menuName))
 {
     <span class="muscle leg">
         Leg
@@ -17,7 +18,7 @@
 }
 
 @* 背中トレ *@
-@if (backTrainingGroups.Contains(@MenuName))
+@if (backTrainingGroups.Contains(@menuName))
 {
     <span class="muscle back">
         Back
@@ -26,12 +27,17 @@
 
 @code {
     // 脚トレグループ
-    private String[] legTrainingGroups = { "Squat", "Leg Press", "Leg Curl", "Leg Extension", "Calf Raise", "Hip Thrust" };
+    private String[] legTrainingGroups = 
+        { "Squat", "Leg Press", "Leg Curl", "Leg Extension", "Calf Raise", "Hip Thrust" };
     // 背中トレグループ
-    private String[] backTrainingGroups = { "Deadlift", "Lat Pulldown", "Back Extension", "Pull-up", "Row", "T-Bar Row" };
+    private String[] backTrainingGroups = 
+        { "Deadlift", "Lat Pulldown", "Back Extension", "Pull-up", "Row", "T-Bar Row" };
     // 胸トレグループ
-    private String[] chestTrainingGroups = { "Bench Press", "Push-up", "Chest Fly", "Incline Press", "Dips", "Machine Press" };
+    private String[] chestTrainingGroups = 
+        { "Bench Press", "Push-up", "Chest Fly", "Incline Press", "Dips", "Machine Press" };
 
-    // パラメータの再定義(筋トレメニュー)
-    [Parameter] public string? MenuName { get; set; }
+    // パラメータの再定義
+    // 筋トレメニュー
+    [Parameter] 
+    public string? menuName { get; set; }
 }

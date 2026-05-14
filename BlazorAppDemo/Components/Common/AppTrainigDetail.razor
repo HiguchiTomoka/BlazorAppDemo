@@ -1,0 +1,15 @@
+﻿@using BlazorAppDemo.Components.Data
+@rendermode InteractiveServer
+
+@* 該当日のトレーニング詳細コンポーネント *@
+<div>
+    <h3>@record.MenuName</h3>
+    <p>@record.Weight kg × @record.Reps reps × @record.Sets sets</p>
+</div>
+
+@code {
+    // パラメータの再定義
+    // トレーニング記録情報
+    [Parameter] 
+    public WorkoutRecordInfo record { get; set; }
+}

@@ -22,23 +22,10 @@
     @* 本日行ったトレーニング記録がある場合 *@
     @if (workoutRecords != null && workoutRecords.Count != 0)
     {
-        
         <div class="stats-grid">
-
-            <div class="stat-card">
-                <span class="stat-title">Total Workouts</span>
-                <span class="stat-value"> @totalWorkouts</span>
-            </div>
-
-            <div class="stat-card">
-                <span class="stat-title">This Week</span>
-                <span class="stat-value"> @thisWeek</span>
-            </div>
-
-            <div class="stat-card">
-                <span class="stat-title">Max Bench</span>
-                <span class="stat-value"> @maxBenchWeight kg</span>
-            </div>
+            <AppTrainigRecord title="Total Workouts" value="@totalWorkouts" unit=""/>
+            <AppTrainigRecord title="This Week" value="@thisWeek" unit=""/>
+            <AppTrainigRecord title="Max Bench" value="@maxBenchWeight" unit="kg"/>
         </div>
 
         <div class="content-grid">
@@ -51,31 +38,17 @@
                 @foreach (var record in workoutRecords)
                 {
                     <div class="record-item">
-                        <div>
-                            <h3>@record.MenuName</h3>
-                            <p>@record.Weight kg × @record.Reps reps × @record.Sets sets</p>
-                        </div>
 
-                        <AppTrainigPart record="@record.MenuName" />
+                        <AppTrainigDetail record="@record" />
+
+                        <AppTrainigPart menuName="@record.MenuName" />
                     </div>  
                 }
                 </div>
             </div>
 
             @* 進捗 *@
-            <div class="side-card">
-                <div class="section-header">
-                    <h2>Progress</h2>
-                </div>
-                <div class="progress-box">
-                    <span>Weekly Goal</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill"
-                             style="width:@ProgressPercent%"></div>
-                    </div>
-                    <p>@thisWeek / 7 Days</p>
-                </div>
-            </div> 
+            <AppTrainingProgress thisweek="@thisWeek" ProgressPercent="@ProgressPercent" />
         </div>
     }
     else
@@ -89,28 +62,17 @@
         @* 編集値 *@
         <div class="stats-grid">
             <!-- インプット用：トレーニングメニュー -->
-            <div class="stat-card">
-                <span class="stat-title">Training Menu</span>
-                <input class="stat-value" placeholder="Bench Press" @bind="trainingMenu" />
-            </div>
+            @* ※@bind-Valueにすることで値が双方向にバインドされる(呼出側と呼び出される側の値が紐づく) *@
+            <AppInputText inputTitle="Training Menu" placeholder="Bench Press" @bind-Value="@trainingMenu" />
         </div>
 
         <div class="stats-grid">
             <!-- インプット用：重量 -->
-            <div class="stat-card">
-                <span class="stat-title">Weight</span>
-                <input class="stat-value" placeholder="120" @bind="weight" />
-            </div>
+            <AppInputText inputTitle="Weight" placeholder="120" @bind-Value="@weight" />
             <!-- インプット用：回数 -->
-            <div class="stat-card">
-                <span class="stat-title">Reps</span>
-                <input class="stat-value" placeholder="10" @bind="reps" />
-            </div>
+            <AppInputText inputTitle="Reps" placeholder="10" @bind-Value="@reps" />
             <!-- インプット用：セット数 -->
-            <div class="stat-card">
-                <span class="stat-title">Sets</span>
-                <input class="stat-value" placeholder="3" @bind="sets" />
-            </div>
+            <AppInputText inputTitle="Sets" placeholder="3" @bind-Value="@sets" />
         </div>
 
         @* キャンセルボタン、更新ボタン *@
@@ -148,9 +110,9 @@
 
     // 総トレーニング回数
     private int totalWorkouts;
-    // 総トレーニング回数
+    // 今週のトレーニング日数
     private int thisWeek;
-    // 総トレーニング回数
+    // 最大ベンチプレス重量
     private int maxBenchWeight;
 
     // 週間目標に対する進捗率

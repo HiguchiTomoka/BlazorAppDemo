@@ -1,14 +1,18 @@
 ﻿@rendermode InteractiveServer
 
+@* アプリボタンコンポーネント *@
 <button class="add-button" @onclick="Click">
     @buttonValue
 </button>
 
 @code {
-    // パラメータの再定義(Userから渡ってくる値の定義)
-    [Parameter] public string? buttonValue { get; set; }
-    // パラメータから渡ってきた処理をonCloseとして定義
-    [Parameter] public EventCallback OnClick { get; set; }
+    // パラメータの再定義
+    // ボタンの表示内容
+    [Parameter] 
+    public string? buttonValue { get; set; }
+    // パラメータから渡ってきた処理をonClickとして定義
+    [Parameter] 
+    public EventCallback OnClick { get; set; }
 
     /// <summary>
     /// ボタン押下時処理

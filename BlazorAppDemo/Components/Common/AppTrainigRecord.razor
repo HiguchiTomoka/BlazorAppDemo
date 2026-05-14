@@ -1,0 +1,22 @@
+﻿@rendermode InteractiveServer
+
+@* 累積トレーニング記録コンポーネント *@
+<div class="stat-card">
+    <span class="stat-title">@title</span>
+    <span class="stat-value">@value@unit</span>
+</div>
+
+@code {
+    // パラメータの再定義
+    // 表示タイトル
+    [Parameter] 
+    public string? title { get; set; }
+    
+    // 表示内容
+    [Parameter]
+    public int value { get; set; }
+
+    // 単位
+    [Parameter]
+    public string? unit { get; set; }
+}

@@ -1,0 +1,26 @@
+﻿@rendermode InteractiveServer
+
+@* トレーニング進捗コンポーネント *@
+<div class="side-card">
+    <div class="section-header">
+        <h2>Progress</h2>
+    </div>
+    <div class="progress-box">
+        <span>Weekly Goal</span>
+        <div class="progress-bar">
+            <div class="progress-fill"
+                    style="width:@ProgressPercent %"></div>
+        </div>
+        <p>@thisWeek / 7 Days</p>
+    </div>
+</div>
+
+@code {
+    // パラメータの再定義
+    // 今週のトレーニング日数
+    [Parameter] 
+    public int thisWeek { get; set; }
+    // 進捗率
+    [Parameter] 
+    public double ProgressPercent { get; set; }
+}
