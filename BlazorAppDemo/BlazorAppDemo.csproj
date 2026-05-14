@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\modal.css" />
     <None Include="wwwroot\css\muscleTraining.css" />
   </ItemGroup>
 

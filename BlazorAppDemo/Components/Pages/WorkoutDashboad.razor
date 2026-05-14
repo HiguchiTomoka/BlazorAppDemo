@@ -51,6 +51,9 @@
     @* AddRecordがクリックされた場合 *@
     @if (pushAddRecord)
     {
+        @* エラーモーダル *@
+        <AppModal @bind-IsOpen="isModalOpen" Title="入力エラー" Message="@modalMessage" />
+
         @* 編集値 *@
         <div class="stats-grid">
             <!-- インプット用：トレーニングメニュー -->
@@ -71,8 +74,8 @@
         <div class="action-buttons">
             <!-- キャンセルボタン -->
             <AppButton buttonValue="× Cancel" OnClick="CancelUpdate"/>
-            <!-- 更新ボタン -->
-            <AppButton buttonValue="＋ Update" OnClick="RegistWorkoutRecord"/>
+            <!-- 確定ボタン -->
+            <AppButton buttonValue="＋ Confirm" OnClick="Confirm"/>
         </div>
     }
 </div>
@@ -105,6 +108,11 @@
     private int thisWeek;
     // 最大ベンチプレス重量
     private int maxBenchWeight;
+
+    // モーダル表示フラグ
+    private bool isModalOpen;
+    // モーダルメッセージ
+    private string modalMessage = "";
 
     // 週間目標に対する進捗率
     private double ProgressPercent => (double)thisWeek / 7 * 100;
@@ -187,7 +195,7 @@
                 "renderMuscleChart",
                 pieLabels,
                 pieData);
-            }
+        }
     }
 
     /// <summary>
@@ -207,6 +215,83 @@
     {
         // AddRecord 押下フラグの更新
         pushAddRecord = false;
+    }
+
+    /// <summary>
+    /// 確定ボタン押下時処理
+    /// </summary>
+    private async Task Confirm()
+    {
+        // 1.バリデーション
+        if (!Validation())
+        {
+            return;
+        }
+
+        // 2.登録処理
+        await RegistWorkoutRecord();
+
+        // 3.再描画
+        // DB からトレーニングデータを取得して表示する処理をここに実装
+        workoutRecords = await WorkoutService.FetchTodayWorkoutRecordInfo();
+
+        // 総トレーニング回数
+        totalWorkouts = await WorkoutService.FetchTotalWorkoutCount();
+
+        // 今週は何日トレーニングしたか？
+        thisWeek = await WorkoutService.FetchThisWeeksWorkoutCount();
+
+        // Benchの最大重量
+        maxBenchWeight = await WorkoutService.FetchMaxBenchPressWeight();
+    }
+
+    /// <summary>
+    /// 入力値のバリデーションを行う
+    /// </summary>
+    /// <returns></returns>
+    private bool Validation()
+    {
+        // トレーニングメニューが入力されているか？
+        if (string.IsNullOrEmpty(trainingMenu))
+        {
+            modalMessage = "Please enter the training menu.";
+
+            isModalOpen = true;
+
+            return false;
+        }
+
+        // 重量が入力されているか？
+        if (string.IsNullOrEmpty(weight))
+        {
+            modalMessage = "Please enter the weight.";
+
+            isModalOpen = true;
+
+            return false;
+        }
+
+        // 回数が入力されているか？
+        if (string.IsNullOrEmpty(reps))
+        {
+            modalMessage = "Please enter the reps.";
+
+            isModalOpen = true;
+            
+            return false;
+        }
+
+        // セット数が入力されているか？
+        if (string.IsNullOrEmpty(sets))
+        {
+            modalMessage = "Please enter the sets.";
+
+            isModalOpen = true;
+            
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>
