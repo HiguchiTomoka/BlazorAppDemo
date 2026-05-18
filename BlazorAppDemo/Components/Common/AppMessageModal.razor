@@ -1,0 +1,35 @@
+﻿@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Data
+@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
+
+@* モーダルコンポーネント *@
+@if (isModalOpen)
+{
+    <div class="modal-overlay">
+
+        <div class="delete-modal">
+
+            <h3>@message</h3>
+
+            <div class="modal-buttons">
+                <AppButton className="cancel-button" OnClick="CloseModal" buttonValue="キャンセル" />
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string? message { get; set; }
+
+    [Parameter]
+    public bool isModalOpen { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    private void CloseModal()
+    {
+        isModalOpen = false;
+    }
+}

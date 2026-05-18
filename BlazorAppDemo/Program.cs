@@ -1,5 +1,6 @@
 using BlazorAppDemo.Components;
 using BlazorAppDemo.Components.Data;
+using BlazorAppDemo.Components.Extensions;
 using BlazorAppDemo.Components.Hubs;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,9 +22,8 @@ builder.Services.AddSingleton<MealRecordInfo>();
 // signalRハブの作成(リアルタイム通信を行うため)
 builder.Services.AddSignalR();
 
-// Serviceの登録
-builder.Services.AddScoped<BlazorAppDemo.Components.Services.NutritionManageService>();
-builder.Services.AddScoped<BlazorAppDemo.Components.Services.ChartService>();
+// Serviceの一括登録
+builder.Services.AddAppServices();
 
 var app = builder.Build();
 

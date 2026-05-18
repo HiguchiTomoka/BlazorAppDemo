@@ -1,6 +1,9 @@
 ﻿@page "/"
+@using BlazorAppDemo.Components.Common
+@using BlazorAppDemo.Components.Data
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
+@inject BlazorAppDemo.Components.Services.UserService UserService
 
 <h3>ログイン画面</h3>
 <p>ログインしてください</p>
@@ -9,28 +12,54 @@
 <input type="password" @bind="password" placeholder="パスワード" />
 <input type="button" @onclick="login" value="ログイン" />
 
+@* 登録ボタン *@
+<AppButton buttonValue="登録はこちらから！" className="cancel-button" OnClick="RegistUserInfo" />
+
+@* モーダル *@
+<AppMessageModal isModalOpen="isModalOpen" message="該当者が存在しません。"/>
 @code
 {
     string userName = string.Empty;
     string password = string.Empty;
+    private bool isModalOpen;// モーダル開く条件
 
     // ユーザーテーブルに該当者はいるのか？
     bool isLogin = false;
 
-    private void login()
+    /// <summary>
+    /// ユーザー登録画面に遷移する処理
+    /// </summary>
+    public void RegistUserInfo()
     {
-        // 1.DBから該当Userを検索しにいく
+        navigationManager.NavigateTo("/registUserInfo");
+    }
 
+    private async Task login()
+    {
+        // 1.DBからUsersテーブル全データを検索
+        List<UserBaseInfo> usersRecors = await UserService.fetchUserBaseInfo();
 
-        // 2.判定を行い、該当者がいる場合はダッシュボード画面へ、該当者いない場合は「いません」と表示。どこかクリックで登録画面へ？
-
-        if (userName.Equals("aa") && password.Equals("aa"))
+        if (!usersRecors.Any())
         {
-            navigationManager.NavigateTo("/meals");
+            UserBaseInfo registData = new UserBaseInfo { UserName = "テスト", Password = "test" };
+            await UserService.registUserBaseInfo(registData);
+        }
+
+        // 2.該当者の検索
+        int numberOfApplicableUsers = UserService.userExists(userName, password, usersRecors);
+
+        // 3.判定を行い、該当者がいる場合はダッシュボード画面へ、該当者いない場合は「いません」と表示。どこかクリックで登録画面へ？
+
+        if (numberOfApplicableUsers > 0)
+        {
+            isLogin = true;
+            navigationManager.NavigateTo("/dashBord");
         } 
+        // 該当者なし
         else
         {
-            
+           // 該当者はいませんと表示
+            isModalOpen = true;
         }
     }
 }

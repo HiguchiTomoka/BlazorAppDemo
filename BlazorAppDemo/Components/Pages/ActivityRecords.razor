@@ -1,0 +1,23 @@
+﻿@page "/activityRecords"
+@rendermode InteractiveServer
+<h1>運動記録</h1>
+
+<select @bind="SelectedItem">
+    @foreach (var item in Items)
+    {
+        <option value="@item">@item</option>
+    }
+</select>
+
+<p>@SelectedItem</p>
+
+@code {
+    private List<string> Items = new()
+    {
+        "筋トレ",
+        "ランニング",
+        "スポーツ"
+    };
+
+    private string SelectedItem = "";
+}

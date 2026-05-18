@@ -1,7 +1,8 @@
-﻿@page "/meals"
+﻿@page "/dashBord"
 @rendermode InteractiveServer
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Data
+@inject NavigationManager navigationManager
 @inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
 @inject BlazorAppDemo.Components.Services.ChartService ChartService
 @inject IJSRuntime JS
@@ -15,7 +16,7 @@
         <p>毎日の食事を記録しましょう</p>
     </div>
 
-    @* 食事記録 *@
+    @* 1段目 *@
     <div class="content-grid">
         <!-- 食事記録登録フォーム -->
         <AppRegistMealRecord mealData=@mealData OnClick=SaveMeal />
@@ -24,7 +25,7 @@
             totalProtein="@dashboardData.TotalProtein" totalCarbs="@dashboardData.TotalCarbs" totalFat="@dashboardData.TotalFat" />
     </div>
 
-    @* 分析結果 *@
+    @* 2段目 *@
     <div class="chart-grid">
         <!-- PFC比 -->
         <div class="card">
@@ -42,10 +43,19 @@
             </div>
         </div>
     </div>
+
+    @* 3段目 *@
     <!-- カロリー摂取推移 -->
     <div class="chart-grid">
         <div class="card">
             <h2>摂取推移</h2>
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+        <!-- 運動記録 -->
+        <div class="card dashboard-card" @onclick="MoveActivityRecords">
+            <h2>運動記録</h2>
             <div class="chart-container">
                 <canvas id="trendChart"></canvas>
             </div>
@@ -126,7 +136,7 @@
         // 最新のデータ取得
         await LoadMealRecords();
 
-        // TODO グラフのレンダリング
+        // グラフのレンダリング
         await RenderChart();
     }
 
@@ -186,6 +196,14 @@
 
         // 摂取カロリーの推移線グラフ描画
         await ChartService.RenderTrendChart();
+    }
+
+    /// <summary>
+    /// 活動記録タブに遷移
+    /// </summary>
+    private void MoveActivityRecords()
+    {
+        navigationManager.NavigateTo("/activityRecords");
     }
 
 }

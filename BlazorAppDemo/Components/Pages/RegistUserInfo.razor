@@ -1,0 +1,142 @@
+﻿@page "/registUserInfo"
+@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Common
+@using BlazorAppDemo.Components.Data
+@inject NavigationManager navigationManager
+@inject BlazorAppDemo.Components.Services.UserService UserService
+@inject BlazorAppDemo.Components.Services.UserDetailService UserDetailService
+
+<h1>ユーザー情報登録画面</h1>
+
+<h3>ユーザー名</h3>
+<input type="text" @bind="userName" placeholder="ユーザー名" />
+
+<h3>パスワード</h3>
+<input type="password" @bind="password" placeholder="パスワード" />
+
+<h3>性別選択</h3>
+<label>
+    <input type="radio" name="checkedGender" checked="true" value="Male" @onchange="SelectRadio" /> 男
+</label>
+
+<label>
+    <input type="radio" name="checkedGender" value="Female" @onchange="SelectRadio" /> 女
+</label>
+
+<p>選択された性別： @gender</p>
+
+<h3>年齢</h3>
+<input type="text" @bind="age" placeholder="25" />
+
+<h3>身長</h3>
+<input type="text" @bind="bodyheight" placeholder="170" />
+
+<h3>体重</h3>
+<input type="text" @bind="bodyWeight" placeholder="65" />
+
+<h2>普段の身体活動レベル</h2>
+<h3>身体活動レベル</h3>
+<select @bind="SelectedPAl">
+    @foreach (var item in physicalActivityLevelItems)
+    {
+        <option value="@item.physicalActivityLevel">@item.label</option>
+    }
+</select>
+<AppButton buttonValue="登録する" className="cancel-button" OnClick="calcTDEE" />
+<AppButton buttonValue="戻る" className="cancel-button" OnClick="returnBackHome" />
+
+<h3>1日に必要な消費カロリー:TDEE</h3>
+<p>@TDEE</p>
+
+@code {
+    public string userName = ""; // ユーザー名
+    public string password = ""; // ユーザーパスワード
+    public string gender = "Male"; // 性別
+    public int age; // 年齢
+    public double bodyWeight; // 体重
+    public double bodyheight; //身長
+    public double basalMetabolism; // 基礎代謝量
+    public double TDEE; // 1日の必須消費カロリー
+    private double SelectedPAl; // 選択された身体活動レベル
+
+    // 身体活動レベルセレクトボックスの組み立て
+    private List<physicalActivityLevelSelectBox> physicalActivityLevelItems = new()
+    {
+        new() 
+        {
+            label = "低い：デスクワーク中心、通勤や軽い家事のみ(1.5)",
+            physicalActivityLevel = 1.5
+        },
+        new()         
+        {
+            label = "普通：座位中心だが、通勤・買い物・軽いスポーツ等を行う(1.75)",
+            physicalActivityLevel = 1.75
+        },
+        new()
+        {
+            label = "強い：移動や立ち仕事が多く、余暇に活発な運動習慣がある(2.0)",
+            physicalActivityLevel = 2.0
+        }
+    };
+
+    private void SelectRadio(ChangeEventArgs args)
+    {
+        gender = (string)args.Value;
+    }
+
+    // ユーザー基本情報に登録
+    private async Task registUserInfo()
+    {
+        UserBaseInfo inputData = new UserBaseInfo { UserName = userName, Password = password };
+
+        await UserService.registUserBaseInfo(inputData);
+    }
+
+    // ユーザー詳細情報に登録
+    private async Task registUserDetailInfo()
+    {
+        // 基礎代謝量算出
+        var basalMetabolismForMale = 13.397 * bodyWeight + 4.799 * bodyheight - 5.677 * age + 88.362;
+        var basalMetabolismForFemale = 9.247 * bodyWeight + 3.098 * bodyheight - 4.33 * age + 447.593;
+
+        // 基礎代謝量算出
+        basalMetabolism = gender == "Male" ? basalMetabolismForMale : basalMetabolismForFemale;
+
+        // 入力データまとめる
+        UserDetailInfo inputData = 
+            new UserDetailInfo { 
+                UserName = userName, 
+                UserNo = 55, 
+                Gender = gender,
+                BodyWeight = bodyWeight,
+                Bodyheight = bodyheight,
+                Age = age,
+                BasalMetabolism = basalMetabolism,
+                ExerciseIntensity = SelectedPAl
+            };
+
+        // 登録処理
+        await UserDetailService.registUserDetailInfo(inputData);
+    }
+
+    private void calcTDEE()
+    {
+        // 基礎代謝量算出
+        var basalMetabolismForMale = (13.397 * bodyWeight) + (4.799 * bodyheight) - (5.677 * age) + 88.362;
+        var basalMetabolismForFemale = 9.247 * bodyWeight + 3.098 * bodyheight - 4.33 * age + 447.593;
+
+        // 基礎代謝量算出
+        basalMetabolism = gender == "Male" ? basalMetabolismForMale : basalMetabolismForFemale;
+
+        // 1日の消費カロリー量
+        TDEE = basalMetabolism * SelectedPAl;
+    }
+
+    /// <summary>
+    /// ユーザー登録画面に遷移する処理
+    /// </summary>
+    public void returnBackHome()
+    {
+        navigationManager.NavigateTo("/");
+    }
+}

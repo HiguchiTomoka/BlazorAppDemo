@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Components.Services
 {
+    /// <summary>
+    /// 食事記録管理サービス
+    /// </summary>
     public class NutritionManageService
     {
         // AppDbContextのインスタンスを保持するフィールド
