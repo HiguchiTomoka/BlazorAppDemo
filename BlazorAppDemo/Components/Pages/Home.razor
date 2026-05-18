@@ -14,11 +14,19 @@
     string userName = string.Empty;
     string password = string.Empty;
 
+    // ユーザーテーブルに該当者はいるのか？
+    bool isLogin = false;
+
     private void login()
     {
+        // 1.DBから該当Userを検索しにいく
+
+
+        // 2.判定を行い、該当者がいる場合はダッシュボード画面へ、該当者いない場合は「いません」と表示。どこかクリックで登録画面へ？
+
         if (userName.Equals("aa") && password.Equals("aa"))
         {
-            navigationManager.NavigateTo("/login");
+            navigationManager.NavigateTo("/meals");
         } 
         else
         {

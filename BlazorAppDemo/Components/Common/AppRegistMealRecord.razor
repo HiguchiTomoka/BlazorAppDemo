@@ -1,0 +1,87 @@
+﻿@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Data
+
+@* 食事登録コンポーネント *@
+<div class="card meal-form-card">
+
+    <h2>食事登録</h2>
+
+    <EditForm Model="@mealData" OnValidSubmit="Click">
+
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label>食品名</label>
+            <InputText class="form-input"
+                       @bind-Value="mealData.MealName" />
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>kcal</label>
+                <InputNumber class="form-input"
+                             @bind-Value="mealData.Calories" />
+            </div>
+
+            <div class="form-group">
+                <label>たんぱく質</label>
+                <InputNumber class="form-input"
+                             @bind-Value="mealData.Protein" />
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>脂質</label>
+                <InputNumber class="form-input"
+                             @bind-Value="mealData.Fat" />
+            </div>
+
+            <div class="form-group">
+                <label>炭水化物</label>
+                <InputNumber class="form-input"
+                             @bind-Value="mealData.Carbs" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>日付</label>
+            <InputDate class="form-input"
+                       @bind-Value="mealData.MealDate" />
+        </div>
+
+        <button type="submit" class="save-button">
+            保存する
+        </button>
+
+    </EditForm>
+
+</div>
+
+@code {
+    // パラメータの再定義
+    // タイトル
+    [Parameter]
+    public string? title { get; set; }
+    // ボタンの表示内容
+    [Parameter] 
+    public MealRecordInfo mealData { get; set; }
+    // クリックイベント
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    /// <summary>
+    /// ボタン押下時処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task Click()
+    {
+        await OnClick.InvokeAsync();
+    }
+
+}

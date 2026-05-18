@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\css\muscleTraining.css" />
+    <Content Remove="wwwroot\css\chart.css" />
+    <Content Remove="wwwroot\css\nutritionManagement.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,8 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\chart.css" />
     <None Include="wwwroot\css\modal.css" />
-    <None Include="wwwroot\css\muscleTraining.css" />
+    <None Include="wwwroot\css\nutritionManagement.css" />
   </ItemGroup>
 
 </Project>

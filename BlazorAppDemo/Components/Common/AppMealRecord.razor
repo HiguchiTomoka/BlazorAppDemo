@@ -1,0 +1,136 @@
+﻿@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Data
+@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
+@inject IJSRuntime JS
+
+@* 食事記録一覧コンポーネント *@
+<div class="card meal-list-card">
+
+    <h2>@title</h2>
+
+    <table class="meal-table">
+
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>食品名</th>
+                <th>kcal</th>
+                <th>タンパク質</th>
+                <th>脂質</th>
+                <th>炭水化物</th>
+            </tr>
+        </thead>
+
+        @* モーダル *@
+        <AppModal isModalOpen="isModalOpen" selectedMeal="selectedMeal" 
+            title="削除確認" message="を削除しますか？" buttonValue="削除する"
+                  className="delete-button" OnClick="DeleteMeal" />
+
+        <tbody>
+            @foreach (var meal in @mealList)
+            {
+                <tr @onclick="() => OpenModal(meal)">
+                    <td>@meal.MealDate.ToString("yyyy/MM/dd hh:mm")</td>
+                    <td>@meal.MealName</td>
+                    <td>@meal.Calories</td>
+                    <td>@meal.Protein</td>
+                    <td>@meal.Fat</td>
+                    <td>@meal.Carbs</td>
+                </tr>
+            }
+
+            <tr>
+                <td>合計</td>
+                <td></td>
+                <td>@totalCalories kcal</td>
+                <td>@totalProtein g</td>
+                <td>@totalFat g</td>
+                <td>@totalCarbs g</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@code {
+    // パラメータの再定義
+    // タイトル
+    [Parameter]
+    public string? title { get; set; }
+
+    [Parameter]
+    public int totalCalories { get; set; }
+
+    [Parameter]
+    public decimal totalProtein { get; set; }
+
+    [Parameter]
+    public decimal totalFat { get; set; }
+
+    [Parameter]
+    public decimal totalCarbs { get; set; }
+
+
+    // ボタンの表示内容
+    [Parameter] 
+    public List<MealRecordInfo> mealList { get; set; }
+
+    private MealRecordInfo? selectedMeal;
+
+    private bool isModalOpen;
+
+    private MealDashboardData dashboardData;
+
+    private void OpenModal(MealRecordInfo meal)
+    {
+        selectedMeal = meal;
+
+        isModalOpen = true;
+    }
+
+    /// <summary>
+    /// 削除処理
+    /// </summary>
+    /// <returns></returns>
+    public async Task DeleteMeal()
+    {
+        if (selectedMeal is not null)
+        {
+            // 削除処理
+            await NutritionManageService.deleteMealRecord(selectedMeal);
+            // 今日の食事記録を取得
+            dashboardData = await NutritionManageService.FetchDashboardData();
+
+            mealList = dashboardData.MealList;
+
+            totalCalories = dashboardData.TotalCalories;
+
+            totalProtein = dashboardData.TotalProtein;
+
+            totalFat = dashboardData.TotalFat;
+
+            totalCarbs = dashboardData.TotalCarbs;
+
+            // TODO グラフのレンダリング
+            // PFC比の円グラフ描画
+            await JS.InvokeVoidAsync(
+                "renderPFCRatioChart",
+                totalProtein,
+                totalFat,
+                totalCarbs
+            );
+            // PFCそれぞれの目標摂取量の棒グラフ描画
+            await JS.InvokeVoidAsync(
+                "renderDailyNutritionIntakeChart",
+                totalProtein, 120,
+                totalFat, 50,
+                totalCarbs, 250
+            );
+            // 摂取カロリーの推移線グラフ描画
+            await JS.InvokeVoidAsync(
+                "renderTrendChart"
+            );
+        }
+
+        isModalOpen = false;
+    }
+}

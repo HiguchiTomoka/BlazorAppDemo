@@ -1,40 +1,62 @@
 ﻿@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Data
+@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
 
 @* モーダルコンポーネント *@
-@if (IsOpen)
+@if (isModalOpen)
 {
     <div class="modal-overlay">
-        <div class="modal-box">
 
-            <h2>@Title</h2>
+        <div class="delete-modal">
 
-            <p>@Message</p>
+            <h3>@title</h3>
 
-            <button class="modal-button"
-                    @onclick="Close">
-                OK
-            </button>
+            <p>
+                「@selectedMeal?.MealName」 @message
+            </p>
 
+            <div class="modal-buttons">
+                <AppButton className="cancel-button" OnClick="CloseModal" buttonValue="キャンセル" />
+                <AppButton className=@className OnClick=Click buttonValue=@buttonValue />
+            </div>
         </div>
+
     </div>
 }
 
 @code {
+    [Parameter]
+    public string? title { get; set; }
 
     [Parameter]
-    public bool IsOpen { get; set; }
+    public string? buttonValue { get; set; }
 
     [Parameter]
-    public string? Title { get; set; }
+    public string? className { get; set; }
 
     [Parameter]
-    public string? Message { get; set; }
+    public string? message { get; set; }
 
     [Parameter]
-    public EventCallback<bool> IsOpenChanged { get; set; }
+    public bool isModalOpen { get; set; }
 
-    private async Task Close()
+    [Parameter]
+    public MealRecordInfo? selectedMeal { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    private void CloseModal()
     {
-        await IsOpenChanged.InvokeAsync(false);
+        isModalOpen = false;
+    }
+
+    /// <summary>
+    /// ボタン押下時処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task Click()
+    {
+        await OnClick.InvokeAsync();
     }
 }

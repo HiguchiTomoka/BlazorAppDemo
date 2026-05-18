@@ -1,9 +1,12 @@
 namespace BlazorAppDemo.Components.Data
 {
+    /// <summary>
+    /// ユーザーの基本情報テーブルを表すクラス。
+    /// </summary>
     public class UserInfo
     {
         public int Id { get; set; }      // DBの主キー
-        public string Name { get; set; } = string.Empty;
-        public bool IsDone { get; set; }
+        public string UserName { get; set; } = string.Empty; // 入力した名前
+        public string Password { get; set; } = string.Empty; // 入力したパスワード
     }
 }

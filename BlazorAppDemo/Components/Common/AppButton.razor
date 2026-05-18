@@ -1,7 +1,7 @@
 ﻿@rendermode InteractiveServer
 
-@* アプリボタンコンポーネント *@
-<button class="add-button" @onclick="Click">
+@* ボタンコンポーネント *@
+<button class="@className" @onclick="Click">
     @buttonValue
 </button>
 
@@ -10,6 +10,9 @@
     // ボタンの表示内容
     [Parameter] 
     public string? buttonValue { get; set; }
+    // 割り当てるクラス名称
+    [Parameter]
+    public string? className { get; set; }
     // パラメータから渡ってきた処理をonClickとして定義
     [Parameter] 
     public EventCallback OnClick { get; set; }

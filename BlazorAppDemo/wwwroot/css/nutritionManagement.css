@@ -1,0 +1,136 @@
+﻿.meal-page {
+    background-color: #FBFEFF;
+    min-height: 100vh;
+    padding: 32px;
+    color: #30343A;
+}
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+    .page-header h1 {
+        font-size: 40px;
+        font-weight: bold;
+        color: #135389;
+        margin-bottom: 8px;
+    }
+
+    .page-header p {
+        font-size: 16px;
+    }
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 24px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+    .card h2 {
+        color: #135389;
+        margin-bottom: 24px;
+    }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    min-width: 0;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+    .form-row .form-group {
+        flex: 1;
+        min-width: 0;
+    }
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-input {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #d0d0d0;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #fafafa;
+    color: #30343A;
+}
+
+    .form-input:focus {
+        outline: none;
+        border-color: #135389;
+        box-shadow: 0 0 0 3px rgba(146, 41, 81, 0.2);
+    }
+
+.save-button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    background-color: #135389;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .save-button:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+
+.meal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .meal-table thead {
+        background-color: #135389;
+        color: white;
+    }
+
+    .meal-table th {
+        padding: 14px;
+        text-align: left;
+    }
+
+    .meal-table td {
+        padding: 14px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .meal-table tbody tr:hover {
+        background-color: #f8f1f4;
+    }
+
+.form-input,
+.form-input.valid,
+.form-input.invalid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+input {
+    min-width: 0;
+}

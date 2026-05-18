@@ -1,5 +1,6 @@
-@import url('muscleTraining.css');
 @import url('modal.css');
+@import url('nutritionManagement.css');
+@import url('chart.css');
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

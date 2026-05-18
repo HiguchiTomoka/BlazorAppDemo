@@ -1,0 +1,191 @@
+﻿@page "/meals"
+@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Common
+@using BlazorAppDemo.Components.Data
+@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
+@inject BlazorAppDemo.Components.Services.ChartService ChartService
+@inject IJSRuntime JS
+
+<PageTitle>Meal Management</PageTitle>
+
+<div class="meal-page">
+
+    <div class="page-header">
+        <h1>Meal Record</h1>
+        <p>毎日の食事を記録しましょう</p>
+    </div>
+
+    @* 食事記録 *@
+    <div class="content-grid">
+        <!-- 食事記録登録フォーム -->
+        <AppRegistMealRecord mealData=@mealData OnClick=SaveMeal />
+        <!-- 食事記録 -->
+        <AppMealRecord mealList=@dashboardData.MealList title="食事一覧" totalCalories="@dashboardData.TotalCalories"
+            totalProtein="@dashboardData.TotalProtein" totalCarbs="@dashboardData.TotalCarbs" totalFat="@dashboardData.TotalFat" />
+    </div>
+
+    @* 分析結果 *@
+    <div class="chart-grid">
+        <!-- PFC比 -->
+        <div class="card">
+            <h2>PFC Balance</h2>
+            <div class="chart-container">
+                <canvas id="pfcRatio"></canvas>
+            </div>
+        </div>
+
+        <!-- 目標との差 -->
+        <div class="card">
+            <h2>目標PFCとの差</h2>
+            <div class="chart-container">
+                <canvas id="goalChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- カロリー摂取推移 -->
+    <div class="chart-grid">
+        <div class="card">
+            <h2>摂取推移</h2>
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+
+    private List<MealRecordInfo> mealList = new List<MealRecordInfo>();
+
+    private MealDashboardData dashboardData = new();
+
+    // 総カロリー摂取量
+    private int totalCalories;
+    // 総タンパク質量
+    private decimal totalProtein;
+    // 総脂質量
+    private decimal totalFat;
+    // 総炭水化物量
+    private decimal totalCarbs;
+
+    // 登録フォーム初期化用
+    private MealRecordInfo mealData = new MealRecordInfo
+    {
+        MealName = "塩パン",
+        Calories = 320,
+        Protein = 8,
+        Fat = 12,
+        Carbs = 45,
+        MealDate = DateTime.Today
+    };
+
+    /// <summary>
+    /// 初期表示処理
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadMealRecords();
+    }
+
+    /// <summary>
+    /// 初期表示
+    /// </summary>
+    /// <param name="firstRender"></param>
+    /// <returns></returns>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // renderPFCRatioChart関数はwwwroot/js/chart.jsに定義されている
+            await RenderChart();
+        }
+    }
+
+    /// <summary>
+    /// 登録処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task SaveMeal()
+    {
+        // 登録データの成形
+        MealRecordInfo registMealRecord = new MealRecordInfo
+        {
+            MealName = mealData.MealName,
+            Calories = mealData.Calories,
+            Protein = mealData.Protein,
+            Fat = mealData.Fat,
+            Carbs = mealData.Carbs,
+            MealDate = mealData.MealDate
+        };
+
+        // DBへ保存処理
+        await NutritionManageService.AddMealRecord(registMealRecord);
+
+        // 最新のデータ取得
+        await LoadMealRecords();
+
+        // TODO グラフのレンダリング
+        await RenderChart();
+    }
+
+    /// <summary>
+    /// 削除処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task deleteMeal()
+    {
+        // 登録データの成形
+        MealRecordInfo registMealRecord = new MealRecordInfo
+        {
+            MealName = mealData.MealName,
+            Calories = mealData.Calories,
+            Protein = mealData.Protein,
+            Fat = mealData.Fat,
+            Carbs = mealData.Carbs,
+            MealDate = mealData.MealDate
+        };
+
+        // DBへ保存処理
+        await NutritionManageService.AddMealRecord(registMealRecord);
+
+        // 最新のデータ取得
+        await LoadMealRecords();
+    }
+
+    /// <summary>
+    /// 一覧の取得
+    /// </summary>
+    /// <returns></returns>
+    private async Task LoadMealRecords()
+    {
+        // 今日の食事記録,総カロリー摂取量,総炭水化物量,総タンパク質量,総脂質量を取得
+        dashboardData = await NutritionManageService.FetchDashboardData();
+    }
+
+    /// <summary>
+    /// グラフの描画処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task RenderChart()
+    {
+        // PFC比の円グラフ描画
+        await ChartService.RenderPfcChart(
+            dashboardData.TotalProtein,
+            dashboardData.TotalFat,
+            dashboardData.TotalCarbs
+        );
+
+        // PFCそれぞれの目標摂取量の棒グラフ描画
+        await ChartService.RenderGoalChart(
+            dashboardData.TotalProtein, 120,
+            dashboardData.TotalFat, 50,
+            dashboardData.TotalCarbs, 250
+        );
+
+        // 摂取カロリーの推移線グラフ描画
+        await ChartService.RenderTrendChart();
+    }
+
+}

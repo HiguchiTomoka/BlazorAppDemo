@@ -1,21 +1,50 @@
 ﻿.modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-.modal-box {
-    background: #8E56FB;
+.delete-modal {
+    width: 400px;
+    background-color: white;
+    border-radius: 20px;
     padding: 24px;
-    border-radius: 16px;
-    width: 320px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
-.modal-button {
-    margin-top: 16px;
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.cancel-button {
+    border: none;
+    background-color: #dcdcdc;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.delete-button {
+    border: none;
+    background-color: #922951;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.meal-table tbody tr {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.meal-table tbody tr:hover {
+        background-color: #f5f5f5;
 }

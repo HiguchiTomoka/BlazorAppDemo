@@ -8,37 +8,45 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
+        @* ホーム *@
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
 
-        @* 筋トレ記録DB接続テスト *@
+        @* ダッシュボード *@
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="workoutRecords">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 筋トレDB接続テスト
+            <NavLink class="nav-link" href="meals">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> DashBord
             </NavLink>
         </div>
 
-        @* 筋トレ記録 *@
+        @* 食事登録タブ *@
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="workout">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 筋トレ記録
+            <NavLink class="nav-link" href="meals">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> DashBord
             </NavLink>
         </div>
 
-        @* DB接続テスト *@
+        @* 運動記録登録タブ *@
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="users">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> DB接続テスト
+            <NavLink class="nav-link" href="meals">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> DashBord
             </NavLink>
         </div>
 
-        @* CRUD実装デモ *@
+        @* 食事一覧タブ *@
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="userscrud">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> CRUD実装テスト
+            <NavLink class="nav-link" href="meals">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> DashBord
+            </NavLink>
+        </div>
+
+        @* 栄養素評価タブ *@
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="meals">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> DashBord
             </NavLink>
         </div>
     </nav>
