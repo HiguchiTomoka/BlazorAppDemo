@@ -9,7 +9,10 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\chart.css" />
+    <Content Remove="wwwroot\css\dashboad.css" />
+    <Content Remove="wwwroot\css\loginForm.css" />
     <Content Remove="wwwroot\css\nutritionManagement.css" />
+    <Content Remove="wwwroot\css\registUserInfo.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,8 +28,11 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\chart.css" />
+    <None Include="wwwroot\css\dashboad.css" />
+    <None Include="wwwroot\css\registUserInfo.css" />
     <None Include="wwwroot\css\modal.css" />
     <None Include="wwwroot\css\nutritionManagement.css" />
+    <None Include="wwwroot\css\loginForm.css" />
   </ItemGroup>
 
 </Project>

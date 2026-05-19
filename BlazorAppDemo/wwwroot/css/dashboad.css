@@ -1,0 +1,61 @@
+﻿.top-bar {
+    height: 60px;
+    border-top: 2px solid #1e90ff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: white;
+}
+
+.logo {
+    font-size: 20px;
+}
+
+.menu-button {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.dashboard-grid {
+    width: 80%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.dashboard-card {
+    background-color: #ddd;
+    border-radius: 16px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    background-color: #d5d5d5;
+}
+
+.card-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 18px;
+}

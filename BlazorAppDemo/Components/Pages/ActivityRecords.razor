@@ -1,16 +1,21 @@
 ﻿@page "/activityRecords"
 @rendermode InteractiveServer
-<h1>運動記録</h1>
 
-<select @bind="SelectedItem">
-    @foreach (var item in Items)
-    {
-        <option value="@item">@item</option>
-    }
-</select>
+<div class="meal-page">
+    <div class="page-header">
+        <h1>運動記録</h1>
+        <p>毎日の運動の記録をしましょう</p>
+    </div>
 
-<p>@SelectedItem</p>
+    <select @bind="SelectedItem">
+        @foreach (var item in Items)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
 
+    <p>@SelectedItem</p>
+</div>
 @code {
     private List<string> Items = new()
     {

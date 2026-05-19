@@ -1,10 +1,11 @@
 using BlazorAppDemo.Components.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
 
 namespace BlazorAppDemo.Components.Services
 {
     /// <summary>
-    /// ユーザー基本情報管理サービス
+    /// ユーザー詳細情報管理サービス
     /// </summary>
     public class UserService
     {
@@ -18,38 +19,42 @@ namespace BlazorAppDemo.Components.Services
         }
 
         /// <summary>
-        /// ユーザー基本情報の全件取得処理
+        /// ユーザー詳細情報の全件取得処理
         /// </summary>
         /// <returns></returns>
-        public async Task<List<UserBaseInfo>> fetchUserBaseInfo()
+        public async Task<List<UserInfo>> fetchUserInfo()
         {
-            // 該当ユーザーの人数
-            List<UserBaseInfo> userRecords = await _dbContext.UserInfoRecords.ToListAsync();
+            // 全ユーザー検索
+            List<UserInfo> userDetailRecords = await _dbContext.UserInfoRecords.ToListAsync();
 
-            return userRecords;
+            return userDetailRecords;
         }
 
         /// <summary>
-        /// ユーザー情報の新規登録処理
+        /// 引数に与えられたメールアドレスとパスワードに合致する者のみ検索
+        /// </summary>
+        /// <param name="usersRecors"></param>
+        /// <param name="mailaddress"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public UserInfo fetchMatchUserInfo(List<UserInfo> usersRecors,string mailaddress, string password)
+        {
+            // 該当ユーザー1件のみ
+            UserInfo userDetailRecords = usersRecors.FirstOrDefault(r => r.MailAddress == mailaddress && r.Password == password);
+
+            return userDetailRecords;
+        }
+
+        /// <summary>
+        /// ユーザー詳細情報の新規登録処理
         /// </summary>
         /// <returns></returns>
-        public async Task registUserBaseInfo(UserBaseInfo inputUserBaseInfo)
+        public async Task registUserInfo(UserInfo inputUserData)
         {
             // 該当ユーザーの人数
-            _dbContext.UserInfoRecords.Add(inputUserBaseInfo);
+            _dbContext.UserInfoRecords.Add(inputUserData);
 
             await _dbContext.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// 該当するユーザー情報がいるかどうかを取得する
-        /// </summary>
-        public int userExists(string userName, string password, List<UserBaseInfo> userRecords)
-        {
-           // 該当ユーザーの人数
-           int numberOfApplicableUsers = userRecords.Where(r => r.UserName == userName && r.Password == password).Count();
-
-            return numberOfApplicableUsers;
         }
     }
 }

@@ -1,65 +1,58 @@
-﻿@page "/"
-@using BlazorAppDemo.Components.Common
-@using BlazorAppDemo.Components.Data
-@rendermode InteractiveServer
-@inject NavigationManager navigationManager
-@inject BlazorAppDemo.Components.Services.UserService UserService
+﻿@page "/home"
 
-<h3>ログイン画面</h3>
-<p>ログインしてください</p>
+@* ホーム画面 *@
+<div class="top-bar">
+    <div class="logo">logo</div>
 
-<input type="text" @bind="userName" placeholder="ユーザー名"/>
-<input type="password" @bind="password" placeholder="パスワード" />
-<input type="button" @onclick="login" value="ログイン" />
+    <button class="menu-button">
+        ☰
+    </button>
+</div>
 
-@* 登録ボタン *@
-<AppButton buttonValue="登録はこちらから！" className="cancel-button" OnClick="RegistUserInfo" />
+<div class="page-title">
+    logo
+</div>
 
-@* モーダル *@
-<AppMessageModal isModalOpen="isModalOpen" message="該当者が存在しません。"/>
-@code
-{
-    string userName = string.Empty;
-    string password = string.Empty;
-    private bool isModalOpen;// モーダル開く条件
+<div class="dashboard-grid">
 
-    // ユーザーテーブルに該当者はいるのか？
-    bool isLogin = false;
+    <div class="dashboard-card" @onclick='() => MovePage("/dashBord")'>
+        <div class="card-icon">📈</div>
+        <div class="card-title">ダッシュボード</div>
+    </div>
 
-    /// <summary>
-    /// ユーザー登録画面に遷移する処理
-    /// </summary>
-    public void RegistUserInfo()
+    <div class="dashboard-card" @onclick='() => MovePage("/mealRecords")'>
+        <div class="card-icon">🍽️</div>
+        <div class="card-title">食事管理</div>
+    </div>
+
+    <div class="dashboard-card" @onclick='() => MovePage("/activityRecords")'>
+        <div class="card-icon">🏋️‍♂️</div>
+        <div class="card-title">運動管理</div>
+    </div>
+
+    <div class="dashboard-card" @onclick='() => MovePage("/dashBord")'>
+        <div class="card-icon">🧑‍🍳</div>
+        <div class="card-title">レシピ</div>
+    </div>
+
+    <div class="dashboard-card" @onclick='() => MovePage("/dashBord")'>
+        <div class="card-icon">🚶‍♀️</div>
+        <div class="card-title">歩数</div>
+    </div>
+
+    <div class="dashboard-card" @onclick='() => MovePage("/dashBord")'>
+        <div class="card-icon">👤</div>
+        <div class="card-title">プロフィール</div>
+    </div>
+
+</div>
+
+@code {
+    [Inject]
+    NavigationManager NavigationManager { get; set; } = default!;
+
+    private void MovePage(string url)
     {
-        navigationManager.NavigateTo("/registUserInfo");
-    }
-
-    private async Task login()
-    {
-        // 1.DBからUsersテーブル全データを検索
-        List<UserBaseInfo> usersRecors = await UserService.fetchUserBaseInfo();
-
-        if (!usersRecors.Any())
-        {
-            UserBaseInfo registData = new UserBaseInfo { UserName = "テスト", Password = "test" };
-            await UserService.registUserBaseInfo(registData);
-        }
-
-        // 2.該当者の検索
-        int numberOfApplicableUsers = UserService.userExists(userName, password, usersRecors);
-
-        // 3.判定を行い、該当者がいる場合はダッシュボード画面へ、該当者いない場合は「いません」と表示。どこかクリックで登録画面へ？
-
-        if (numberOfApplicableUsers > 0)
-        {
-            isLogin = true;
-            navigationManager.NavigateTo("/dashBord");
-        } 
-        // 該当者なし
-        else
-        {
-           // 該当者はいませんと表示
-            isModalOpen = true;
-        }
+        NavigationManager.NavigateTo(url);
     }
 }

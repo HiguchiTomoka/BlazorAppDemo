@@ -1,0 +1,109 @@
+﻿@page "/login"
+@page "/"
+@using BlazorAppDemo.Components.Common
+@using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Services
+@rendermode InteractiveServer
+
+<div class="top-bar">
+    <div class="logo">logo</div>
+
+    <button class="menu-btn">
+        ☰
+    </button>
+</div>
+
+<div class="login-container">
+
+    <h1>ログイン</h1>
+
+    <div class="login-card">
+
+        <input type="email" @bind="mailaddress" placeholder="example@example.com" class="input-box" />
+        <input type="password" @bind="password" placeholder="パスワード" class="input-box" />
+
+        <div class="register-text" @onclick=RegistUserInfo>
+            登録
+        </div>
+
+        <AppButton buttonValue="ログイン" className="login-btn" OnClick="login" />
+
+        <p class="description">
+            テキストテキストテキストテキストテキストテキスト
+            テキストテキストテキストテキストテキストテキスト
+        </p>
+
+    </div>
+
+    <a href="/registUserInfo" class="create-account">
+        アカウント作成
+    </a>
+
+</div>
+
+@* モーダル *@
+<AppMessageModal isModalOpen="isModalOpen" message="@message" />
+
+@code
+{
+    public string mailaddress = string.Empty; // 登録メールアドレス
+    string password = string.Empty; // 入力パスワード
+    private bool isModalOpen;// モーダル開く条件
+    private string message = string.Empty; // モーダルに送るメッセージ
+
+    [Inject]
+    NavigationManager navigationManager { get; set; } = default!;
+
+    [Inject]
+    UserService userService { get; set; } = default!;
+
+    /// <summary>
+    /// ユーザー登録画面に遷移する処理
+    /// </summary>
+    public void RegistUserInfo()
+    {
+        navigationManager.NavigateTo("/registUserInfo");
+    }
+
+    /// <summary>
+    /// ログイン処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task login()
+    {
+        // 1.空欄チェック
+        if (mailaddress == "")
+        {
+            isModalOpen = true;
+            message = "メールアドレスを入力してください";
+            return;
+        }
+
+        if (password == "")
+        {
+            isModalOpen = true;
+            message = "パスワードを入力してください";
+            return;
+        }
+
+        // 2.DBからUsersテーブル全データを検索
+        List<UserInfo> usersRecors = await userService.fetchUserInfo();
+
+        // 3.取得したデータから該当者を探す
+        UserInfo user = userService.fetchMatchUserInfo(usersRecors, mailaddress, password);
+
+        // 該当者が存在しない場合
+        if (user == null)
+        {
+            // 該当者はいませんと表示
+            isModalOpen = true;
+            message = "該当者がいません";
+            return;
+        }
+        // 該当者が存在する場合
+        else
+        {
+            navigationManager.NavigateTo("/home");
+        }
+    }
+}

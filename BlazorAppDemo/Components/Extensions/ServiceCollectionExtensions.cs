@@ -17,8 +17,7 @@ namespace BlazorAppDemo.Components.Extensions
         /// <returns></returns>
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
-            services.AddScoped<UserService>(); // ユーザー基本情報
-            services.AddScoped<UserDetailService>(); // ユーザー詳細情報
+            services.AddScoped<UserService>(); // ユーザー情報
             services.AddScoped<NutritionManageService>(); // 栄養管理
             services.AddScoped<ChartService>(); // チャートグラフ管理サービス
 

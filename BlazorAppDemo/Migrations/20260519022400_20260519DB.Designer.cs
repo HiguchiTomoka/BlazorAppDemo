@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorAppDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260518025945_20260518DB")]
-    partial class _20260518DB
+    [Migration("20260519022400_20260519DB")]
+    partial class _20260519DB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,38 +145,6 @@ namespace BlazorAppDemo.Migrations
                     b.ToTable("MenuRecords");
                 });
 
-            modelBuilder.Entity("BlazorAppDemo.Components.Data.UserDetailInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Age")
-                        .HasColumnType("float");
-
-                    b.Property<double>("BodyWeight")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ExerciseIntensity")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserNo")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserDetailInfoRecords");
-                });
-
             modelBuilder.Entity("BlazorAppDemo.Components.Data.UserInfo", b =>
                 {
                     b.Property<int>("Id")
@@ -185,13 +153,39 @@ namespace BlazorAppDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("BasalMetabolism")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("BodyWeight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Bodyheight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("PhysicalActivityLevel")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserNo")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

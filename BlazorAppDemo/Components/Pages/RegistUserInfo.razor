@@ -2,48 +2,89 @@
 @rendermode InteractiveServer
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Data
-@inject NavigationManager navigationManager
-@inject BlazorAppDemo.Components.Services.UserService UserService
-@inject BlazorAppDemo.Components.Services.UserDetailService UserDetailService
+@using BlazorAppDemo.Components.Services
 
-<h1>ユーザー情報登録画面</h1>
+<div class="top-bar">
+    <div class="logo">logo</div>
 
-<h3>ユーザー名</h3>
-<input type="text" @bind="userName" placeholder="ユーザー名" />
+    <button class="menu-button">
+        ☰
+    </button>
+</div>
 
-<h3>パスワード</h3>
-<input type="password" @bind="password" placeholder="パスワード" />
+<div class="register-container">
 
-<h3>性別選択</h3>
-<label>
-    <input type="radio" name="checkedGender" checked="true" value="Male" @onchange="SelectRadio" /> 男
-</label>
+    <h1>ユーザー登録</h1>
 
-<label>
-    <input type="radio" name="checkedGender" value="Female" @onchange="SelectRadio" /> 女
-</label>
+    <div class="required-message">
+        必須項目を入力してください
+    </div>
 
-<p>選択された性別： @gender</p>
+    <div class="form-area">
 
-<h3>年齢</h3>
-<input type="text" @bind="age" placeholder="25" />
+        <div class="form-row">
+            <label>メールアドレス <span>必須</span></label>
+            <input type="email" @bind="mailaddress" placeholder="example@gmail.com" />
+        </div>
 
-<h3>身長</h3>
-<input type="text" @bind="bodyheight" placeholder="170" />
+        <div class="form-row">
+            <label>パスワード <span>必須</span></label>
 
-<h3>体重</h3>
-<input type="text" @bind="bodyWeight" placeholder="65" />
+            <div class="password-box">
+                <input type="password" @bind="password" placeholder="パスワード" />
+                <button type="button">👁</button>
+            </div>
+        </div>
 
-<h2>普段の身体活動レベル</h2>
-<h3>身体活動レベル</h3>
-<select @bind="SelectedPAl">
-    @foreach (var item in physicalActivityLevelItems)
+        <div class="form-row">
+            <label>性別 <span>必須</span></label>
+            <label>
+                <input type="radio" name="checkedGender" checked="true" value="Male" @onchange="SelectRadio" /> 男
+            </label>
+            <label>
+                <input type="radio" name="checkedGender" value="Female" @onchange="SelectRadio" /> 女
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>年齢 <span>必須</span></label>
+            <input type="text" @bind="age" placeholder="25" />
+        </div>
+
+        <div class="form-row">
+            <label>身長 <span>必須</span></label>
+            <input type="text" @bind="bodyheight" placeholder="170" />
+        </div>
+
+        <div class="form-row">
+            <label>体重 <span>必須</span></label>
+            <input type="text" @bind="bodyWeight" placeholder="65" />
+        </div>
+
+        <div class="form-row">
+            <label>身体活動レベル <span>必須</span></label>
+            <select @bind="SelectedPAl">
+                @foreach (var item in physicalActivityLevelItems)
+                {
+                    <option value="@item.physicalActivityLevel">@item.label</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    @* 入力済の場合 *@
+    @if (isInput)
     {
-        <option value="@item.physicalActivityLevel">@item.label</option>
+        <AppButton buttonValue="修正" className="register-button" OnClick="correctData" />
+        <AppButton buttonValue="登録" className="register-button" OnClick="calcTDEE" />
+    } 
+    @* 未入力の場合 *@
+    else
+    {
+        <AppButton buttonValue="登録確認" className="register-button" OnClick="RegistrationConfirmarion" />
     }
-</select>
-<AppButton buttonValue="登録する" className="cancel-button" OnClick="calcTDEE" />
-<AppButton buttonValue="戻る" className="cancel-button" OnClick="returnBackHome" />
+</div>
+
 
 <h3>1日に必要な消費カロリー:TDEE</h3>
 <p>@TDEE</p>
@@ -51,6 +92,7 @@
 @code {
     public string userName = ""; // ユーザー名
     public string password = ""; // ユーザーパスワード
+    public string mailaddress = ""; // 登録メールアドレス
     public string gender = "Male"; // 性別
     public int age; // 年齢
     public double bodyWeight; // 体重
@@ -58,6 +100,13 @@
     public double basalMetabolism; // 基礎代謝量
     public double TDEE; // 1日の必須消費カロリー
     private double SelectedPAl; // 選択された身体活動レベル
+    private bool isInput = false; // 入力済かフラグ
+
+    [Inject]
+    NavigationManager NavigationManager { get; set; } = default!;
+    [Inject]
+    UserService UserService { get; set; } = default!;
+
 
     // 身体活動レベルセレクトボックスの組み立て
     private List<physicalActivityLevelSelectBox> physicalActivityLevelItems = new()
@@ -87,9 +136,9 @@
     // ユーザー基本情報に登録
     private async Task registUserInfo()
     {
-        UserBaseInfo inputData = new UserBaseInfo { UserName = userName, Password = password };
+        UserInfo inputData = new UserInfo { UserName = userName, Password = password };
 
-        await UserService.registUserBaseInfo(inputData);
+        await UserService.registUserInfo(inputData);
     }
 
     // ユーザー詳細情報に登録
@@ -103,20 +152,23 @@
         basalMetabolism = gender == "Male" ? basalMetabolismForMale : basalMetabolismForFemale;
 
         // 入力データまとめる
-        UserDetailInfo inputData = 
-            new UserDetailInfo { 
-                UserName = userName, 
-                UserNo = 55, 
+        UserInfo inputData =
+            new UserInfo
+            {
+                UserName = userName,
+                UserNo = 55,
+                Password = password,
+                MailAddress = mailaddress,
                 Gender = gender,
                 BodyWeight = bodyWeight,
                 Bodyheight = bodyheight,
                 Age = age,
                 BasalMetabolism = basalMetabolism,
-                ExerciseIntensity = SelectedPAl
+                PhysicalActivityLevel = SelectedPAl
             };
 
         // 登録処理
-        await UserDetailService.registUserDetailInfo(inputData);
+        await UserService.registUserInfo(inputData);
     }
 
     private void calcTDEE()
@@ -133,10 +185,19 @@
     }
 
     /// <summary>
-    /// ユーザー登録画面に遷移する処理
+    /// 
     /// </summary>
-    public void returnBackHome()
+    public void correctData()
     {
-        navigationManager.NavigateTo("/");
+        isInput = false;
+    }
+
+    public void RegistrationConfirmarion()
+    {
+        // 1.それぞれの項目チェック処理
+
+
+        // 2.フラグを変更し、修正ボタンを出す
+        isInput = true;
     }
 }

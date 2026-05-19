@@ -1,6 +1,96 @@
 ﻿@page "/mealRegist"
 @rendermode InteractiveServer
-<h1>食事登録</h1>
+@using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Common
+@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
+
+<div class="meal-page">
+
+    <div class="page-header">
+        <h1>食事登録</h1>
+        <p>毎日の食事を記録しましょう</p>
+    </div>
+    
+    <AppButton buttonValue="既製品料理の登録" className="cancel-button" OnClick="registReadyMadeMeal" />
+    <AppButton buttonValue="手作り料理の栄養価を登録" className="cancel-button" OnClick="registCookingMeal" />
+
+    @* 既製商品の登録 *@
+    @if (isReadyMadeMeal)
+    {
+        <AppRegistMealRecord mealData=@mealData OnClick=SaveMeal />
+    } 
+
+    @* 自炊料理の登録 *@
+    else
+    {
+        <div class="card">
+            <div class="form-group">
+                <label>料理名</label>
+                <InputText class="form-input" @bind-Value="mealData.MealName" />
+            </div>
+
+            <div class="form-group">
+                <label>使用重量</label>
+                <InputText class="form-input" @bind-Value="mealData.MealName" />
+            </div>
+
+            <AppButton buttonValue="追加" className="cancel-button" OnClick="addMenuList" />
+        </div>
+    }
+
+</div>
+
 @code {
+    // 登録する食事は既製品か？
+    private bool isReadyMadeMeal = false;
+    private List<MenulInfo> list = new List<MenulInfo>();
+
+    // 登録フォーム初期化用
+    private MealRecordInfo mealData = new MealRecordInfo
+    {
+        MealName = "塩パン",
+        Calories = 320,
+        Protein = 8,
+        Fat = 12,
+        Carbs = 45,
+        MealDate = DateTime.Today
+    };
+
+    private void addMenuList()
+    {
+        
+    }
+
+    private void registReadyMadeMeal()
+    {
+        isReadyMadeMeal = true;
+    }
+
+    private void registCookingMeal()
+    {
+        isReadyMadeMeal = false;
+    }
+
+    /// <summary>
+    /// 登録処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task SaveMeal()
+    {
+        // 登録データの成形
+        MealRecordInfo registMealRecord = new MealRecordInfo
+        {
+            MealName = mealData.MealName,
+            Calories = mealData.Calories,
+            Protein = mealData.Protein,
+            Fat = mealData.Fat,
+            Carbs = mealData.Carbs,
+            MealDate = mealData.MealDate
+        };
+
+        // DBへ保存処理
+        await NutritionManageService.AddMealRecord(registMealRecord);
+    }
+
 
 }
