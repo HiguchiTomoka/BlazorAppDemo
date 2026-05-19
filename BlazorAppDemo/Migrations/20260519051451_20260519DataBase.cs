@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlazorAppDemo.Migrations
 {
     /// <inheritdoc />
-    public partial class _20260519DB : Migration
+    public partial class _20260519DataBase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,11 +83,12 @@ namespace BlazorAppDemo.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BodyWeight = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Bodyheight = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    BodyWeight = table.Column<double>(type: "float", nullable: false),
+                    Bodyheight = table.Column<double>(type: "float", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    BasalMetabolism = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PhysicalActivityLevel = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    BasalMetabolism = table.Column<double>(type: "float", nullable: false),
+                    PhysicalActivityLevel = table.Column<double>(type: "float", nullable: false),
+                    TotalDailyEnergyExpenditure = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

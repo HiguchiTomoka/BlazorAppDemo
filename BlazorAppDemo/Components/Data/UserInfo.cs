@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Net.Mail;
 
 namespace BlazorAppDemo.Components.Data
 {
@@ -16,7 +15,7 @@ namespace BlazorAppDemo.Components.Data
         public string Password { get; set; } = string.Empty; // 登録した人のユーザー番号
         [Required]
         [EmailAddress]
-        public string MailAddress { get; set; } // ユーザーのメールアドレス
+        public string MailAddress { get; set; } = string.Empty; // ユーザーのメールアドレス
         [Required] 
         public string Gender { get; set; } = string.Empty; // 性別
         [Required]
@@ -29,5 +28,6 @@ namespace BlazorAppDemo.Components.Data
         public double BasalMetabolism { get; set; } // 基礎代謝量
         [Required]
         public double PhysicalActivityLevel { get; set; } // 身体活動レベル
+        public double TotalDailyEnergyExpenditure { get; set; } // 身体活動レベル
     }
 }

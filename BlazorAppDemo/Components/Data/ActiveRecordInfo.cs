@@ -10,11 +10,10 @@ namespace BlazorAppDemo.Components.Data
         public int UserNo { get; set; } // 登録した人の一意なユーザー番号
         public int ActiveKind { get; set; } // 運動の種類(1:筋トレ、2:ランニング、3:スポーツ)
         public string ActiveName { get; set; } = string.Empty; // 活動名
-        public double Weight { get; set; } // 重量(筋トレの場合)
-        public double Reps { get; set; } // 回数(筋トレの場合)
-        public double Set { get; set; } // セット(筋トレの場合)
-        public double RunningDistance { get; set; } // 走った距離(ランニングの場合)
-        public double Time { get; set; } // 行った時間(スポーツの場合)
-
+        public decimal Weight { get; set; } // 重量(筋トレの場合)
+        public int Reps { get; set; } // 回数(筋トレの場合)
+        public int Set { get; set; } // セット(筋トレの場合)
+        public decimal RunningDistance { get; set; } // 走った距離(ランニングの場合)
+        public decimal Time { get; set; } // 行った時間(スポーツの場合)
     }
 }

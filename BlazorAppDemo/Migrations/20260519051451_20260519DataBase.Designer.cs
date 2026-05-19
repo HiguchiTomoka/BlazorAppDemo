@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorAppDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260519022400_20260519DB")]
-    partial class _20260519DB
+    [Migration("20260519051451_20260519DataBase")]
+    partial class _20260519DataBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,14 +156,14 @@ namespace BlazorAppDemo.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("BasalMetabolism")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("BasalMetabolism")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("BodyWeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("BodyWeight")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("Bodyheight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Bodyheight")
+                        .HasColumnType("float");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -177,8 +177,11 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PhysicalActivityLevel")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("PhysicalActivityLevel")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalDailyEnergyExpenditure")
+                        .HasColumnType("float");
 
                     b.Property<string>("UserName")
                         .IsRequired()

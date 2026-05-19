@@ -2,6 +2,7 @@
 @rendermode InteractiveServer
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Validators
 @using BlazorAppDemo.Components.Services
 
 <div class="top-bar">
@@ -14,69 +15,99 @@
 
 <div class="register-container">
 
-    <h1>ユーザー登録</h1>
+    @* 入力・登録完了の場合 *@
+    @if (isInputCompleted)
+    {
+        <h1>登録ありがとうございます！</h1>
 
-    <div class="required-message">
-        必須項目を入力してください
-    </div>
+        <div class="form-area">
+            <p class="description">
+                テキストテキストテキストテキストテキストテキスト
+                テキストテキストテキストテキストテキストテキスト
+            </p>
+        </div>
+    } 
+    @* 入力・登録未完了の場合 *@
+    else
+    {
+        <h1>ユーザー登録</h1>
 
-    <div class="form-area">
-
-        <div class="form-row">
-            <label>メールアドレス <span>必須</span></label>
-            <input type="email" @bind="mailaddress" placeholder="example@gmail.com" />
+        <div class="required-message">
+            必須項目を入力してください
         </div>
 
-        <div class="form-row">
-            <label>パスワード <span>必須</span></label>
+        <div class="form-area">
 
-            <div class="password-box">
-                <input type="password" @bind="password" placeholder="パスワード" />
-                <button type="button">👁</button>
+            <div class="form-row">
+                <label>名前 <span>必須</span></label>
+                <input type="text" @bind="userName" placeholder="あだ名やニックネームでもOK！" />
+            </div>
+
+            <div class="form-row">
+                <label>メールアドレス <span>必須</span></label>
+                <input type="email" @bind="mailaddress" placeholder="example@gmail.com" />
+            </div>
+
+            <div class="form-row">
+                <label>パスワード <span>必須</span></label>
+
+                <div class="password-box">
+                    <input type="@passwordInputType" @bind="password" placeholder="パスワード" />
+                    <button type="button" @onclick="TogglePasswordVisibility">
+                        @(isPasswordVisible ? "🙈" : "👁")
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label>性別 <span>必須</span></label>
+                <label>
+                    <input type="radio" name="checkedGender" checked="true" value="Male" @onchange="SelectRadio" /> 男
+                </label>
+                <label>
+                    <input type="radio" name="checkedGender" value="Female" @onchange="SelectRadio" /> 女
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>年齢 <span>必須</span></label>
+                <input type="text" @bind="age" placeholder="25" />
+            </div>
+
+            <div class="form-row">
+                <label>身長 <span>必須</span></label>
+                <input type="text" @bind="bodyheight" placeholder="170" />
+            </div>
+
+            <div class="form-row">
+                <label>体重 <span>必須</span></label>
+                <input type="text" @bind="bodyWeight" placeholder="65" />
+            </div>
+
+            <div class="form-row">
+                <label>身体活動レベル <span>必須</span></label>
+                <select @bind="SelectedPAl">
+                    @foreach (var item in physicalActivityLevelItems)
+                    {
+                        <option value="@item.physicalActivityLevel">@item.label</option>
+                    }
+                </select>
             </div>
         </div>
-
-        <div class="form-row">
-            <label>性別 <span>必須</span></label>
-            <label>
-                <input type="radio" name="checkedGender" checked="true" value="Male" @onchange="SelectRadio" /> 男
-            </label>
-            <label>
-                <input type="radio" name="checkedGender" value="Female" @onchange="SelectRadio" /> 女
-            </label>
-        </div>
-
-        <div class="form-row">
-            <label>年齢 <span>必須</span></label>
-            <input type="text" @bind="age" placeholder="25" />
-        </div>
-
-        <div class="form-row">
-            <label>身長 <span>必須</span></label>
-            <input type="text" @bind="bodyheight" placeholder="170" />
-        </div>
-
-        <div class="form-row">
-            <label>体重 <span>必須</span></label>
-            <input type="text" @bind="bodyWeight" placeholder="65" />
-        </div>
-
-        <div class="form-row">
-            <label>身体活動レベル <span>必須</span></label>
-            <select @bind="SelectedPAl">
-                @foreach (var item in physicalActivityLevelItems)
-                {
-                    <option value="@item.physicalActivityLevel">@item.label</option>
-                }
-            </select>
-        </div>
-    </div>
-
+    }
     @* 入力済の場合 *@
     @if (isInput)
     {
-        <AppButton buttonValue="修正" className="register-button" OnClick="correctData" />
-        <AppButton buttonValue="登録" className="register-button" OnClick="calcTDEE" />
+        if (isInputCompleted)
+        {
+            <AppButton buttonValue="ホームへ戻る" className="register-button" OnClick="MoveHomePage" />
+        } 
+        
+        else
+        {
+            <AppButton buttonValue="修正" className="register-button" OnClick="correctData" />
+            <AppButton buttonValue="登録" className="register-button" OnClick="registUserInfo" />
+        }
     } 
     @* 未入力の場合 *@
     else
@@ -85,9 +116,8 @@
     }
 </div>
 
-
-<h3>1日に必要な消費カロリー:TDEE</h3>
-<p>@TDEE</p>
+@* モーダル *@
+<AppMessageModal isModalOpen="isModalOpen" message="@message" />
 
 @code {
     public string userName = ""; // ユーザー名
@@ -101,12 +131,17 @@
     public double TDEE; // 1日の必須消費カロリー
     private double SelectedPAl; // 選択された身体活動レベル
     private bool isInput = false; // 入力済かフラグ
+    private bool isModalOpen;// モーダル開くフラグ
+    private bool isInputCompleted = false;// 入力完了フラグ
+    private bool isPasswordVisible = false; // パスワード表示・非表示フラグ
+    private string message = string.Empty; // モーダルに送るメッセージ
+    // パスワード表示・非表示type
+    private string passwordInputType => isPasswordVisible ? "text" : "password";
 
     [Inject]
     NavigationManager NavigationManager { get; set; } = default!;
     [Inject]
     UserService UserService { get; set; } = default!;
-
 
     // 身体活動レベルセレクトボックスの組み立て
     private List<physicalActivityLevelSelectBox> physicalActivityLevelItems = new()
@@ -133,16 +168,19 @@
         gender = (string)args.Value;
     }
 
-    // ユーザー基本情報に登録
-    private async Task registUserInfo()
+    /// <summary>
+    /// パスワードの目ボタンを押してパスワードを見えるor 見えないように切り替える
+    /// </summary>
+    private void TogglePasswordVisibility()
     {
-        UserInfo inputData = new UserInfo { UserName = userName, Password = password };
-
-        await UserService.registUserInfo(inputData);
+        isPasswordVisible = !isPasswordVisible;
     }
 
-    // ユーザー詳細情報に登録
-    private async Task registUserDetailInfo()
+    /// <summary>
+    /// ユーザーテーブルに入力値を登録
+    /// </summary>
+    /// <returns></returns>
+    private async Task registUserInfo()
     {
         // 基礎代謝量算出
         var basalMetabolismForMale = 13.397 * bodyWeight + 4.799 * bodyheight - 5.677 * age + 88.362;
@@ -150,6 +188,9 @@
 
         // 基礎代謝量算出
         basalMetabolism = gender == "Male" ? basalMetabolismForMale : basalMetabolismForFemale;
+
+        // 1日の総消費カロリー
+        TDEE = basalMetabolism * SelectedPAl;
 
         // 入力データまとめる
         UserInfo inputData =
@@ -164,24 +205,15 @@
                 Bodyheight = bodyheight,
                 Age = age,
                 BasalMetabolism = basalMetabolism,
-                PhysicalActivityLevel = SelectedPAl
+                PhysicalActivityLevel = SelectedPAl,
+                TotalDailyEnergyExpenditure = TDEE
             };
 
         // 登録処理
         await UserService.registUserInfo(inputData);
-    }
 
-    private void calcTDEE()
-    {
-        // 基礎代謝量算出
-        var basalMetabolismForMale = (13.397 * bodyWeight) + (4.799 * bodyheight) - (5.677 * age) + 88.362;
-        var basalMetabolismForFemale = 9.247 * bodyWeight + 3.098 * bodyheight - 4.33 * age + 447.593;
-
-        // 基礎代謝量算出
-        basalMetabolism = gender == "Male" ? basalMetabolismForMale : basalMetabolismForFemale;
-
-        // 1日の消費カロリー量
-        TDEE = basalMetabolism * SelectedPAl;
+        // フラグの変更
+        isInputCompleted = true;
     }
 
     /// <summary>
@@ -192,12 +224,123 @@
         isInput = false;
     }
 
+    /// <summary>
+    /// 入力完了後確認画面遷移
+    /// </summary>
     public void RegistrationConfirmarion()
     {
         // 1.それぞれの項目チェック処理
+        bool isError = validateInputData();
 
+        if (isError)
+        {
+            return; 
+        }
 
         // 2.フラグを変更し、修正ボタンを出す
         isInput = true;
+    }
+
+    /// <summary>
+    /// ホームに移動
+    /// </summary>
+    private void MoveHomePage()
+    {
+        NavigationManager.NavigateTo("/home");
+    }
+
+    /// <summary>
+    /// チェック処理
+    /// ユーザー名：ブランクチェック
+    /// メールアドレス：半角英数字チェック、ブランクチェック
+    /// パスワード：半角英数字チェック、ブランクチェック
+    /// 年齢：半角数字チェック、ブランクチェック
+    /// 身長：半角数字チェック、ブランクチェック
+    /// 体重：半角数字チェック、ブランクチェック
+    /// 身体活動レベル：ブランクチェック
+    /// </summary>
+    /// <returns></returns>
+    private bool validateInputData()
+    {
+        // ユーザー名チェック
+        if (Validator.IsNullOrBlankValidate(userName))
+        {
+            isModalOpen = true;
+            message = "ユーザー名を入力してください";
+            return true;
+        }
+        // メールアドレスチェック
+        if (Validator.IsNullOrBlankValidate(mailaddress))
+        {
+            isModalOpen = true;
+            message = "メールアドレスを入力してください";
+            return true;
+        }
+        if (!Validator.IsMailAddress(mailaddress))
+        {
+            isModalOpen = true;
+            message = "半角英数字で入力してください";
+            return true;
+        }
+        // パスワードチェック
+        if (Validator.IsNullOrBlankValidate(password))
+        {
+            isModalOpen = true;
+            message = "パスワードを入力してください";
+            return true;
+        }
+        if (!Validator.IsOnlyAlphanumeric(password))
+        {
+            isModalOpen = true;
+            message = "半角英数字で入力してください";
+            return true;
+        }
+        // 年齢チェック
+        if (age == 0)
+        {
+            isModalOpen = true;
+            message = "年齢を入力してください";
+            return true;
+        }
+        if (!Validator.IsOnlyNumeric(age.ToString()))
+        {
+            isModalOpen = true;
+            message = "数字を入力してください";
+            return true;
+        }
+        // 身長チェック
+        if (bodyheight == 0)
+        {
+            isModalOpen = true;
+            message = "身長を入力してください";
+            return true;
+        }
+        if (!Validator.IsOnlyNumeric(bodyheight.ToString()))
+        {
+            isModalOpen = true;
+            message = "数字を入力してください";
+            return true;
+        }
+        // 体重チェック
+        if (bodyWeight == 0)
+        {
+            isModalOpen = true;
+            message = "体重を入力してください";
+            return true;
+        }
+        if (!Validator.IsOnlyNumeric(bodyWeight.ToString()))
+        {
+            isModalOpen = true;
+            message = "数字を入力してください";
+            return true;
+        }
+        // 身体活動レベルチェック
+        if (SelectedPAl == 0)
+        {
+            isModalOpen = true;
+            message = "身体活動レベルを入力してください";
+            return true;
+        }
+        return false;
     }
 }

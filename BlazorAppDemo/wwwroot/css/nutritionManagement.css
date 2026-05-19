@@ -9,12 +9,12 @@
     margin-bottom: 32px;
 }
 
-    .page-header h1 {
-        font-size: 40px;
-        font-weight: bold;
-        color: #135389;
-        margin-bottom: 8px;
-    }
+.page-header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #135389;
+    margin-bottom: 8px;
+}
 
     .page-header p {
         font-size: 16px;
@@ -34,10 +34,11 @@
     overflow: hidden;
 }
 
-    .card h2 {
-        color: #135389;
-        margin-bottom: 24px;
-    }
+/*cardクラスのh2を青文字文字*/
+.card h2 {
+   color: #135389;
+   margin-bottom: 24px;
+}
 
 .form-group {
     display: flex;
@@ -52,10 +53,10 @@
     width: 100%;
 }
 
-    .form-row .form-group {
-        flex: 1;
-        min-width: 0;
-    }
+.form-row .form-group {
+    flex: 1;
+    min-width: 0;
+}
 
 .form-group label {
     margin-bottom: 8px;

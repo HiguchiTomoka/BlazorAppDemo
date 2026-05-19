@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
-
 namespace BlazorAppDemo.Components.Data
 {
     /// <summary>

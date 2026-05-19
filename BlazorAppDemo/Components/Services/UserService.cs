@@ -1,6 +1,5 @@
 using BlazorAppDemo.Components.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Mail;
 
 namespace BlazorAppDemo.Components.Services
 {

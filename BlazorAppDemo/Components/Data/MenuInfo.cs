@@ -15,5 +15,10 @@ namespace BlazorAppDemo.Components.Data
         public decimal Protein { get; set; } // タンパク質
         public decimal Fat { get; set; } // 脂質
         public decimal Carbs { get; set; } // 炭水化物
+        public decimal VitaminA { get; set; } // ビタミンA
+        public decimal VitaminB { get; set; } // ビタミンB
+        public decimal VitaminC { get; set; } // ビタミンC
+        public decimal VitaminD { get; set; } // ビタミンD
+        public decimal VitaminE { get; set; } // ビタミンE
     }
 }

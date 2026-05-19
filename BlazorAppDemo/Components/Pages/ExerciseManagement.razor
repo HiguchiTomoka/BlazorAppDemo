@@ -1,0 +1,257 @@
+﻿@page "/exerciseManagement"
+@using BlazorAppDemo.Components.Common
+@using BlazorAppDemo.Components.Services
+@using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Validators
+@rendermode InteractiveServer
+
+<div class="meal-page">
+
+    <div class="page-header">
+        <h1>運動記録</h1>
+        <p>毎日の運動の記録・見直してみましょう</p>
+    </div>
+
+    @* 運動登録 *@
+    <!-- TODO 見た目(css)が終わってる -->
+     <div class="content-grid">
+        <div class="card">
+            <h2>運動登録</h2>
+
+            <select @bind="SelectedItem">
+                @foreach (var item in Items)
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+
+            @if (SelectedItem == "筋トレ")
+            {
+                <div>
+                    <label>種目名 <span>必須</span></label>
+                    <input type="text" @bind="activeName" placeholder="ベンチプレス" />
+                </div>
+                <div>
+                    <label>重量 <span>必須</span></label>
+                    <input type="text" @bind="weight" placeholder="100" />
+                    <label>kg</label>
+                </div>
+                <div>
+                    <label>回数 <span>必須</span></label>
+                    <input type="text" @bind="reps" placeholder="10" />
+                    <label>回</label>
+                </div>
+                <div>
+                    <label>セット数 <span>必須</span></label>
+                    <input type="text" @bind="set" placeholder="3" />
+                    <label>セット</label>
+                </div>
+            } else
+            {
+                if (SelectedItem == "ランニング")
+                {
+                    <div>
+                        <label>走行距離 <span>必須</span></label>
+                        <input type="text" @bind="runningDistance" placeholder="10.5" />
+                        <label>km</label>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <label>種目名 <span>必須</span></label>
+                        <input type="text" @bind="activeName" placeholder="水泳" />
+                    </div>
+                    <div>
+                        <label>スポーツを行った時間 <span>必須</span></label>
+                        <input type="text" @bind="time" placeholder="120" />
+                        <label>分</label>
+                    </div>
+                }
+            }
+            <div>
+                <AppButton buttonValue="登録" className="" OnClick="RegistActiveRecord" />
+            </div>
+
+        </div>
+    </div>
+
+    @* 運動記録 *@
+    <div class="content-grid">
+        <div class="card">
+            <h2>運動記録</h2>
+            <!-- TODO 表を表示させたい -->
+        </div>
+    </div>
+</div>
+
+@* モーダル *@
+<AppMessageModal isModalOpen="isModalOpen" message="@message" />
+
+@code {
+    private string activeName = string.Empty; // 種目名(筋トレの場合)
+    private decimal weight; // 重量(筋トレの場合)
+    private int reps; // 回数(筋トレの場合)
+    private int set; // セット数(筋トレの場合)
+    private decimal runningDistance; // セット数(ランニングの場合)
+    private decimal time; // スポーツ等を行った時間(スポーツの場合)
+    private string SelectedItem = ""; // 選択中のセレクトボックス値
+    private bool isModalOpen;// モーダル開くフラグ
+    private string message = string.Empty; // モーダルに送るメッセージ
+
+    private List<string> Items = new()
+    {
+        "筋トレ",
+        "ランニング",
+        "スポーツ"
+    };
+
+    [Inject]
+    ActiveRecordService ActiveRecordService { get; set; } = default!;
+
+    /// <summary>
+    /// 運動記録の登録処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task RegistActiveRecord()
+    {
+        // 活動種類の特定
+        int activeKind = SelectedItem switch
+        {
+            "筋トレ" => 1,
+            "ランニング" => 2,
+            "スポーツ" => 3,
+            _=> 0 // Javaでいうdefault
+        };
+
+        // チェック処理
+        bool isError = validateInputData(activeKind);
+
+        if (isError)
+        {
+            return;
+        }
+
+        // 登録データの組み立て
+        ActiveRecordInfo inputData = new ActiveRecordInfo
+        {
+            ActiveKind = activeKind,
+            UserName = "", // Sessionに入れて持ちまわりたいデータ
+            UserNo = 1, // Sessionに入れて持ちまわりたいデータ
+            ActiveName = activeName,
+            Weight = weight,
+            Reps = reps,
+            Set = set,
+            RunningDistance = runningDistance,
+            Time = time,
+        };
+
+        // 登録処理
+        await ActiveRecordService.registActiveRecordInfo(inputData);
+    }
+
+    /// <summary>
+    /// 選択した運動種類によってチェック項目を変更し、チェック処理を行う
+    /// </summary>
+    /// <param name="activeKind"></param>
+    /// <returns></returns>
+    private bool validateInputData(int activeKind)
+    {
+        // 筋トレの場合
+        if (activeKind == 1)
+        {
+            // 種目名チェック
+            if (Validator.IsNullOrBlankValidate(activeName))
+            {
+                isModalOpen = true;
+                message = "";
+                return true;
+            }
+            // 重量チェック
+            if (Validator.IsNullOrBlankValidate(weight.ToString()))
+            {
+                isModalOpen = true;
+                message = "";
+                return true;
+            }
+            // TODO 多分「15.7」とか小数点入るとダメになりそう
+            if (!Validator.IsOnlyNumeric(weight.ToString()))
+            {
+                isModalOpen = true;
+                message = "数字を入力してください";
+                return true;
+            }
+            // 回数チェック
+            if (Validator.IsNullOrBlankValidate(reps.ToString()))
+            {
+                isModalOpen = true;
+                message = "";
+                return true;
+            }
+            if (!Validator.IsOnlyNumeric(reps.ToString()))
+            {
+                isModalOpen = true;
+                message = "数字を入力してください";
+                return true;
+            }
+            // セット数チェック
+            if (Validator.IsNullOrBlankValidate(set.ToString()))
+            {
+                isModalOpen = true;
+                message = "";
+                return true;
+            }
+            if (!Validator.IsOnlyNumeric(weight.ToString()))
+            {
+                isModalOpen = true;
+                message = "数字を入力してください";
+                return true;
+            }
+        }
+        // ランニングの場合
+        else if (activeKind == 2)
+        {
+            // ランニング距離チェック
+            if (Validator.IsNullOrBlankValidate(runningDistance.ToString()))
+            {
+                isModalOpen = true;
+                message = "";
+                return true;
+            }
+            // TODO 多分「15.7」とか小数点入るとダメになりそう
+            if (!Validator.IsOnlyNumeric(runningDistance.ToString()))
+            {
+                isModalOpen = true;
+                message = "数字を入力してください";
+                return true;
+            }
+        }
+        // スポーツの場合
+        else
+        {
+            // 種目名チェック
+            if (Validator.IsNullOrBlankValidate(activeName))
+            {
+                isModalOpen = true;
+                message = "";
+                return true;
+            }
+            // スポーツ時間チェック
+            if (Validator.IsNullOrBlankValidate(time.ToString()))
+            {
+                isModalOpen = true;
+                message = "";
+                return true;
+            }
+            if (!Validator.IsOnlyNumeric(time.ToString()))
+            {
+                isModalOpen = true;
+                message = "数字を入力してください";
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+}

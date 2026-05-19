@@ -153,14 +153,14 @@ namespace BlazorAppDemo.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("BasalMetabolism")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("BasalMetabolism")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("BodyWeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("BodyWeight")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("Bodyheight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Bodyheight")
+                        .HasColumnType("float");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -174,8 +174,11 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PhysicalActivityLevel")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("PhysicalActivityLevel")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalDailyEnergyExpenditure")
+                        .HasColumnType("float");
 
                     b.Property<string>("UserName")
                         .IsRequired()

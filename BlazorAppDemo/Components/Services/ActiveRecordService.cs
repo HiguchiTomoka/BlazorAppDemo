@@ -29,13 +29,13 @@ namespace BlazorAppDemo.Components.Services
         }
 
         /// <summary>
-        /// ユーザー情報の新規登録処理
+        /// 運動記録の新規登録処理
         /// </summary>
         /// <returns></returns>
-        public async Task registUserBaseInfo(ActiveRecordInfo inputUserBaseInfo)
+        public async Task registActiveRecordInfo(ActiveRecordInfo inputActiveRecordInfo)
         {
             // 該当ユーザーの人数
-            _dbContext.ActiveRecords.Add(inputUserBaseInfo);
+            _dbContext.ActiveRecords.Add(inputActiveRecordInfo);
 
             await _dbContext.SaveChangesAsync();
         }
