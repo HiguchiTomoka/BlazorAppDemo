@@ -1,19 +1,26 @@
 ﻿@page "/dietaryManagement"
 @rendermode InteractiveServer
 @using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Data.DefineDB
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Services
+@using Microsoft.AspNetCore.Components.Authorization
 
-<div class="meal-page">
+<div class="page-container">
 
-    <div class="page-header">
-        <h1>食事管理</h1>
-        <p>毎日の食事を記録・見直してみましょう</p>
+    <div>
+        <div class="section-title">
+            食事管理
+        </div>
+
+        <div class="section-subtitle">
+            毎日の食事を記録・見直してみましょう
+        </div>
     </div>
     
     @* 食事登録 *@
-    <div class="content-grid">
-        <div class="card">
+    <div class="top-content">
+        <div class="content-card table-card">
             <h2>食事登録</h2>
             <AppButton buttonValue="既製品料理の登録" className="cancel-button" OnClick="registReadyMadeMeal" />
             <AppButton buttonValue="手作り料理の栄養価を登録" className="cancel-button" OnClick="registCookingMeal" />
@@ -27,7 +34,7 @@
             @* 自炊料理の登録 *@
             else
             {
-                <div class="card">
+                <div class="content-card">
                     <div class="form-group">
                         <label>料理名</label>
                         <InputText class="form-input" @bind-Value="mealData.MealName" />
@@ -41,17 +48,13 @@
                     <AppButton buttonValue="追加" className="cancel-button" OnClick="addMenuList" />
                 </div>
             }
-
         </div>
     </div>
 
     @* 食事記録 *@
-    <div class="content-grid">
-        <div class="card">
-            <h2>食事記録</h2>
-            <AppMealRecord mealList=@dashboardData.MealList title="食事一覧" totalCalories="@dashboardData.TotalCalories"
-                totalProtein="@dashboardData.TotalProtein" totalCarbs="@dashboardData.TotalCarbs" totalFat="@dashboardData.TotalFat" />
-        </div>
+    <div class="content-card table-card">
+        <AppMealRecord mealList=@dashboardData.MealList title="食事一覧" totalCalories="@dashboardData.TotalCalories"
+            totalProtein="@dashboardData.TotalProtein" totalCarbs="@dashboardData.TotalCarbs" totalFat="@dashboardData.TotalFat" />
     </div>
 
 </div>
@@ -62,8 +65,14 @@
     private List<MenulInfo> list = new List<MenulInfo>();
     private MealDashboardData dashboardData = new();
 
+    // クッキーから取得したユーザーID
+    private int userId;
+
     [Inject]
-    NutritionManageService NutritionManageService { get; set; } = default!;
+    private NutritionManageService NutritionManageService { get; set; } = default!;
+
+    [Inject]
+    private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
 
     // 登録フォーム初期化用
     private MealRecordInfo mealData = new MealRecordInfo
@@ -97,17 +106,28 @@
     /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
-        await LoadMealRecords();
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            // ユーザーID取得
+            var userIdString = user.FindFirst("UserId")?.Value;
+            userId = int.Parse(userIdString);
+        }
+
+        await LoadMealRecords(userId);
     }
 
     /// <summary>
     /// 一覧の取得
     /// </summary>
     /// <returns></returns>
-    private async Task LoadMealRecords()
+    private async Task LoadMealRecords(int userId)
     {
         // 今日の食事記録,総カロリー摂取量,総炭水化物量,総タンパク質量,総脂質量を取得
-        dashboardData = await NutritionManageService.FetchDashboardData();
+        dashboardData = await NutritionManageService.FetchDashboardData(userId);
     }
 
     /// <summary>
@@ -120,6 +140,7 @@
         MealRecordInfo registMealRecord = new MealRecordInfo
         {
             MealName = mealData.MealName,
+            UserId = userId,
             Calories = mealData.Calories,
             Protein = mealData.Protein,
             Fat = mealData.Fat,

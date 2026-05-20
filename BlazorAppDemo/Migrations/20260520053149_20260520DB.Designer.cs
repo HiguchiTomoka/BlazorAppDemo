@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorAppDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260519051451_20260519DataBase")]
-    partial class _20260519DataBase
+    [Migration("20260520053149_20260520DB")]
+    partial class _20260520DB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,27 +40,27 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Reps")
-                        .HasColumnType("float");
+                    b.Property<int>("Reps")
+                        .HasColumnType("int");
 
-                    b.Property<double>("RunningDistance")
-                        .HasColumnType("float");
+                    b.Property<decimal>("RunningDistance")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("Set")
-                        .HasColumnType("float");
+                    b.Property<int>("Set")
+                        .HasColumnType("int");
 
-                    b.Property<double>("Time")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Time")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserNo")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Weight")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -94,7 +94,7 @@ namespace BlazorAppDemo.Migrations
                     b.Property<decimal>("Protein")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserNo")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -133,12 +133,27 @@ namespace BlazorAppDemo.Migrations
                     b.Property<decimal>("Protein")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserNo")
-                        .HasColumnType("int");
+                    b.Property<decimal>("VitaminA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VitaminB")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VitaminC")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VitaminD")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VitaminE")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -186,9 +201,6 @@ namespace BlazorAppDemo.Migrations
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserNo")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

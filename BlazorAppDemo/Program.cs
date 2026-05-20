@@ -1,7 +1,9 @@
 using BlazorAppDemo.Components;
 using BlazorAppDemo.Components.Data;
+using BlazorAppDemo.Components.Data.DefineDB;
 using BlazorAppDemo.Components.Extensions;
 using BlazorAppDemo.Components.Hubs;
+using BlazorAppDemo.Components.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
@@ -58,6 +60,15 @@ builder.Services.AddScoped(sp =>
 });
 
 var app = builder.Build();
+
+// Referencesフォルダ内の「食品成分表」CSVをDBに読み込む
+using (var scope = app.Services.CreateScope())
+{
+    var importer = scope.ServiceProvider
+        .GetRequiredService<FoodImportService>();
+
+    await importer.ImportAsync("References/syokuhinseibunhyoCSV.csv");
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

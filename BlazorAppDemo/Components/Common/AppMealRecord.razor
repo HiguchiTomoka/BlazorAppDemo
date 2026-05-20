@@ -1,4 +1,5 @@
 ﻿@rendermode InteractiveServer
+@using BlazorAppDemo.Components.Data.DefineDB
 @using BlazorAppDemo.Components.Data
 @inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
 @inject IJSRuntime JS
@@ -69,7 +70,6 @@
     [Parameter]
     public decimal totalCarbs { get; set; }
 
-
     // ボタンの表示内容
     [Parameter] 
     public List<MealRecordInfo> mealList { get; set; }
@@ -77,6 +77,8 @@
     private MealRecordInfo? selectedMeal;
 
     private bool isModalOpen;
+
+    private int userId;
 
     private MealDashboardData dashboardData;
 
@@ -98,7 +100,7 @@
             // 削除処理
             await NutritionManageService.deleteMealRecord(selectedMeal);
             // 今日の食事記録を取得
-            dashboardData = await NutritionManageService.FetchDashboardData();
+            dashboardData = await NutritionManageService.FetchDashboardData(userId);
 
             mealList = dashboardData.MealList;
 

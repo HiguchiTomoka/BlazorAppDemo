@@ -1,4 +1,4 @@
-namespace BlazorAppDemo.Components.Data
+namespace BlazorAppDemo.Components.Data.DefineDB
 {
     /// <summary>
     /// 運動記録テーブルを表すクラス。
@@ -7,7 +7,7 @@ namespace BlazorAppDemo.Components.Data
     {
         public int Id { get; set; }      // DBの主キー
         public string UserName { get; set; } = string.Empty; // 入力した名前
-        public int UserNo { get; set; } // 登録した人の一意なユーザー番号
+        public int UserId { get; set; } // 登録した人の一意なユーザー番号
         public int ActiveKind { get; set; } // 運動の種類(1:筋トレ、2:ランニング、3:スポーツ)
         public string ActiveName { get; set; } = string.Empty; // 活動名
         public decimal Weight { get; set; } // 重量(筋トレの場合)

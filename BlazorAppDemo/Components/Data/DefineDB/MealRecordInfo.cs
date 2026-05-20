@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorAppDemo.Components.Data
+namespace BlazorAppDemo.Components.Data.DefineDB
 {
     /// <summary>
     /// 食事記録の情報テーブルを表すクラス。
@@ -10,7 +10,7 @@ namespace BlazorAppDemo.Components.Data
         public int Id { get; set; }      // DBの主キー
         [Required]
         public string MealName { get; set; } = string.Empty; // 食事した内容
-        public int UserNo { get; set; } // 登録した人の一意なユーザー番号
+        public int UserId { get; set; } // 登録した人の一意なユーザー番号
         [Required]
         public int Calories { get; set; } // カロリー
         [Required]

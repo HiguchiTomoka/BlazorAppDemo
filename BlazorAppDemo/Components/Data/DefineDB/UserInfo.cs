@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorAppDemo.Components.Data
+namespace BlazorAppDemo.Components.Data.DefineDB
 {
     /// <summary>
     /// ユーザーの詳細情報テーブルを表すクラス。
@@ -10,7 +10,6 @@ namespace BlazorAppDemo.Components.Data
         public int Id { get; set; }      // DBの主キー
         [Required]
         public string UserName { get; set; } = string.Empty; // 登録した名前(ニックネームでも可)
-        public int UserNo { get; set; } // 登録した人のユーザー番号
         [Required]
         public string Password { get; set; } = string.Empty; // 登録した人のユーザー番号
         [Required]

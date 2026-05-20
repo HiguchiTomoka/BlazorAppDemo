@@ -19,8 +19,9 @@ namespace BlazorAppDemo.Components.Extensions
         {
             services.AddScoped<UserService>(); // ユーザー情報
             services.AddScoped<NutritionManageService>(); // 栄養管理
+            services.AddScoped<ActiveRecordService>(); // 運動情報
             services.AddScoped<ChartService>(); // チャートグラフ管理サービス
-
+            services.AddScoped<FoodImportService>(); // 食品成分表管理サービス
             return services;
         }
     }

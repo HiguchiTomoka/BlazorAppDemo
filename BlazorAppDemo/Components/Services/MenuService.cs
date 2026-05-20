@@ -1,4 +1,5 @@
 using BlazorAppDemo.Components.Data;
+using BlazorAppDemo.Components.Data.DefineDB;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Components.Services

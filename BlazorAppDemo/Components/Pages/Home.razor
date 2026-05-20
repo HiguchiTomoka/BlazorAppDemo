@@ -6,17 +6,14 @@
 
 @* ホーム画面 *@
 <div class="top-bar">
-    <div class="logo">logo</div>
+    <div class="logo">健康管理アプリ</div>
 
-    <button class="menu-button">
-        ☰
-    </button>
     <p>ようこそ！ @userName さん！</p>
     <AppButton className="" buttonValue="ログアウト" OnClick="Logout" />
 </div>
 
 <div class="page-title">
-    logo
+    ホーム
 </div>
 
 @* ホーム *@
@@ -27,7 +24,7 @@
         <div class="card-title">ダッシュボード</div>
     </div>
 
-    <div class="dashboard-card" @onclick='() => MovePage("/mealRecords")'>
+    <div class="dashboard-card" @onclick='() => MovePage("/dietaryManagement")'>
         <div class="card-icon">🍽️</div>
         <div class="card-title">食事管理</div>
     </div>
@@ -90,12 +87,9 @@
 
             var userId =
                 user.FindFirst("UserId")?.Value;
-
-            Console.WriteLine(userName);
-            Console.WriteLine(email);
-            Console.WriteLine(userId);
         }
     }
+
     /// <summary>
     /// 引数のURLに遷移する
     /// </summary>

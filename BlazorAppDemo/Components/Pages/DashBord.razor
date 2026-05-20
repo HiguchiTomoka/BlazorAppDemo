@@ -2,8 +2,9 @@
 @rendermode InteractiveServer
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Data
+@using BlazorAppDemo.Components.Data.DefineDB
 @using BlazorAppDemo.Components.Services
-@inject IJSRuntime JS
+@using Microsoft.AspNetCore.Components.Authorization
 
 <PageTitle>Meal Management</PageTitle>
 
@@ -15,7 +16,7 @@
     </div>
 
     @* 1段目 *@
-    <div class="content-grid" @onclick='() => MovePage("/dietaryManagement")'>
+    <div class="content-grid">
         <!-- 食事記録登録フォーム -->
         <AppRegistMealRecord mealData=@mealData OnClick=SaveMeal />
         <!-- 食事記録 -->
@@ -68,6 +69,9 @@
 
     private MealDashboardData dashboardData = new();
 
+    // クッキーから取得したユーザーID
+    private int userId;
+
     // 総カロリー摂取量
     private int totalCalories;
     // 総タンパク質量
@@ -78,11 +82,16 @@
     private decimal totalCarbs;
 
     [Inject]
-    NavigationManager NavigationManager { get; set; } = default!;
+    private　NavigationManager NavigationManager { get; set; } = default!;
     [Inject]
-    NutritionManageService NutritionManageService { get; set; } = default!;
+    private NutritionManageService NutritionManageService { get; set; } = default!;
     [Inject]
-    ChartService ChartService { get; set; } = default!;
+    private ChartService ChartService { get; set; } = default!;
+    [Inject]
+    private　IJSRuntime JS { get; set; } = default!;
+    [Inject]
+    private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
+
 
     // 登録フォーム初期化用
     private MealRecordInfo mealData = new MealRecordInfo
@@ -101,7 +110,19 @@
     /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
-        await LoadMealRecords();
+        var authState =
+            await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            // ユーザーID取得
+            var userIdString = user.FindFirst("UserId")?.Value;
+            userId = int.Parse(userIdString);
+        }
+
+        await LoadMealRecords(userId);
     }
 
     /// <summary>
@@ -128,6 +149,7 @@
         MealRecordInfo registMealRecord = new MealRecordInfo
         {
             MealName = mealData.MealName,
+            UserId = userId,
             Calories = mealData.Calories,
             Protein = mealData.Protein,
             Fat = mealData.Fat,
@@ -139,44 +161,20 @@
         await NutritionManageService.AddMealRecord(registMealRecord);
 
         // 最新のデータ取得
-        await LoadMealRecords();
+        await LoadMealRecords(userId);
 
         // グラフのレンダリング
         await RenderChart();
     }
 
     /// <summary>
-    /// 削除処理
-    /// </summary>
-    /// <returns></returns>
-    private async Task deleteMeal()
-    {
-        // 登録データの成形
-        MealRecordInfo registMealRecord = new MealRecordInfo
-        {
-            MealName = mealData.MealName,
-            Calories = mealData.Calories,
-            Protein = mealData.Protein,
-            Fat = mealData.Fat,
-            Carbs = mealData.Carbs,
-            MealDate = mealData.MealDate
-        };
-
-        // DBへ保存処理
-        await NutritionManageService.AddMealRecord(registMealRecord);
-
-        // 最新のデータ取得
-        await LoadMealRecords();
-    }
-
-    /// <summary>
     /// 一覧の取得
     /// </summary>
     /// <returns></returns>
-    private async Task LoadMealRecords()
+    private async Task LoadMealRecords(int userId)
     {
         // 今日の食事記録,総カロリー摂取量,総炭水化物量,総タンパク質量,総脂質量を取得
-        dashboardData = await NutritionManageService.FetchDashboardData();
+        dashboardData = await NutritionManageService.FetchDashboardData(userId);
     }
 
     /// <summary>

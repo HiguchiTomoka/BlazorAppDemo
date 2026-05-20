@@ -1,3 +1,4 @@
+using BlazorAppDemo.Components.Data.DefineDB;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Components.Data
@@ -22,5 +23,8 @@ namespace BlazorAppDemo.Components.Data
 
         // Menuエンティティ(登録したメニュー)のDbSetを定義
         public DbSet<MenulInfo> MenuRecords { get; set; }
+
+        // FoodCompositionTableエンティティ(食品成分表)のDbSetを定義
+        public DbSet<FoodCompositionTable> Foods { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace BlazorAppDemo.Components.Data
+namespace BlazorAppDemo.Components.Data.DefineDB
 {
     /// <summary>
     /// 自作料理の栄養価情報テーブルを表すクラス。
@@ -7,7 +7,7 @@ namespace BlazorAppDemo.Components.Data
     {
         public int Id { get; set; }      // DBの主キー
         public string UserName { get; set; } = string.Empty; // 登録した人の名前
-        public int UserNo { get; set; } // 登録した人の一意なユーザー番号
+        public int UserId { get; set; } // 登録した人の一意なユーザー番号
         public string DishName { get; set; } = string.Empty; // 登録した料理名
         public string MaterialName { get; set; } = string.Empty; // 材料名称
         public double MaterialWeight { get; set; } // 材料重量

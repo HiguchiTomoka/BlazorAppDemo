@@ -1,4 +1,5 @@
 using BlazorAppDemo.Components.Data;
+using BlazorAppDemo.Components.Data.DefineDB;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Components.Services
@@ -20,9 +21,9 @@ namespace BlazorAppDemo.Components.Services
         /// <summary>
         /// これまでの食事全記録情報を取得する
         /// </summary>
-        public async Task<List<MealRecordInfo>> FetchMealRecordInfo()
+        public async Task<List<MealRecordInfo>> FetchMealRecordInfo(int userId)
         {
-            return await _dbContext.MealRecords.ToListAsync();
+            return await _dbContext.MealRecords.Where(r => r.UserId == userId).ToListAsync();
         }
 
         /// <summary>
@@ -40,9 +41,10 @@ namespace BlazorAppDemo.Components.Services
         /// 食事記録表示用データ
         /// </summary>
         /// <returns></returns>
-        public async Task<MealDashboardData> FetchDashboardData()
+        public async Task<MealDashboardData> FetchDashboardData(int userId)
         {
-            var mealList = await FetchMealRecordInfo();
+            // IDに該当する食事データを検索
+            var mealList = await FetchMealRecordInfo(userId);
 
             MealDashboardData fecthMealRecords = new MealDashboardData
             {
