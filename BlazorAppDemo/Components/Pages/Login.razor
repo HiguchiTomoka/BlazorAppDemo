@@ -3,6 +3,7 @@
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Data
 @using BlazorAppDemo.Components.Services
+@using BlazorAppDemo.Components.Validators
 @rendermode InteractiveServer
 
 <div class="top-bar">
@@ -55,7 +56,13 @@
     NavigationManager navigationManager { get; set; } = default!;
 
     [Inject]
+    IJSRuntime JS { get; set; } = default!;
+
+    [Inject]
     UserService userService { get; set; } = default!;
+
+    [Inject]
+    HttpClient HttpClient { get; set; } = default!;
 
     /// <summary>
     /// ユーザー登録画面に遷移する処理
@@ -71,18 +78,11 @@
     /// <returns></returns>
     private async Task login()
     {
-        // 1.空欄チェック
-        if (mailaddress == "")
-        {
-            isModalOpen = true;
-            message = "メールアドレスを入力してください";
-            return;
-        }
+        // 1.チェック処理
+        bool isError = ValidateInputData(mailaddress, password);
 
-        if (password == "")
+        if (isError)
         {
-            isModalOpen = true;
-            message = "パスワードを入力してください";
             return;
         }
 
@@ -93,7 +93,7 @@
         UserInfo user = userService.fetchMatchUserInfo(usersRecors, mailaddress, password);
 
         // 該当者が存在しない場合
-        if (user == null)
+        if (user == null) 
         {
             // 該当者はいませんと表示
             isModalOpen = true;
@@ -103,7 +103,50 @@
         // 該当者が存在する場合
         else
         {
-            navigationManager.NavigateTo("/home");
+            // JavaScriptを介してAPIに繋ぐ
+            var success = await JS.InvokeAsync<bool>(
+                "login",
+                mailaddress,
+                password);
+
+            if (success)
+            {
+                // 第二引数に「true」を入れることで認証状態の更新が行われる
+                navigationManager.NavigateTo("/home", true);
+            }
         }
+    }
+
+    /// <summary>
+    /// チェック処理
+    /// </summary>
+    /// <returns></returns>
+    private bool ValidateInputData(string mailaddress, string password)
+    {
+        // モーダルオープンフラグの初期化
+        isModalOpen = false;
+
+        // 1.空欄チェック
+        if (mailaddress == "")
+        {
+            isModalOpen = true;
+            message = "メールアドレスを入力してください";
+            return true;
+        }
+
+        if (!Validator.IsMailAddress(mailaddress))
+        {
+            isModalOpen = true;
+            message = "半角英数字で入力してください";
+            return true;
+        }
+
+        if (password == "")
+        {
+            isModalOpen = true;
+            message = "パスワードを入力してください";
+            return true;
+        }
+        return false;
     }
 }

@@ -2,7 +2,7 @@
 @rendermode InteractiveServer
 @using BlazorAppDemo.Components.Data
 @using BlazorAppDemo.Components.Common
-@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
+@using BlazorAppDemo.Components.Services
 
 <div class="meal-page">
 
@@ -61,6 +61,9 @@
     private bool isReadyMadeMeal = false;
     private List<MenulInfo> list = new List<MenulInfo>();
     private MealDashboardData dashboardData = new();
+
+    [Inject]
+    NutritionManageService NutritionManageService { get; set; } = default!;
 
     // 登録フォーム初期化用
     private MealRecordInfo mealData = new MealRecordInfo

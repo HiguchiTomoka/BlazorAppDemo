@@ -22,8 +22,7 @@
 
         <div class="form-area">
             <p class="description">
-                テキストテキストテキストテキストテキストテキスト
-                テキストテキストテキストテキストテキストテキスト
+                以下のボタンからログインしなおしてください
             </p>
         </div>
     } 
@@ -230,7 +229,7 @@
     public void RegistrationConfirmarion()
     {
         // 1.それぞれの項目チェック処理
-        bool isError = validateInputData();
+        bool isError = ValidateInputData();
 
         if (isError)
         {
@@ -260,7 +259,7 @@
     /// 身体活動レベル：ブランクチェック
     /// </summary>
     /// <returns></returns>
-    private bool validateInputData()
+    private bool ValidateInputData()
     {
         // ユーザー名チェック
         if (Validator.IsNullOrBlankValidate(userName))

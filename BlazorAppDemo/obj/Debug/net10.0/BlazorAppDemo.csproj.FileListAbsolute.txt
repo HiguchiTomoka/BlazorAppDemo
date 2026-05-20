@@ -216,3 +216,4 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scoped
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-g1d0hc0avk-g1d0hc0avk.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-g1d0hc0avk-g1d0hc0avk.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\xfwnwy6iiy-{0}-wy03k5ybbe-wy03k5ybbe.gz

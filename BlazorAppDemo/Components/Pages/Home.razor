@@ -1,4 +1,8 @@
 ﻿@page "/home"
+@using BlazorAppDemo.Components.Common
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@rendermode InteractiveServer
 
 @* ホーム画面 *@
 <div class="top-bar">
@@ -7,6 +11,8 @@
     <button class="menu-button">
         ☰
     </button>
+    <p>ようこそ！ @userName さん！</p>
+    <AppButton className="" buttonValue="ログアウト" OnClick="Logout" />
 </div>
 
 <div class="page-title">
@@ -49,11 +55,70 @@
 </div>
 
 @code {
+    private string userName = "";
+
     [Inject]
     NavigationManager NavigationManager { get; set; } = default!;
 
+    [Inject]
+    private HttpClient HttpClient { get; set; } = default!;
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = default!;
+
+    [Inject]
+    private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
+
+    /// <summary>
+    /// 初期表示処理。クッキーからログイン情報を取得
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        var authState =
+            await AuthenticationStateProvider
+                .GetAuthenticationStateAsync();
+
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            userName = user.FindFirst(ClaimTypes.Name)?.Value;
+
+            var email =
+                user.FindFirst(ClaimTypes.Email)?.Value;
+
+            var userId =
+                user.FindFirst("UserId")?.Value;
+
+            Console.WriteLine(userName);
+            Console.WriteLine(email);
+            Console.WriteLine(userId);
+        }
+    }
+    /// <summary>
+    /// 引数のURLに遷移する
+    /// </summary>
+    /// <param name="url"></param>
     private void MovePage(string url)
     {
         NavigationManager.NavigateTo(url);
     }
+
+    /// <summary>
+    /// ログアウト処理
+    /// Cookieの削除
+    /// ログイン画面に戻る
+    /// </summary>
+    /// <returns></returns>
+    private async Task Logout()
+    {
+        // APIでログアウト処理を実行
+        var success =
+            await JS.InvokeAsync<bool>("logout");
+        
+        // loginページに移動
+        NavigationManager.NavigateTo("/login", true);
+    }
+
 }

@@ -2,9 +2,7 @@
 @rendermode InteractiveServer
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Data
-@inject NavigationManager navigationManager
-@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
-@inject BlazorAppDemo.Components.Services.ChartService ChartService
+@using BlazorAppDemo.Components.Services
 @inject IJSRuntime JS
 
 <PageTitle>Meal Management</PageTitle>
@@ -17,7 +15,7 @@
     </div>
 
     @* 1段目 *@
-    <div class="content-grid">
+    <div class="content-grid" @onclick='() => MovePage("/dietaryManagement")'>
         <!-- 食事記録登録フォーム -->
         <AppRegistMealRecord mealData=@mealData OnClick=SaveMeal />
         <!-- 食事記録 -->
@@ -54,7 +52,7 @@
             </div>
         </div>
         <!-- 運動記録 -->
-        <div class="card dashboard-card" @onclick="MoveActivityRecords">
+        <div class="card dashboard-card" @onclick='() => MovePage("/exerciseManagement")'>
             <h2>運動記録</h2>
             <div class="chart-container">
                 <canvas id="trendChart"></canvas>
@@ -78,6 +76,13 @@
     private decimal totalFat;
     // 総炭水化物量
     private decimal totalCarbs;
+
+    [Inject]
+    NavigationManager NavigationManager { get; set; } = default!;
+    [Inject]
+    NutritionManageService NutritionManageService { get; set; } = default!;
+    [Inject]
+    ChartService ChartService { get; set; } = default!;
 
     // 登録フォーム初期化用
     private MealRecordInfo mealData = new MealRecordInfo
@@ -199,11 +204,12 @@
     }
 
     /// <summary>
-    /// 活動記録タブに遷移
+    /// 
     /// </summary>
-    private void MoveActivityRecords()
+    /// <param name="url"></param>
+    private void MovePage(string url)
     {
-        navigationManager.NavigateTo("/activityRecords");
+        NavigationManager.NavigateTo(url);
     }
 
 }
