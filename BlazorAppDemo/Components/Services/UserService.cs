@@ -22,7 +22,7 @@ namespace BlazorAppDemo.Components.Services
         /// ユーザー詳細情報の全件取得処理
         /// </summary>
         /// <returns></returns>
-        public async Task<List<UserInfo>> fetchUserInfo()
+        public async Task<List<UserInfo>> FetchUserInfo()
         {
             // 全ユーザー検索
             List<UserInfo> userDetailRecords = await _dbContext.UserInfoRecords.ToListAsync();
@@ -37,7 +37,7 @@ namespace BlazorAppDemo.Components.Services
         /// <param name="mailaddress"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public UserInfo fetchMatchUserInfo(List<UserInfo> usersRecors,string mailaddress, string password)
+        public UserInfo FetchMatchUserInfo(List<UserInfo> usersRecors,string mailaddress, string password)
         {
             // 該当ユーザー1件のみ
             UserInfo userDetailRecords = usersRecors.FirstOrDefault(r => r.MailAddress == mailaddress && r.Password == password);
@@ -49,7 +49,7 @@ namespace BlazorAppDemo.Components.Services
         /// ユーザー詳細情報の新規登録処理
         /// </summary>
         /// <returns></returns>
-        public async Task registUserInfo(UserInfo inputUserData)
+        public async Task RegistUserInfo(UserInfo inputUserData)
         {
             // 該当ユーザーの人数
             _dbContext.UserInfoRecords.Add(inputUserData);

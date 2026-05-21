@@ -3,6 +3,7 @@
 @using BlazorAppDemo.Components.Services
 @using BlazorAppDemo.Components.Data.DefineDB
 @using BlazorAppDemo.Components.Validators
+@using Microsoft.AspNetCore.Components.Authorization
 @rendermode InteractiveServer
 
 <div class="meal-page">
@@ -14,81 +15,147 @@
 
     @* 運動登録 *@
     <!-- TODO 見た目(css)が終わってる -->
-     <div class="content-grid">
+    <div class="top-content">
         <div class="card">
             <h2>運動登録</h2>
 
-            <select @bind="SelectedItem">
+            <select class="custom-select" @bind="SelectedItem">
                 @foreach (var item in Items)
                 {
                     <option value="@item">@item</option>
                 }
             </select>
 
-            @if (SelectedItem == "筋トレ")
-            {
-                <div>
-                    <label>種目名 <span>必須</span></label>
-                    <input type="text" @bind="activeName" placeholder="ベンチプレス" />
-                </div>
-                <div>
-                    <label>重量 <span>必須</span></label>
-                    <input type="text" @bind="weight" placeholder="100" />
-                    <label>kg</label>
-                </div>
-                <div>
-                    <label>回数 <span>必須</span></label>
-                    <input type="text" @bind="reps" placeholder="10" />
-                    <label>回</label>
-                </div>
-                <div>
-                    <label>セット数 <span>必須</span></label>
-                    <input type="text" @bind="set" placeholder="3" />
-                    <label>セット</label>
-                </div>
-            } else
-            {
-                if (SelectedItem == "ランニング")
+            <div class="form-area">
+            
+                @if (SelectedItem == "筋トレ")
                 {
-                    <div>
-                        <label>走行距離 <span>必須</span></label>
-                        <input type="text" @bind="runningDistance" placeholder="10.5" />
-                        <label>km</label>
+                    <div class="form-row">
+                        <label>種目名 <span>必須</span></label>
+                        <input type="text" class="form-input" @bind="activeName" placeholder="ベンチプレス" />
                     </div>
-                }
+                    <div class="form-row">
+                        <label>重量 <span>必須</span></label>
+                        <input type="text" class="form-input" @bind="weight" placeholder="100" />
+                        <label>kg</label>
+                    </div>
+                    <div class="form-row">
+                        <label>回数 <span>必須</span></label>
+                        <input type="text" class="form-input" @bind="reps" placeholder="10" />
+                        <label>回</label>
+                    </div>
+                    <div class="form-row">
+                        <label>セット数 <span>必須</span></label>
+                        <input type="text" class="form-input" @bind="set" placeholder="3" />
+                        <label>セット</label>
+                    </div>
+                } 
                 else
                 {
-                    <div>
-                        <label>種目名 <span>必須</span></label>
-                        <input type="text" @bind="activeName" placeholder="水泳" />
-                    </div>
-                    <div>
-                        <label>スポーツを行った時間 <span>必須</span></label>
-                        <input type="text" @bind="time" placeholder="120" />
-                        <label>分</label>
-                    </div>
+                    if (SelectedItem == "ランニング")
+                    {
+                        <div class="form-row">
+                            <label>走行距離 <span>必須</span></label>
+                            <input type="text" class="form-input" @bind="runningDistance" placeholder="10.5" />
+                            <label>km</label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-row">
+                            <label>種目名 <span>必須</span></label>
+                            <input type="text" class="form-input" @bind="activeName" placeholder="水泳" />
+                        </div>
+                        <div class="form-row">
+                            <label>スポーツを行った時間 <span>必須</span></label>
+                            <input type="text" class="form-input" @bind="time" placeholder="120" />
+                            <label>分</label>
+                        </div>
+                    }
                 }
-            }
+            </div>
             <div>
-                <AppButton buttonValue="登録" className="" OnClick="RegistActiveRecord" />
+                <AppButton buttonValue="登録" className="confirm-btn" OnClick="RegistActiveRecord" />
             </div>
 
         </div>
     </div>
 
     @* 運動記録 *@
-    <div class="content-grid">
+    <div class="content-card table-card">
         <div class="card">
             <h2>運動記録</h2>
-            <!-- TODO 表を表示させたい -->
+            <!-- TODO 運動記録の表 -->
+            <div class="content-card">
+                <div class="meal-list-card">
+                    <table class="meal-table">
+                        <thead>
+                            <tr>
+                                <th>活動名</th>
+                                <th>重量</th>
+                                <th>回数</th>
+                                <th>セット数</th>
+                                <th>ランニング距離</th>
+                                <th>活動時間</th>
+                            </tr>
+                        </thead>
+
+                        @* モーダル *@
+                        @* @if (isModalOpen)
+                        {
+                            <div class="modal-overlay">
+
+                                <div class="delete-modal">
+
+                                    <h3>削除確認</h3>
+
+                                    <p>
+                                        「@selectedMeal?.DishName」 を削除しますか？
+                                    </p>
+
+                                    <div class="modal-buttons">
+                                        <AppButton className="cancel-button" OnClick="CloseModal" buttonValue="キャンセル" />
+                                        <AppButton className="delete-button" OnClick=DeleteFoodFromMenuList buttonValue="削除する" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        } *@
+
+                        <tbody>
+                            @foreach (var active in activeRecordList)
+                            {
+                                <tr>
+                                    <td>@active.ActiveName</td>
+                                    <td>@active.Weight</td>
+                                    <td>@active.Reps</td>
+                                    <td>@active.Set</td>
+                                    <td>@active.RunningDistance</td>
+                                    <td>@active.Time</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
         </div>
     </div>
+
+    <!-- TODO 消費したカロリー -->
+    <div class="content-card table-card">
+        <div class="card">
+            <h2>消費カロリー</h2>
+        </div>
+    </div>
+
 </div>
 
 @* モーダル *@
 <AppMessageModal isModalOpen="isModalOpen" message="@message" />
 
 @code {
+    @* 入力値 *@
     private string activeName = string.Empty; // 種目名(筋トレの場合)
     private decimal weight; // 重量(筋トレの場合)
     private int reps; // 回数(筋トレの場合)
@@ -96,18 +163,56 @@
     private decimal runningDistance; // セット数(ランニングの場合)
     private decimal time; // スポーツ等を行った時間(スポーツの場合)
     private string SelectedItem = ""; // 選択中のセレクトボックス値
+
+    @* フラグ *@
     private bool isModalOpen;// モーダル開くフラグ
+
+    @* 認証情報 *@
+    private int userId; // クッキーから取得したユーザーID
+
+    @* モーダル参照用 *@
     private string message = string.Empty; // モーダルに送るメッセージ
 
-    private List<string> Items = new()
-    {
-        "筋トレ",
-        "ランニング",
-        "スポーツ"
-    };
+    @* 初期化 *@
+    private List<ActiveRecordInfo> activeRecordList = new List<ActiveRecordInfo>();
+    private List<string> Items = new(){"筋トレ","ランニング","スポーツ"};
 
     [Inject]
-    ActiveRecordService ActiveRecordService { get; set; } = default!;
+    private ActiveRecordService activeRecordService { get; set; } = default!;
+    [Inject]
+    private AuthenticationStateProvider authenticationStateProvider { get; set; } = default!;
+
+
+    /// <summary>
+    /// 初期表示処理
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        var authState =
+            await authenticationStateProvider.GetAuthenticationStateAsync();
+
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            // ユーザーID取得
+            var userIdString = user.FindFirst("UserId")?.Value;
+            userId = int.Parse(userIdString);
+        }
+
+        await LoadActiveRecords(userId);
+    }
+
+    /// <summary>
+    /// 運動情報一覧の取得
+    /// </summary>
+    /// <returns></returns>
+    private async Task LoadActiveRecords(int userId)
+    {
+        // 過去の運動記録を入手
+        activeRecordList = await activeRecordService.FetchActiveRecordInfo(userId);
+    }
 
     /// <summary>
     /// 運動記録の登録処理
@@ -125,7 +230,7 @@
         };
 
         // チェック処理
-        bool isError = validateInputData(activeKind);
+        bool isError = ValidateInputData(activeKind);
 
         if (isError)
         {
@@ -136,8 +241,7 @@
         ActiveRecordInfo inputData = new ActiveRecordInfo
         {
             ActiveKind = activeKind,
-            UserName = "", // Sessionに入れて持ちまわりたいデータ
-            UserId = 1, // Sessionに入れて持ちまわりたいデータ
+            UserId = userId, // Sessionに入れて持ちまわりたいデータ
             ActiveName = activeName,
             Weight = weight,
             Reps = reps,
@@ -147,7 +251,16 @@
         };
 
         // 登録処理
-        await ActiveRecordService.registActiveRecordInfo(inputData);
+        await activeRecordService.RegistActiveRecordInfo(inputData);
+
+        // 登録完了後値の初期化
+        activeName = string.Empty; // 種目名(筋トレの場合)
+        weight = 0; // 重量(筋トレの場合)
+        reps = 0; // 回数(筋トレの場合)
+        set = 0; // セット数(筋トレの場合)
+        runningDistance = 0; // セット数(ランニングの場合)
+        time = 0; // スポーツ等を行った時間(スポーツの場合)
+        SelectedItem = "1"; // 選択中のセレクトボックス値
     }
 
     /// <summary>
@@ -155,7 +268,7 @@
     /// </summary>
     /// <param name="activeKind"></param>
     /// <returns></returns>
-    private bool validateInputData(int activeKind)
+    private bool ValidateInputData(int activeKind)
     {
         // 筋トレの場合
         if (activeKind == 1)

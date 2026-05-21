@@ -6,73 +6,204 @@
 @using BlazorAppDemo.Components.Services
 @using Microsoft.AspNetCore.Components.Authorization
 
-<div class="page-container">
+<div class="meal-page">
 
-    <div>
-        <div class="section-title">
-            食事管理
-        </div>
-
-        <div class="section-subtitle">
-            毎日の食事を記録・見直してみましょう
-        </div>
+    <div class="page-header">
+        <h1>食事管理</h1>
+        <p>毎日の食事を記録・見直してみましょう</p>
     </div>
     
     @* 食事登録 *@
     <div class="top-content">
         <div class="content-card table-card">
             <h2>食事登録</h2>
-            <AppButton buttonValue="既製品料理の登録" className="cancel-button" OnClick="registReadyMadeMeal" />
-            <AppButton buttonValue="手作り料理の栄養価を登録" className="cancel-button" OnClick="registCookingMeal" />
+            <div class="form-group">
+                <AppButton buttonValue="既製品料理の登録" className="food-regist-button" OnClick="RegistReadyMadeMeal" />
+            </div>
 
-            @* 既製商品の登録 *@
-            @if (isReadyMadeMeal)
-            {
-                <AppRegistMealRecord mealData=@mealData OnClick=SaveMeal />
-            }
+            <div class="form-group">
+                <AppButton buttonValue="手作り料理の栄養価を登録" className="food-regist-button" OnClick="RegistCookingMeal" />
+            </div>
+        </div>
 
-            @* 自炊料理の登録 *@
-            else
-            {
-                <div class="content-card">
-                    <div class="form-group">
-                        <label>料理名</label>
-                        <InputText class="form-input" @bind-Value="mealData.MealName" />
-                    </div>
+        @* 既製商品の登録 *@
+        @if (isReadyMadeMeal)
+        {
+            <AppRegistMealRecord mealData=@mealData OnClick=SaveMeal />
+        }
 
-                    <div class="form-group">
-                        <label>使用重量</label>
-                        <InputText class="form-input" @bind-Value="mealData.MealName" />
-                    </div>
-
-                    <AppButton buttonValue="追加" className="cancel-button" OnClick="addMenuList" />
+        @* 自炊料理の登録 *@
+        else
+        {
+            <div class="content-card">
+                @* 料理名の登録 *@
+                <div class="form-group">
+                    <label>料理名</label>
+                    <input type="text" @bind="dishName" placeholder="料理名を入力" class="form-input" />
                 </div>
+                @* 材料名検索 *@
+                <div class="form-group">
+                    <label>材料名</label>
+                    <input type="text" value="@keyword" @oninput="OnInputFood" placeholder="食品名を入力" class="form-input" />
+                    <div class="autocomplete-box">
+                        @foreach (var food in searchResults)
+                        {
+                            <div class="food-item"
+                                 @onclick="() => SelectFood(food)">
+                                @food.FoodName
+                            </div>
+                        }
+                    </div>
+                </div>
+                @* 使用重量 *@
+                <div class="form-group">
+                    <label>使用重量</label>
+                    <input type="text" @bind="usageWeight" placeholder="食品重量を入力" class="form-input" />
+                </div>
+
+                <AppButton buttonValue="追加" className="cancel-button" OnClick="AddMenuList" />
+            </div>
+        }
+    </div>
+
+    @* 表 *@
+    @if (!isReadyMadeMeal)
+    {
+        <div class="content-card">
+            <h2>手作り料理</h2>
+            <div class="card meal-list-card">
+                <table class="meal-table">
+
+                    <thead>
+                        <tr>
+                            <th>料理名</th>
+                            <th>食品名</th>
+                            <th>使用重量</th>
+                            <th>kcal</th>
+                            <th>タンパク質</th>
+                            <th>脂質</th>
+                            <th>炭水化物</th>
+                            <th>ビタミンA</th>
+                            <th>ビタミンB1</th>
+                            <th>ビタミンB2</th>
+                            <th>ビタミンC</th>
+                            <th>ビタミンD</th>
+                            <th>ビタミンE</th>
+                            <th>塩分</th>
+                        </tr>
+                    </thead>
+
+                    @* モーダル *@
+                    @if (isModalOpen)
+                    {
+                        <div class="modal-overlay">
+
+                            <div class="delete-modal">
+
+                                <h3>削除確認</h3>
+
+                                <p>
+                                    「@selectedMeal?.DishName」 を削除しますか？
+                                </p>
+
+                                <div class="modal-buttons">
+                                    <AppButton className="cancel-button" OnClick="CloseModal" buttonValue="キャンセル" />
+                                    <AppButton className="delete-button" OnClick=DeleteFoodFromMenuList buttonValue="削除する" />
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+                    <tbody>
+                        @foreach (var meal in selfCateringDishesList)
+                        {
+                            <tr @onclick="() => OpenModal(meal)">
+                                <td>@meal.DishName</td>
+                                <td>@meal.MaterialName</td>
+                                <td>@meal.MaterialWeight</td>
+                                <td>@meal.Calories</td>
+                                <td>@meal.Protein</td>
+                                <td>@meal.Fat</td>
+                                <td>@meal.Carbs</td>
+                                <td>@meal.VitaminA</td>
+                                <td>@meal.VitaminB1</td>
+                                <td>@meal.VitaminB2</td>
+                                <td>@meal.VitaminC</td>
+                                <td>@meal.VitaminD</td>
+                                <td>@meal.VitaminE</td>
+                                <td>@meal.SaltEquivalent</td>
+                            </tr>
+                        }
+                        @if (selfCateringDishesList.Any())
+                        {
+                            <tr>
+                                <td>合計</td>
+                                <td></td>
+                                <td></td>
+                                <td>@totalCal</td>
+                                <td>@totalProtein</td>
+                                <td>@totalFat</td>
+                                <td>@totalCarbs</td>
+                                <td>@totalVitaminA</td>
+                                <td>@totalVitaminB1</td>
+                                <td>@totalVitaminB2</td>
+                                <td>@totalVitaminC</td>
+                                <td>@totalVitaminD</td>
+                                <td>@totalVitaminE</td>
+                                <td>@totalSaltEquivalent</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @if (selfCateringDishesList.Any())
+            {
+                <AppButton className="cancel-button" buttonValue="食事記録へ追加" OnClick="PutMenuInfoFromMealRecord" />
             }
         </div>
-    </div>
+    }
 
     @* 食事記録 *@
     <div class="content-card table-card">
         <AppMealRecord mealList=@dashboardData.MealList title="食事一覧" totalCalories="@dashboardData.TotalCalories"
             totalProtein="@dashboardData.TotalProtein" totalCarbs="@dashboardData.TotalCarbs" totalFat="@dashboardData.TotalFat" />
     </div>
-
 </div>
 
 @code {
-    // 登録する食事は既製品か？
-    private bool isReadyMadeMeal = false;
-    private List<MenulInfo> list = new List<MenulInfo>();
+    @* 入力値 *@
+    private double usageWeight; // 入力した使用重量
+    private string dishName = string.Empty; // 入力した料理名
+
+    @* 食品検索 *@
+    private string keyword = ""; // 食品検索キーワード
+    private MenulInfo? selectedMeal; // 選択した食事レコード
+    private FoodCompositionTable? selectedFood;// 選択した食品情報
+    private List<FoodCompositionTable> searchResults = new();
+
+    @* フラグ *@
+    private bool isModalOpen;// モーダル開くかフラグ
+    private bool isReadyMadeMeal = false;// 登録する食事は既製品か？
+
+    @* 認証情報 *@
+    private int userId; // クッキーから取得したユーザーID
+
+    @* 自炊料理情報 *@
+    private List<MenulInfo> selfCateringDishesList = new List<MenulInfo>();// 登録した自炊料理のリスト
+    private decimal? totalCal = 0; // 自炊料理の合計カロリー
+    private decimal? totalProtein = 0; // 自炊料理の合計タンパク質
+    private decimal? totalFat = 0; // 自炊料理の合計脂質
+    private decimal? totalCarbs = 0; // 自炊料理の合計炭水化物
+    private decimal? totalVitaminA = 0; // 自炊料理の合計ビタミンA
+    private decimal? totalVitaminB1 = 0; // 自炊料理の合計ビタミンB1
+    private decimal? totalVitaminB2 = 0; // 自炊料理の合計ビタミンB2
+    private decimal? totalVitaminC = 0; // 自炊料理の合計ビタミンC
+    private decimal? totalVitaminD = 0; // 自炊料理の合計ビタミンD
+    private decimal? totalVitaminE = 0; // 自炊料理の合計ビタミンE
+    private decimal? totalSaltEquivalent = 0; // 自炊料理の合計食塩相当量
+
     private MealDashboardData dashboardData = new();
-
-    // クッキーから取得したユーザーID
-    private int userId;
-
-    [Inject]
-    private NutritionManageService NutritionManageService { get; set; } = default!;
-
-    [Inject]
-    private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
 
     // 登録フォーム初期化用
     private MealRecordInfo mealData = new MealRecordInfo
@@ -85,23 +216,21 @@
         MealDate = DateTime.Today
     };
 
-    private void addMenuList()
-    {
-        
-    }
+    [Inject]
+    private FoodImportService foodImportService { get; set; } = default!;
 
-    private void registReadyMadeMeal()
-    {
-        isReadyMadeMeal = true;
-    }
+    [Inject]
+    private NutritionManageService NutritionManageService { get; set; } = default!;
 
-    private void registCookingMeal()
-    {
-        isReadyMadeMeal = false;
-    }
+    [Inject]
+    private MenuService menuService { get; set; } = default!;
+
+    [Inject]
+    private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
 
     /// <summary>
     /// 初期表示処理
+    /// 認証者のデータを取得
     /// </summary>
     /// <returns></returns>
     protected override async Task OnInitializedAsync()
@@ -121,6 +250,142 @@
     }
 
     /// <summary>
+    /// 手作り料理登録の際に料理表にリアルタイムで追加する
+    /// </summary>
+    private async Task AddMenuList()
+    {
+        // チェック処理
+
+        // 登録値の組み立て
+        MenulInfo selfCateringDishes = new MenulInfo
+        {
+            UserId = userId, // クッキーから獲得
+            DishName = dishName,
+            MaterialName = selectedFood.FoodName,
+            MaterialWeight = usageWeight,
+            Calories = selectedFood.Energy,
+            Protein = selectedFood.Protein,
+            Fat = selectedFood.Fat,
+            Carbs = selectedFood.Carbohydrate,
+            VitaminA = selectedFood.Retinol + selectedFood.Bcarotene/12,
+            VitaminB1 = selectedFood.VitaminB1,
+            VitaminB2 = selectedFood.VitaminB2,
+            VitaminC = selectedFood.VitaminC,
+            VitaminD = selectedFood.VitaminD,
+            VitaminE = selectedFood.VitaminE
+        };
+
+        // DBに登録
+        await menuService.RegistMenuInfo(selfCateringDishes);
+        // 自炊表を更新
+        selfCateringDishesList = await menuService.FetchMenuInfo(userId);
+
+        // 合計値の算出
+        foreach (MenulInfo record in selfCateringDishesList)
+        {
+            totalCal = totalCal + record.Calories;
+            totalProtein = totalProtein + record.Protein;
+            totalFat = totalFat + record.Fat;
+            totalCarbs = totalCarbs + record.Carbs;
+            totalVitaminA = totalVitaminA + record.VitaminA;
+            totalVitaminB1 = totalVitaminB1 + record.VitaminB1;
+            totalVitaminB2 = totalVitaminB2 + record.VitaminB2;
+            totalVitaminC = totalVitaminC + record.VitaminC;
+            totalVitaminD = totalVitaminD + record.VitaminD;
+            totalVitaminE = totalVitaminE + record.VitaminE;
+        }
+    }
+
+    /// <summary>
+    /// 手作り料理表から該当する食品を削除する
+    /// </summary>
+    private async Task DeleteFoodFromMenuList()
+    {
+        // DBで削除処理実行
+        await menuService.DeleteMenuInfo(selectedMeal.Id);
+        // 自炊表を更新
+        selfCateringDishesList = await menuService.FetchMenuInfo(userId);
+        // 合計値の算出
+        foreach (MenulInfo record in selfCateringDishesList)
+        {
+            totalCal = totalCal + record.Calories;
+            totalProtein = totalProtein + record.Protein;
+            totalFat = totalFat + record.Fat;
+            totalCarbs = totalCarbs + record.Carbs;
+            totalVitaminA = totalVitaminA + record.VitaminA;
+            totalVitaminB1 = totalVitaminB1 + record.VitaminB1;
+            totalVitaminB2 = totalVitaminB2 + record.VitaminB2;
+            totalVitaminC = totalVitaminC + record.VitaminC;
+            totalVitaminD = totalVitaminD + record.VitaminD;
+            totalVitaminE = totalVitaminE + record.VitaminE;
+        }
+
+        // モーダル管理フラグを戻す
+        isModalOpen = false;
+    }
+
+    /// <summary>
+    /// 削除処理モーダルを開く処理
+    /// </summary>
+    /// <param name="meal"></param>
+    private void OpenModal(MenulInfo meal)
+    {
+        selectedMeal = meal;
+
+        isModalOpen = true;
+    }
+    /// <summary>
+    /// 削除モーダルを閉じる処理
+    /// </summary>
+    private void CloseModal()
+    {
+        isModalOpen = false;
+    }
+
+    private void RegistReadyMadeMeal()
+    {
+        isReadyMadeMeal = true;
+    }
+
+    private void RegistCookingMeal()
+    {
+        isReadyMadeMeal = false;
+    }
+
+    /// <summary>
+    /// 食品名候補検索処理
+    /// </summary>
+    /// <param name="e"></param>
+    /// <returns></returns>
+    private async Task OnInputFood(ChangeEventArgs e)
+    {
+        keyword = e.Value?.ToString() ?? "";
+
+        // キーワードが未入力の場合は終わり
+        if (string.IsNullOrWhiteSpace(keyword))
+        {
+            searchResults.Clear();
+            return;
+        }
+
+        // 検索処理実行
+        searchResults = await foodImportService.SearchFood(keyword);
+    }
+
+    /// <summary>
+    /// 該当食品を選択する処理
+    /// </summary>
+    /// <param name="food"></param>
+    private void SelectFood(FoodCompositionTable food)
+    {
+        selectedFood = food;
+
+        keyword = food.FoodName;
+
+        searchResults.Clear();
+    }
+
+    /// <summary>
     /// 一覧の取得
     /// </summary>
     /// <returns></returns>
@@ -128,10 +393,26 @@
     {
         // 今日の食事記録,総カロリー摂取量,総炭水化物量,総タンパク質量,総脂質量を取得
         dashboardData = await NutritionManageService.FetchDashboardData(userId);
+        // 自炊料理を取得
+        selfCateringDishesList = await menuService.FetchMenuInfo(userId);
+        // 合計値の算出
+        foreach (MenulInfo record in selfCateringDishesList)
+        {
+            totalCal = totalCal + record.Calories;
+            totalProtein = totalProtein + record.Protein;
+            totalFat = totalFat + record.Fat;
+            totalCarbs = totalCarbs + record.Carbs;
+            totalVitaminA = totalVitaminA + record.VitaminA;
+            totalVitaminB1 = totalVitaminB1 + record.VitaminB1;
+            totalVitaminB2 = totalVitaminB2 + record.VitaminB2;
+            totalVitaminC = totalVitaminC + record.VitaminC;
+            totalVitaminD = totalVitaminD + record.VitaminD;
+            totalVitaminE = totalVitaminE + record.VitaminE;
+        }
     }
 
     /// <summary>
-    /// 登録処理
+    /// 既製品食品の食事記録へ登録処理
     /// </summary>
     /// <returns></returns>
     private async Task SaveMeal()
@@ -148,7 +429,42 @@
             MealDate = mealData.MealDate
         };
 
+        // 食事記録テーブルへ登録
+        await RegistMealRecordTable(registMealRecord);
+    }
+
+    /// <summary>
+    /// 自炊料理を合算して食事記録に登録
+    /// </summary>
+    /// <returns></returns>
+    private async Task PutMenuInfoFromMealRecord()
+    {
+        // 手作り記録で登録した料理を食事記録に入れるためにデータの成型
+        MealRecordInfo registMealRecord = new MealRecordInfo
+        {
+            MealName = dishName,
+            UserId = userId,
+            Calories = totalCal,
+            Protein = totalProtein,
+            Fat = totalFat,
+            Carbs = totalCarbs,
+            MealDate = DateTime.Today
+        };
+
+        // 食事記録テーブルへ登録
+        await RegistMealRecordTable(registMealRecord);
+    }
+
+    /// <summary>
+    /// 食事記録テーブルへ登録処理
+    /// </summary>
+    /// <param name="registMealRecord"></param>
+    /// <returns></returns>
+    private async Task RegistMealRecordTable(MealRecordInfo registMealRecord)
+    {
         // DBへ保存処理
         await NutritionManageService.AddMealRecord(registMealRecord);
+        // 食事記録を再読み込み
+        await LoadMealRecords(userId);
     }
 }

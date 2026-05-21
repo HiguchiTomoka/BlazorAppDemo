@@ -1,95 +1,191 @@
-﻿/* 画面全体 */
+﻿/* =========================
+   全体
+========================= */
 body {
     margin: 0;
-    background-color: #f3f3f3;
+    background-color: #FCFDFE;
     font-family: sans-serif;
+    color: #EE693F;
 }
 
-/* 上部バー */
+/* =========================
+   上部バー
+========================= */
 .top-bar {
     height: 60px;
-    background-color: #dcdcdc;
+    background-color: #FCFDFE;
+    border-bottom: 2px solid #F69454;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 24px;
+    box-shadow: 0 2px 10px rgba(246, 148, 84, 0.08);
 }
 
 .logo {
     font-size: 24px;
+    font-weight: bold;
+    color: #EE693F;
 }
 
 .menu-btn {
     background: none;
     border: none;
-    font-size: 28px;
+    font-size: 32px;
+    color: #739F3D;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-/* 中央寄せ */
+    .menu-btn:hover {
+        transform: scale(1.1);
+        color: #EE693F;
+    }
+
+/* =========================
+   ログイン画面中央寄せ
+========================= */
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
-/* タイトル */
+/* =========================
+   タイトル
+========================= */
 h1 {
-    font-size: 48px;
-    margin-bottom: 30px;
+    font-size: 64px;
+    margin-bottom: 40px;
+    color: #EE693F;
+    letter-spacing: 4px;
+    font-weight: bold;
 }
 
-/* ログインカード */
+/* =========================
+   ログインカード
+========================= */
 .login-card {
-    width: 400px;
-    background-color: #d9d9d9;
+    width: 420px;
+    background: #CAEBCD;
     padding: 50px;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-}
-
-/* 入力欄 */
-.input-box {
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 30px;
-    padding: 0 20px;
-    font-size: 18px;
+    gap: 22px;
+    box-shadow: 0 10px 30px rgba(238, 105, 63, 0.18);
     box-sizing: border-box;
 }
 
-/* 登録テキスト */
+/* =========================
+   入力欄
+========================= */
+.input-box {
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: 999px;
+    padding: 0 24px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #FCFDFE;
+    color: #EE693F;
+    outline: none;
+    transition: 0.2s;
+}
+
+    .input-box::placeholder {
+        color: #F69454;
+    }
+
+    .input-box:focus {
+        box-shadow: 0 0 0 4px rgba(252, 253, 254, 0.35);
+    }
+
+/* =========================
+   登録テキスト
+========================= */
 .register-text {
     width: 100%;
     text-align: right;
-    font-size: 12px;
+    font-size: 13px;
+    color: #FCFDFE;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-/* ログインボタン */
-.login-btn {
+    .register-text:hover {
+        opacity: 0.8;
+    }
+
+/* =========================
+   確定ボタン
+========================= */
+.confirm-btn {
     width: 100%;
     height: 60px;
     border: none;
-    border-radius: 40px;
-    background-color: black;
-    color: white;
+    border-radius: 999px;
+    background-color: #F69454;
+    color: #FCFDFE;
     font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.25s;
 }
 
-/* 説明文 */
+    .confirm-btn:hover {
+        background-color: #EE693F;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
+    }
+
+/* =========================
+   戻るボタン
+========================= */
+.return-btn {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 999px;
+    background-color: #FCFDFE;
+    color: #EE693F;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+    .return-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
+    }
+
+/* =========================
+   説明文
+========================= */
 .description {
     font-size: 12px;
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.8;
+    color: #FCFDFE;
+    opacity: 0.95;
 }
 
-/* アカウント作成 */
+/* =========================
+   アカウント作成
+========================= */
 .create-account {
-    margin-top: 20px;
-    color: black;
+    margin-top: 24px;
+    color: #739F3D;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
 }
+
+    .create-account:hover {
+        color: #EE693F;
+    }

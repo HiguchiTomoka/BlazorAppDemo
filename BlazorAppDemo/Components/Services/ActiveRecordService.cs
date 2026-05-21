@@ -19,10 +19,10 @@ namespace BlazorAppDemo.Components.Services
         }
 
         /// <summary>
-        /// ユーザーの運動記録全件取得処理
+        /// 該当者の運動情報取得処理
         /// </summary>
         /// <returns></returns>
-        public async Task<List<ActiveRecordInfo>> fetchActiveRecordInfo()
+        public async Task<List<ActiveRecordInfo>> FetchActiveRecordInfo(int userId)
         {
             List<ActiveRecordInfo> activeRecords = await _dbContext.ActiveRecords.ToListAsync();
 
@@ -33,7 +33,7 @@ namespace BlazorAppDemo.Components.Services
         /// 運動記録の新規登録処理
         /// </summary>
         /// <returns></returns>
-        public async Task registActiveRecordInfo(ActiveRecordInfo inputActiveRecordInfo)
+        public async Task RegistActiveRecordInfo(ActiveRecordInfo inputActiveRecordInfo)
         {
             // 該当ユーザーの人数
             _dbContext.ActiveRecords.Add(inputActiveRecordInfo);

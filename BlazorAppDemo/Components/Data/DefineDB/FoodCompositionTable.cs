@@ -1,3 +1,5 @@
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace BlazorAppDemo.Components.Data.DefineDB
 {
     /// <summary>
@@ -8,6 +10,7 @@ namespace BlazorAppDemo.Components.Data.DefineDB
         public int Id { get; set; }      // DBの主キー
         public string FoodCode { get; set; } = string.Empty; // 食品コード
         public string FoodName { get; set; } = string.Empty; // 食品名称
+        public int WasteRate { get; set; } // 廃棄率
         public decimal? Energy { get; set; } // エネルギー
         public decimal? Protein { get; set; } // タンパク質
         public decimal? Fat { get; set; } // 脂質
@@ -19,5 +22,6 @@ namespace BlazorAppDemo.Components.Data.DefineDB
         public decimal? VitaminC { get; set; } // ビタミンC
         public decimal? VitaminD { get; set; } // ビタミンD
         public decimal? VitaminE { get; set; } // ビタミンE(αトコフェロール)
+        public decimal? SaltEquivalent { get; set; } // 食塩相当量
     }
 }

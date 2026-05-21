@@ -209,14 +209,11 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\Blazor
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\ref\BlazorAppDemo.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\o7xj9p9jqp-{0}-ej96puwv3k-ej96puwv3k.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\jkq387rpir-{0}-cj5793hgrt-cj5793hgrt.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\rfdwmh1m7d-{0}-12id8yejlh-12id8yejlh.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\hra6k8cmoq-{0}-j9s713rdxp-j9s713rdxp.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\7f6v693xe0-{0}-1dq3asaqj5-1dq3asaqj5.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\xfwnwy6iiy-{0}-wy03k5ybbe-wy03k5ybbe.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\Components\Pages\DietaryManagement.razor.rz.scp.css
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-ruyaeb3oc7-ruyaeb3oc7.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-ruyaeb3oc7-ruyaeb3oc7.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\ClosedXML.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\ClosedXML.Parser.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\DocumentFormat.OpenXml.dll
@@ -225,4 +222,7 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\ExcelN
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\RBush.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\SixLabors.Fonts.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\System.IO.Packaging.dll
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-bqekgwzg66-bqekgwzg66.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-bqekgwzg66-bqekgwzg66.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\rfdwmh1m7d-{0}-a2f347k8cq-a2f347k8cq.gz

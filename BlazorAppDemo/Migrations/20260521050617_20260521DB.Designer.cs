@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorAppDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260520053149_20260520DB")]
-    partial class _20260520DB
+    [Migration("20260521050617_20260521DB")]
+    partial class _20260521DB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace BlazorAppDemo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BlazorAppDemo.Components.Data.ActiveRecordInfo", b =>
+            modelBuilder.Entity("BlazorAppDemo.Components.Data.DefineDB.ActiveRecordInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,16 +40,16 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Reps")
+                    b.Property<int?>("Reps")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("RunningDistance")
+                    b.Property<decimal?>("RunningDistance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Set")
+                    b.Property<int?>("Set")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Time")
+                    b.Property<decimal?>("Time")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
@@ -59,7 +59,7 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Weight")
+                    b.Property<decimal?>("Weight")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -67,7 +67,7 @@ namespace BlazorAppDemo.Migrations
                     b.ToTable("ActiveRecords");
                 });
 
-            modelBuilder.Entity("BlazorAppDemo.Components.Data.MealRecordInfo", b =>
+            modelBuilder.Entity("BlazorAppDemo.Components.Data.DefineDB.FoodCompositionTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,8 +75,68 @@ namespace BlazorAppDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Calories")
+                    b.Property<decimal?>("Bcarotene")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Carbohydrate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Energy")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Fat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("FoodCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FoodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Protein")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Retinol")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SaltEquivalent")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VitaminB1")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VitaminB2")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VitaminC")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VitaminD")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VitaminE")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("WasteRate")
                         .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Foods");
+                });
+
+            modelBuilder.Entity("BlazorAppDemo.Components.Data.DefineDB.MealRecordInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Calories")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Carbs")
                         .HasColumnType("decimal(18,2)");
@@ -102,7 +162,7 @@ namespace BlazorAppDemo.Migrations
                     b.ToTable("MealRecords");
                 });
 
-            modelBuilder.Entity("BlazorAppDemo.Components.Data.MenulInfo", b =>
+            modelBuilder.Entity("BlazorAppDemo.Components.Data.DefineDB.MenulInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,17 +170,17 @@ namespace BlazorAppDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Calories")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Calories")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Carbs")
+                    b.Property<decimal?>("Carbs")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("DishName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Fat")
+                    b.Property<decimal?>("Fat")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MaterialName")
@@ -130,29 +190,31 @@ namespace BlazorAppDemo.Migrations
                     b.Property<double>("MaterialWeight")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("Protein")
+                    b.Property<decimal?>("Protein")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SaltEquivalent")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("VitaminA")
+                    b.Property<decimal?>("VitaminA")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminB")
+                    b.Property<decimal?>("VitaminB1")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminC")
+                    b.Property<decimal?>("VitaminB2")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminD")
+                    b.Property<decimal?>("VitaminC")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminE")
+                    b.Property<decimal?>("VitaminD")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VitaminE")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -160,7 +222,7 @@ namespace BlazorAppDemo.Migrations
                     b.ToTable("MenuRecords");
                 });
 
-            modelBuilder.Entity("BlazorAppDemo.Components.Data.UserInfo", b =>
+            modelBuilder.Entity("BlazorAppDemo.Components.Data.DefineDB.UserInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

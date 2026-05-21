@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlazorAppDemo.Migrations
 {
     /// <inheritdoc />
-    public partial class _20260520DB : Migration
+    public partial class _20260521DB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,15 +21,42 @@ namespace BlazorAppDemo.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ActiveKind = table.Column<int>(type: "int", nullable: false),
                     ActiveName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Reps = table.Column<int>(type: "int", nullable: false),
-                    Set = table.Column<int>(type: "int", nullable: false),
-                    RunningDistance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Time = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Reps = table.Column<int>(type: "int", nullable: true),
+                    Set = table.Column<int>(type: "int", nullable: true),
+                    RunningDistance = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Time = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ActiveRecords", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Foods",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FoodCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WasteRate = table.Column<int>(type: "int", nullable: false),
+                    Energy = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Protein = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Fat = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Carbohydrate = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Retinol = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Bcarotene = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminB1 = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminB2 = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminC = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminD = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminE = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    SaltEquivalent = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Foods", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,7 +67,7 @@ namespace BlazorAppDemo.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MealName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Calories = table.Column<int>(type: "int", nullable: false),
+                    Calories = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Protein = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Fat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Carbs = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -57,20 +84,21 @@ namespace BlazorAppDemo.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     DishName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaterialName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaterialWeight = table.Column<double>(type: "float", nullable: false),
-                    Calories = table.Column<int>(type: "int", nullable: false),
-                    Protein = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Fat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Carbs = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    VitaminA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    VitaminB = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    VitaminC = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    VitaminD = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    VitaminE = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Calories = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Protein = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Fat = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Carbs = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminA = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminB1 = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminB2 = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminC = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminD = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    VitaminE = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    SaltEquivalent = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,6 +133,9 @@ namespace BlazorAppDemo.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ActiveRecords");
+
+            migrationBuilder.DropTable(
+                name: "Foods");
 
             migrationBuilder.DropTable(
                 name: "MealRecords");

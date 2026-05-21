@@ -38,16 +38,19 @@
 
         <div class="form-area">
 
+            <!-- 名前入力 -->
             <div class="form-row">
                 <label>名前 <span>必須</span></label>
                 <input type="text" @bind="userName" placeholder="あだ名やニックネームでもOK！" />
             </div>
 
+            <!-- メアド入力 -->
             <div class="form-row">
                 <label>メールアドレス <span>必須</span></label>
                 <input type="email" @bind="mailaddress" placeholder="example@gmail.com" />
             </div>
 
+            <!-- パスワード入力 -->
             <div class="form-row">
                 <label>パスワード <span>必須</span></label>
 
@@ -59,34 +62,37 @@
                 </div>
             </div>
 
-            <div class="form-row">
+            <!-- 性別選択 -->
+            <div class="form-row radio-group">
                 <label>性別 <span>必須</span></label>
-                <label>
-                    <input type="radio" name="checkedGender" checked="true" value="Male" @onchange="SelectRadio" /> 男
-                </label>
-                <label>
-                    <input type="radio" name="checkedGender" value="Female" @onchange="SelectRadio" /> 女
-                </label>
+                <input type="radio" id="male" name="checkedGender" value="Male" checked @onchange="SelectRadio" />
+                <label for="male"class="radio-label">男</label>
+                <input type="radio" id="female" name="checkedGender" value="Female" @onchange="SelectRadio" />
+                <label for="female" class="radio-label">女</label>
             </div>
 
+            <!-- 年齢入力 -->
             <div class="form-row">
                 <label>年齢 <span>必須</span></label>
                 <input type="text" @bind="age" placeholder="25" />
             </div>
 
+            <!-- 身長入力 -->
             <div class="form-row">
                 <label>身長 <span>必須</span></label>
                 <input type="text" @bind="bodyheight" placeholder="170" />
             </div>
 
+            <!-- 体重入力 -->
             <div class="form-row">
                 <label>体重 <span>必須</span></label>
                 <input type="text" @bind="bodyWeight" placeholder="65" />
             </div>
 
+            <!-- 身体活動レベル選択 -->
             <div class="form-row">
                 <label>身体活動レベル <span>必須</span></label>
-                <select @bind="SelectedPAl">
+                <select class="custom-select" @bind="SelectedPAl">
                     @foreach (var item in physicalActivityLevelItems)
                     {
                         <option value="@item.physicalActivityLevel">@item.label</option>
@@ -100,19 +106,19 @@
     {
         if (isInputCompleted)
         {
-            <AppButton buttonValue="ホームへ戻る" className="register-button" OnClick="MoveHomePage" />
+            <AppButton buttonValue="ログインしなおす" className="return-btn" OnClick="MoveLoginPage" />
         } 
         
         else
         {
-            <AppButton buttonValue="修正" className="register-button" OnClick="correctData" />
-            <AppButton buttonValue="登録" className="register-button" OnClick="registUserInfo" />
+            <AppButton buttonValue="修正" className="return-btn" OnClick="correctData" />
+            <AppButton buttonValue="登録" className="confirm-btn" OnClick="registUserInfo" />
         }
     } 
     @* 未入力の場合 *@
     else
     {
-        <AppButton buttonValue="登録確認" className="register-button" OnClick="RegistrationConfirmarion" />
+        <AppButton buttonValue="登録確認" className="confirm-btn" OnClick="RegistrationConfirmarion" />
     }
 </div>
 
@@ -120,6 +126,7 @@
 <AppMessageModal isModalOpen="isModalOpen" message="@message" />
 
 @code {
+    @* 入力値 *@
     public string userName = ""; // ユーザー名
     public string password = ""; // ユーザーパスワード
     public string mailaddress = ""; // 登録メールアドレス
@@ -130,18 +137,22 @@
     public double basalMetabolism; // 基礎代謝量
     public double TDEE; // 1日の必須消費カロリー
     private double SelectedPAl; // 選択された身体活動レベル
+
+    @* フラグ *@
     private bool isInput = false; // 入力済かフラグ
     private bool isModalOpen;// モーダル開くフラグ
     private bool isInputCompleted = false;// 入力完了フラグ
     private bool isPasswordVisible = false; // パスワード表示・非表示フラグ
+
+    @* モーダル参照用 *@
     private string message = string.Empty; // モーダルに送るメッセージ
     // パスワード表示・非表示type
     private string passwordInputType => isPasswordVisible ? "text" : "password";
 
     [Inject]
-    NavigationManager NavigationManager { get; set; } = default!;
+    NavigationManager _NavigationManager { get; set; } = default!;
     [Inject]
-    UserService UserService { get; set; } = default!;
+    UserService _UserService { get; set; } = default!;
 
     // 身体活動レベルセレクトボックスの組み立て
     private List<physicalActivityLevelSelectBox> physicalActivityLevelItems = new()
@@ -209,7 +220,7 @@
             };
 
         // 登録処理
-        await UserService.registUserInfo(inputData);
+        await _UserService.RegistUserInfo(inputData);
 
         // フラグの変更
         isInputCompleted = true;
@@ -241,11 +252,11 @@
     }
 
     /// <summary>
-    /// ホームに移動
+    /// ログインに移動
     /// </summary>
-    private void MoveHomePage()
+    private void MoveLoginPage()
     {
-        NavigationManager.NavigateTo("/home");
+        _NavigationManager.NavigateTo("/login");
     }
 
     /// <summary>

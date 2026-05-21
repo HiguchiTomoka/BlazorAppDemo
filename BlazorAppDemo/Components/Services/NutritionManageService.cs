@@ -73,7 +73,7 @@ namespace BlazorAppDemo.Components.Services
         private int FetchTotalCalories(List<MealRecordInfo> mealRecords)
         {
             // 総カロリー摂取量
-            return mealRecords.Sum(r => r.Calories);
+            return mealRecords.Sum(r =>(int) (r.Calories));
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace BlazorAppDemo.Components.Services
         private decimal FetchTotalProtein(List<MealRecordInfo> mealRecords)
         {
             // 総カロリー摂取量
-            return mealRecords.Sum(r => r.Protein);
+            return mealRecords.Sum(r => (int)r.Protein);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace BlazorAppDemo.Components.Services
         private decimal FetchTotalFat(List<MealRecordInfo> mealRecords)
         {
             // 総カロリー摂取量
-            return mealRecords.Sum(r => r.Fat);
+            return mealRecords.Sum(r => (int)r.Fat);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace BlazorAppDemo.Components.Services
         private decimal FetchTotalCarbs(List<MealRecordInfo> mealRecords)
         {
             // 総カロリー摂取量
-            return mealRecords.Sum(r => r.Carbs);
+            return mealRecords.Sum(r => (int)r.Carbs);
         }
 
 
@@ -126,7 +126,7 @@ namespace BlazorAppDemo.Components.Services
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
-        public async Task deleteMealRecord(MealRecordInfo record)
+        public async Task DeleteMealRecord(MealRecordInfo record)
         {
             // 削除処理
             _dbContext.MealRecords.Remove(record);

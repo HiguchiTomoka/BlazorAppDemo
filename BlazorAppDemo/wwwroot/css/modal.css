@@ -30,6 +30,15 @@
     border-radius: 10px;
     cursor: pointer;
 }
+/*既成商品登録ボタン、自炊料理登録ボタン*/
+.food-regist-button {
+    border: none;
+    background-color: #F69454;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
 .delete-button {
     border: none;

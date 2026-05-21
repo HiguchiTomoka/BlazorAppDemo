@@ -1,8 +1,12 @@
 using BlazorAppDemo.Components.Data;
 using BlazorAppDemo.Components.Data.DefineDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Components.Services
 {
+    /// <summary>
+    /// 食品成分表CSVデータを管理するサービス
+    /// </summary>
     public class FoodImportService
     {
         private readonly AppDbContext _context;
@@ -12,6 +16,11 @@ namespace BlazorAppDemo.Components.Services
             _context = context;
         }
 
+        /// <summary>
+        /// 食品成分表CSVからDBに登録する処理
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public async Task ImportAsync(string path)
         {
             // 既存データ削除
@@ -39,6 +48,7 @@ namespace BlazorAppDemo.Components.Services
                 {
                     FoodCode = cols[1],
                     FoodName = cols[3],
+                    WasteRate = int.Parse(cols[4]),
                     Energy = ParseDecimal(cols[5]),
                     Protein = ParseDecimal(cols[9]),
                     Fat = ParseDecimal(cols[12]),
@@ -50,6 +60,7 @@ namespace BlazorAppDemo.Components.Services
                     VitaminC = ParseDecimal(cols[58]),
                     VitaminD = ParseDecimal(cols[43]),
                     VitaminE = ParseDecimal(cols[44]),
+                    SaltEquivalent = ParseDecimal(cols[60]),
                 };
 
                 _context.Foods.Add(food);
@@ -57,7 +68,25 @@ namespace BlazorAppDemo.Components.Services
 
             await _context.SaveChangesAsync();
         }
+        /// <summary>
+        /// オートコンプリート処理(検索処理)
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public async Task<List<FoodCompositionTable>> SearchFood(string keyword)
+        {
+            List<FoodCompositionTable> searchResults 
+                = await _context.Foods.Where(x => x.FoodName.Contains(keyword))
+                    .Take(10).ToListAsync();
 
+            return searchResults;
+        }
+
+        /// <summary>
+        /// 食品成分表から栄養素の文字列をdecimalに変換します
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private decimal? ParseDecimal(string value)
         {
             value = value.Trim();

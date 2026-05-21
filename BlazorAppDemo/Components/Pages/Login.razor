@@ -27,7 +27,7 @@
             登録
         </div>
 
-        <AppButton buttonValue="ログイン" className="login-btn" OnClick="login" />
+        <AppButton buttonValue="ログイン" className="confirm-btn" OnClick="login" />
 
         <p class="description">
             テキストテキストテキストテキストテキストテキスト
@@ -47,29 +47,34 @@
 
 @code
 {
+    @* 入力値 *@
     public string mailaddress = string.Empty; // 登録メールアドレス
     string password = string.Empty; // 入力パスワード
+
+    @* フラグ *@
     private bool isModalOpen;// モーダル開く条件
+
+    @* モーダル参照用 *@
     private string message = string.Empty; // モーダルに送るメッセージ
 
     [Inject]
-    NavigationManager navigationManager { get; set; } = default!;
+    NavigationManager _navigationManager { get; set; } = default!;
 
     [Inject]
     IJSRuntime JS { get; set; } = default!;
 
     [Inject]
-    UserService userService { get; set; } = default!;
+    UserService _userService { get; set; } = default!;
 
     [Inject]
-    HttpClient HttpClient { get; set; } = default!;
+    HttpClient _HttpClient { get; set; } = default!;
 
     /// <summary>
     /// ユーザー登録画面に遷移する処理
     /// </summary>
     public void RegistUserInfo()
     {
-        navigationManager.NavigateTo("/registUserInfo");
+        _navigationManager.NavigateTo("/registUserInfo");
     }
 
     /// <summary>
@@ -87,10 +92,10 @@
         }
 
         // 2.DBからUsersテーブル全データを検索
-        List<UserInfo> usersRecors = await userService.fetchUserInfo();
+        List<UserInfo> usersRecors = await _userService.FetchUserInfo();
 
         // 3.取得したデータから該当者を探す
-        UserInfo user = userService.fetchMatchUserInfo(usersRecors, mailaddress, password);
+        UserInfo user = _userService.FetchMatchUserInfo(usersRecors, mailaddress, password);
 
         // 該当者が存在しない場合
         if (user == null) 
@@ -112,7 +117,7 @@
             if (success)
             {
                 // 第二引数に「true」を入れることで認証状態の更新が行われる
-                navigationManager.NavigateTo("/home", true);
+                _navigationManager.NavigateTo("/home", true);
             }
         }
     }

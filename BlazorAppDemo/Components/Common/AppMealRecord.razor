@@ -98,7 +98,7 @@
         if (selectedMeal is not null)
         {
             // 削除処理
-            await NutritionManageService.deleteMealRecord(selectedMeal);
+            await NutritionManageService.DeleteMealRecord(selectedMeal);
             // 今日の食事記録を取得
             dashboardData = await NutritionManageService.FetchDashboardData(userId);
 

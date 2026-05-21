@@ -11,7 +11,7 @@
 <div class="meal-page">
 
     <div class="page-header">
-        <h1>Meal Record</h1>
+        <h1>ダッシュボード</h1>
         <p>ようこそ</p>
     </div>
 
@@ -64,22 +64,28 @@
 </div>
 
 @code {
-
+    @* 初期化 *@
     private List<MealRecordInfo> mealList = new List<MealRecordInfo>();
-
     private MealDashboardData dashboardData = new();
+    // 登録フォーム初期化用
+    private MealRecordInfo mealData = new MealRecordInfo
+    {
+        MealName = "塩パン",
+        Calories = 320,
+        Protein = 8,
+        Fat = 12,
+        Carbs = 45,
+        MealDate = DateTime.Today
+    };
 
-    // クッキーから取得したユーザーID
-    private int userId;
+    @* 認証情報 *@
+    private int userId; // クッキーから取得したユーザーID
 
-    // 総カロリー摂取量
-    private int totalCalories;
-    // 総タンパク質量
-    private decimal totalProtein;
-    // 総脂質量
-    private decimal totalFat;
-    // 総炭水化物量
-    private decimal totalCarbs;
+    @* 表参照値 *@
+    private int totalCalories; // 総カロリー摂取量
+    private decimal totalProtein;// 総タンパク質量
+    private decimal totalFat;// 総脂質量
+    private decimal totalCarbs;// 総炭水化物量
 
     [Inject]
     private　NavigationManager NavigationManager { get; set; } = default!;
@@ -91,18 +97,6 @@
     private　IJSRuntime JS { get; set; } = default!;
     [Inject]
     private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
-
-
-    // 登録フォーム初期化用
-    private MealRecordInfo mealData = new MealRecordInfo
-    {
-        MealName = "塩パン",
-        Calories = 320,
-        Protein = 8,
-        Fat = 12,
-        Carbs = 45,
-        MealDate = DateTime.Today
-    };
 
     /// <summary>
     /// 初期表示処理

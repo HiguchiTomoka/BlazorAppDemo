@@ -35,7 +35,7 @@
 }
 
 .dashboard-card {
-    background-color: #ddd;
+    background-color: #CAF3CD;
     border-radius: 16px;
     height: 180px;
     display: flex;
@@ -46,10 +46,10 @@
     transition: 0.2s;
 }
 
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    background-color: #d5d5d5;
-}
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        background-color: #739F3D;
+    }
 
 .card-icon {
     font-size: 48px;

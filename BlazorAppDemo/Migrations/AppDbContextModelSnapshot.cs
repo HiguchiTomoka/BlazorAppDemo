@@ -37,16 +37,16 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Reps")
+                    b.Property<int?>("Reps")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("RunningDistance")
+                    b.Property<decimal?>("RunningDistance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Set")
+                    b.Property<int?>("Set")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Time")
+                    b.Property<decimal?>("Time")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
@@ -56,7 +56,7 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Weight")
+                    b.Property<decimal?>("Weight")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -98,6 +98,9 @@ namespace BlazorAppDemo.Migrations
                     b.Property<decimal?>("Retinol")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal?>("SaltEquivalent")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal?>("VitaminB1")
                         .HasColumnType("decimal(18,2)");
 
@@ -113,6 +116,9 @@ namespace BlazorAppDemo.Migrations
                     b.Property<decimal?>("VitaminE")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("WasteRate")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Foods");
@@ -126,8 +132,8 @@ namespace BlazorAppDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Calories")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Calories")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Carbs")
                         .HasColumnType("decimal(18,2)");
@@ -161,17 +167,17 @@ namespace BlazorAppDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Calories")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Calories")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Carbs")
+                    b.Property<decimal?>("Carbs")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("DishName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Fat")
+                    b.Property<decimal?>("Fat")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MaterialName")
@@ -181,29 +187,31 @@ namespace BlazorAppDemo.Migrations
                     b.Property<double>("MaterialWeight")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("Protein")
+                    b.Property<decimal?>("Protein")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SaltEquivalent")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("VitaminA")
+                    b.Property<decimal?>("VitaminA")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminB")
+                    b.Property<decimal?>("VitaminB1")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminC")
+                    b.Property<decimal?>("VitaminB2")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminD")
+                    b.Property<decimal?>("VitaminC")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("VitaminE")
+                    b.Property<decimal?>("VitaminD")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VitaminE")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
