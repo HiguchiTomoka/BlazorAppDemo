@@ -26,5 +26,8 @@ namespace BlazorAppDemo.Components.Data
 
         // FoodCompositionTableエンティティ(食品成分表)のDbSetを定義
         public DbSet<FoodCompositionTable> Foods { get; set; }
+
+        // Metsエンティティ(METS情報)のDbSetを定義
+        public DbSet<MetsInfo> MetsRecords { get; set; }
     }
 }

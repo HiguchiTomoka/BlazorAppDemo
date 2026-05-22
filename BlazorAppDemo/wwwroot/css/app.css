@@ -4,6 +4,7 @@
 @import url('loginForm.css');
 @import url('dashboad.css');
 @import url('registUserInfo.css');
+@import url('header.css');
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

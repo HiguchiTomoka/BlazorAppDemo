@@ -7,41 +7,6 @@ body {
     font-family: sans-serif;
     color: #EE693F;
 }
-
-/* =========================
-   上部バー
-========================= */
-.top-bar {
-    height: 60px;
-    background-color: #FCFDFE;
-    border-bottom: 2px solid #F69454;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px;
-    box-shadow: 0 2px 10px rgba(246, 148, 84, 0.08);
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #EE693F;
-}
-
-.menu-btn {
-    background: none;
-    border: none;
-    font-size: 32px;
-    color: #739F3D;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-    .menu-btn:hover {
-        transform: scale(1.1);
-        color: #EE693F;
-    }
-
 /* =========================
    ログイン画面中央寄せ
 ========================= */

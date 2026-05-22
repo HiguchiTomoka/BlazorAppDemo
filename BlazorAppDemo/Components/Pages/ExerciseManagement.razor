@@ -6,6 +6,14 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @rendermode InteractiveServer
 
+<!-- ヘッダー部 -->
+<div class="top-bar">
+    <button class="menu-btn">
+        ☰
+    </button>
+    <div class="logo">logo</div>
+</div>
+
 <div class="meal-page">
 
     <div class="page-header">
@@ -14,65 +22,36 @@
     </div>
 
     @* 運動登録 *@
-    <!-- TODO 見た目(css)が終わってる -->
     <div class="top-content">
         <div class="card">
             <h2>運動登録</h2>
 
-            <select class="custom-select" @bind="SelectedItem">
-                @foreach (var item in Items)
-                {
-                    <option value="@item">@item</option>
-                }
-            </select>
+            @* 読み込む際はリストが空なので、 *@
+            @if (ActiveNameInfo.Any())
+            {
+                <!-- 活動名 -->
+                <select class="custom-select" @bind="activeName" @bind:after="SetActiveDetail">
+                    @foreach (var activeName in ActiveNameInfo)
+                    {
+                        <option value="@activeName">@activeName</option>
+                    }
+                </select>
+
+                <!-- 活動詳細 -->
+                    <select class="custom-select" @bind="activeDatail">
+                    @foreach (var activeDetail in ActiveDatailInfo)
+                    {
+                        <option value="@activeDetail">@activeDetail</option>
+                    }
+                </select>
+            }
 
             <div class="form-area">
-            
-                @if (SelectedItem == "筋トレ")
-                {
-                    <div class="form-row">
-                        <label>種目名 <span>必須</span></label>
-                        <input type="text" class="form-input" @bind="activeName" placeholder="ベンチプレス" />
-                    </div>
-                    <div class="form-row">
-                        <label>重量 <span>必須</span></label>
-                        <input type="text" class="form-input" @bind="weight" placeholder="100" />
-                        <label>kg</label>
-                    </div>
-                    <div class="form-row">
-                        <label>回数 <span>必須</span></label>
-                        <input type="text" class="form-input" @bind="reps" placeholder="10" />
-                        <label>回</label>
-                    </div>
-                    <div class="form-row">
-                        <label>セット数 <span>必須</span></label>
-                        <input type="text" class="form-input" @bind="set" placeholder="3" />
-                        <label>セット</label>
-                    </div>
-                } 
-                else
-                {
-                    if (SelectedItem == "ランニング")
-                    {
-                        <div class="form-row">
-                            <label>走行距離 <span>必須</span></label>
-                            <input type="text" class="form-input" @bind="runningDistance" placeholder="10.5" />
-                            <label>km</label>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="form-row">
-                            <label>種目名 <span>必須</span></label>
-                            <input type="text" class="form-input" @bind="activeName" placeholder="水泳" />
-                        </div>
-                        <div class="form-row">
-                            <label>スポーツを行った時間 <span>必須</span></label>
-                            <input type="text" class="form-input" @bind="time" placeholder="120" />
-                            <label>分</label>
-                        </div>
-                    }
-                }
+                <div class="form-row">
+                    <label>活動を行った時間 <span>必須</span></label>
+                    <input type="text" class="form-input" @bind="activeTime" placeholder="30分なら0.5" />
+                    <label>時間</label>
+                </div>
             </div>
             <div>
                 <AppButton buttonValue="登録" className="confirm-btn" OnClick="RegistActiveRecord" />
@@ -92,11 +71,9 @@
                         <thead>
                             <tr>
                                 <th>活動名</th>
-                                <th>重量</th>
-                                <th>回数</th>
-                                <th>セット数</th>
-                                <th>ランニング距離</th>
+                                <th>活動詳細</th>
                                 <th>活動時間</th>
+                                <th>消費カロリー</th>
                             </tr>
                         </thead>
 
@@ -126,19 +103,16 @@
                             @foreach (var active in activeRecordList)
                             {
                                 <tr>
-                                    <td>@active.ActiveName</td>
-                                    <td>@active.Weight</td>
-                                    <td>@active.Reps</td>
-                                    <td>@active.Set</td>
-                                    <td>@active.RunningDistance</td>
+                                    <td>@active.ActiveKind</td>
+                                    <td>@active.ActiveDetail</td>
                                     <td>@active.Time</td>
+                                    <td>@active.CaloriesBurned</td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
-            
         </div>
     </div>
 
@@ -146,6 +120,7 @@
     <div class="content-card table-card">
         <div class="card">
             <h2>消費カロリー</h2>
+            @* 消費カロリー = 体重(kg) * METS * 運動時間(h) * 1.05 *@
         </div>
     </div>
 
@@ -156,13 +131,9 @@
 
 @code {
     @* 入力値 *@
-    private string activeName = string.Empty; // 種目名(筋トレの場合)
-    private decimal weight; // 重量(筋トレの場合)
-    private int reps; // 回数(筋トレの場合)
-    private int set; // セット数(筋トレの場合)
-    private decimal runningDistance; // セット数(ランニングの場合)
-    private decimal time; // スポーツ等を行った時間(スポーツの場合)
-    private string SelectedItem = ""; // 選択中のセレクトボックス値
+    private string activeName = string.Empty; // 種目名
+    private string activeDatail = string.Empty; // 活動の詳細
+    private decimal activeTime; // スポーツ等を行った時間
 
     @* フラグ *@
     private bool isModalOpen;// モーダル開くフラグ
@@ -175,13 +146,21 @@
 
     @* 初期化 *@
     private List<ActiveRecordInfo> activeRecordList = new List<ActiveRecordInfo>();
-    private List<string> Items = new(){"筋トレ","ランニング","スポーツ"};
+    private List<MetsInfo> metsList = new List<MetsInfo>();
+    private List<MetsInfo> metsDistinctByActiveNameList = new List<MetsInfo>();
+    private List<MetsInfo> metsByActiveNameList = new List<MetsInfo>();
+    private List<string> ActiveNameInfo = new List<string>();
+    private List<string> ActiveDatailInfo = new List<string>();
+    private decimal bodyWeight;
 
     [Inject]
-    private ActiveRecordService activeRecordService { get; set; } = default!;
+    private UserService _userService { get; set; } = default!;
     [Inject]
-    private AuthenticationStateProvider authenticationStateProvider { get; set; } = default!;
-
+    private ActiveRecordService _activeRecordService { get; set; } = default!;
+    [Inject]
+    private AuthenticationStateProvider _authenticationStateProvider { get; set; } = default!;
+    [Inject]
+    private MetsInfoService _metsInfoService { get; set; } = default!;
 
     /// <summary>
     /// 初期表示処理
@@ -190,7 +169,7 @@
     protected override async Task OnInitializedAsync()
     {
         var authState =
-            await authenticationStateProvider.GetAuthenticationStateAsync();
+            await _authenticationStateProvider.GetAuthenticationStateAsync();
 
         var user = authState.User;
 
@@ -201,17 +180,67 @@
             userId = int.Parse(userIdString);
         }
 
+        // 該当者の体重を取得
+        double _BodyWeight = await _userService.FetchBodyWeight(userId);
+        bodyWeight = Convert.ToDecimal(_BodyWeight);
+
+        // 該当者の運動記録を取得
         await LoadActiveRecords(userId);
+
+        // METS情報を取得
+        await FetchMetsTable();
     }
 
-    /// <summary>
-    /// 運動情報一覧の取得
-    /// </summary>
-    /// <returns></returns>
     private async Task LoadActiveRecords(int userId)
     {
         // 過去の運動記録を入手
-        activeRecordList = await activeRecordService.FetchActiveRecordInfo(userId);
+        activeRecordList = await _activeRecordService.FetchActiveRecordInfo(userId);
+    }
+
+    /// <summary>
+    /// METSについての情報を取得
+    /// </summary>
+    /// <returns></returns>
+    private async Task FetchMetsTable()
+    {
+        // METS情報を取得
+        metsList = await _metsInfoService.FetchMetsInfo();
+
+        // 活動記録名称をDistinctする
+        metsDistinctByActiveNameList = await _metsInfoService.FetchActiveNameInfo();
+
+        // 活動記録名称リストの作成
+        foreach (MetsInfo metsInfo in metsDistinctByActiveNameList)
+        {
+            ActiveNameInfo.Add(metsInfo.ActiveNameJa);
+        }
+
+        // 活動詳細リストの設定
+        SetActiveDetail();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private async Task SetActiveDetail()
+    {
+        // ActiveNameのデフォルト値
+        if (activeName == null) activeName = metsList[0].ActiveNameJa;
+
+        // 表示したい活動詳細リストに対応するリストの取得
+        metsDistinctByActiveNameList = await _metsInfoService.FetchActiveDetailInfo(activeName);
+
+        // 活動詳細リストの初期化
+        ActiveDatailInfo.Clear();
+
+        // 活動詳細リストの作成
+        foreach (MetsInfo metsInfo in metsDistinctByActiveNameList)
+        {
+            ActiveDatailInfo.Add(metsInfo.DescriptionJa);
+        }
+
+        // 活動詳細リストの先頭を選択していることにする
+        activeDatail = ActiveDatailInfo[0];
     }
 
     /// <summary>
@@ -220,149 +249,78 @@
     /// <returns></returns>
     private async Task RegistActiveRecord()
     {
-        // 活動種類の特定
-        int activeKind = SelectedItem switch
+        // 活動種類のDictionary設定
+        var activeMap = new Dictionary<string, int>();
+
+        for (int i = 0; i < ActiveNameInfo.Count; i++)
         {
-            "筋トレ" => 1,
-            "ランニング" => 2,
-            "スポーツ" => 3,
-            _=> 0 // Javaでいうdefault
-        };
+            activeMap.Add(ActiveNameInfo[i], i + 1);
+        }
+
+        // 活動種類の特定
+        int activeKind = activeMap.GetValueOrDefault(activeName, 0);
 
         // チェック処理
-        bool isError = ValidateInputData(activeKind);
+        bool isError = ValidateInputData();
 
         if (isError)
         {
             return;
         }
 
+        decimal metsu = _metsInfoService.FetchMets(metsList, activeName, activeDatail);
+        // 消費カロリー = 体重(kg) * METS * 運動時間(h) * 1.05
+        decimal caloriesBurned 
+            = Decimal.Multiply(Decimal.Multiply(Decimal.Multiply(bodyWeight, metsu), Convert.ToDecimal(activeTime)), Convert.ToDecimal(1.05));
+
         // 登録データの組み立て
         ActiveRecordInfo inputData = new ActiveRecordInfo
         {
+            UserId = userId,
             ActiveKind = activeKind,
-            UserId = userId, // Sessionに入れて持ちまわりたいデータ
             ActiveName = activeName,
-            Weight = weight,
-            Reps = reps,
-            Set = set,
-            RunningDistance = runningDistance,
-            Time = time,
+            ActiveDetail = activeDatail,
+            Time = activeTime,
+            CaloriesBurned = caloriesBurned
         };
 
         // 登録処理
-        await activeRecordService.RegistActiveRecordInfo(inputData);
+        await _activeRecordService.RegistActiveRecordInfo(inputData);
 
         // 登録完了後値の初期化
-        activeName = string.Empty; // 種目名(筋トレの場合)
-        weight = 0; // 重量(筋トレの場合)
-        reps = 0; // 回数(筋トレの場合)
-        set = 0; // セット数(筋トレの場合)
-        runningDistance = 0; // セット数(ランニングの場合)
-        time = 0; // スポーツ等を行った時間(スポーツの場合)
-        SelectedItem = "1"; // 選択中のセレクトボックス値
+        activeName = metsList[0].ActiveNameJa; // 活動名
+        await SetActiveDetail(); // 活動詳細セレクトボックスの初期化
+        activeTime = 0; // 活動を行った時間
+
+        // 該当者の運動記録を再取得
+        await LoadActiveRecords(userId);
     }
 
     /// <summary>
-    /// 選択した運動種類によってチェック項目を変更し、チェック処理を行う
+    /// チェック処理を行う
     /// </summary>
-    /// <param name="activeKind"></param>
     /// <returns></returns>
-    private bool ValidateInputData(int activeKind)
+    private bool ValidateInputData()
     {
-        // 筋トレの場合
-        if (activeKind == 1)
+        // 時間チェック
+        if (Validator.IsNullOrBlankValidate(activeTime.ToString()))
         {
-            // 種目名チェック
-            if (Validator.IsNullOrBlankValidate(activeName))
-            {
-                isModalOpen = true;
-                message = "";
-                return true;
-            }
-            // 重量チェック
-            if (Validator.IsNullOrBlankValidate(weight.ToString()))
-            {
-                isModalOpen = true;
-                message = "";
-                return true;
-            }
-            // TODO 多分「15.7」とか小数点入るとダメになりそう
-            if (!Validator.IsOnlyNumeric(weight.ToString()))
-            {
-                isModalOpen = true;
-                message = "数字を入力してください";
-                return true;
-            }
-            // 回数チェック
-            if (Validator.IsNullOrBlankValidate(reps.ToString()))
-            {
-                isModalOpen = true;
-                message = "";
-                return true;
-            }
-            if (!Validator.IsOnlyNumeric(reps.ToString()))
-            {
-                isModalOpen = true;
-                message = "数字を入力してください";
-                return true;
-            }
-            // セット数チェック
-            if (Validator.IsNullOrBlankValidate(set.ToString()))
-            {
-                isModalOpen = true;
-                message = "";
-                return true;
-            }
-            if (!Validator.IsOnlyNumeric(weight.ToString()))
-            {
-                isModalOpen = true;
-                message = "数字を入力してください";
-                return true;
-            }
+            isModalOpen = true;
+            message = "活動時間を入力してください";
+            return true;
         }
-        // ランニングの場合
-        else if (activeKind == 2)
+        if (!Validator.IsOnlyNumeric(activeTime.ToString()))
         {
-            // ランニング距離チェック
-            if (Validator.IsNullOrBlankValidate(runningDistance.ToString()))
-            {
-                isModalOpen = true;
-                message = "";
-                return true;
-            }
-            // TODO 多分「15.7」とか小数点入るとダメになりそう
-            if (!Validator.IsOnlyNumeric(runningDistance.ToString()))
-            {
-                isModalOpen = true;
-                message = "数字を入力してください";
-                return true;
-            }
+            isModalOpen = true;
+            message = "数字を入力してください";
+            return true;
         }
-        // スポーツの場合
-        else
+        // 活動名称チェック
+        if (Validator.IsNullOrBlankValidate(activeName.ToString()))
         {
-            // 種目名チェック
-            if (Validator.IsNullOrBlankValidate(activeName))
-            {
-                isModalOpen = true;
-                message = "";
-                return true;
-            }
-            // スポーツ時間チェック
-            if (Validator.IsNullOrBlankValidate(time.ToString()))
-            {
-                isModalOpen = true;
-                message = "";
-                return true;
-            }
-            if (!Validator.IsOnlyNumeric(time.ToString()))
-            {
-                isModalOpen = true;
-                message = "数字を入力してください";
-                return true;
-            }
-
+            isModalOpen = true;
+            message = "活動時間を入力してください";
+            return true;
         }
         return false;
     }

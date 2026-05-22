@@ -46,6 +46,21 @@ namespace BlazorAppDemo.Components.Services
         }
 
         /// <summary>
+        /// 該当するuserIDの体重を取得
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<double> FetchBodyWeight(int userId)
+        {
+            List<UserInfo> userInfos = await FetchUserInfo();
+            UserInfo userInfo = userInfos.FirstOrDefault(r => r.Id == userId);
+            double BodyWeight = userInfo.BodyWeight;
+
+            return BodyWeight;
+
+        }
+
+        /// <summary>
         /// ユーザー詳細情報の新規登録処理
         /// </summary>
         /// <returns></returns>
@@ -56,5 +71,7 @@ namespace BlazorAppDemo.Components.Services
 
             await _dbContext.SaveChangesAsync();
         }
+
+
     }
 }

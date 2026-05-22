@@ -1,0 +1,54 @@
+﻿/* =========================
+   ヘッダー部
+========================= */
+/*上部バー*/
+.top-bar {
+    height: 60px;
+    border-top: 2px solid #EE693F;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: white;
+}
+
+/*ロゴのフォント*/
+.logo {
+    font-size: 20px;
+}
+
+/* ハンバーガーメニューを開くためのボタン */
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #739F3D;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .menu-btn:hover {
+        transform: scale(1.1);
+        color: #EE693F;
+    }
+
+/* ログアウトボタン */
+.logout-button {
+    width: 15%;
+    height: 40px;
+    border: none;
+    border-radius: 999px;
+    background-color: #F69454;
+    color: #FCFDFE;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+    .logout-button:hover {
+        background-color: #EE693F;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
+    }

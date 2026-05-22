@@ -5,11 +5,17 @@
 @rendermode InteractiveServer
 
 @* ホーム画面 *@
+
+<!-- ヘッダー部 -->
 <div class="top-bar">
+    <!-- ハンバーガーメニュー -->
+    <button class="menu-btn">
+        ☰
+    </button>
     <div class="logo">健康管理アプリ</div>
 
     <p>ようこそ！ @userName さん！</p>
-    <AppButton className="" buttonValue="ログアウト" OnClick="Logout" />
+    <AppButton className="logout-button" buttonValue="ログアウト" OnClick="Logout" />
 </div>
 
 <div class="page-title">

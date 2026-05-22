@@ -30,6 +30,10 @@ namespace BlazorAppDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ActiveDetail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ActiveKind")
                         .HasColumnType("int");
 
@@ -37,27 +41,14 @@ namespace BlazorAppDemo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Reps")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("RunningDistance")
+                    b.Property<decimal>("CaloriesBurned")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("Set")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("Time")
+                    b.Property<decimal>("Time")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Weight")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -217,6 +208,40 @@ namespace BlazorAppDemo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuRecords");
+                });
+
+            modelBuilder.Entity("BlazorAppDemo.Components.Data.DefineDB.MetsInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ActiveNameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ActiveNameJa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionJa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Mets")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MetsRecords");
                 });
 
             modelBuilder.Entity("BlazorAppDemo.Components.Data.DefineDB.UserInfo", b =>

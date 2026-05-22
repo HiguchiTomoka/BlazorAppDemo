@@ -1,26 +1,4 @@
-﻿.top-bar {
-    height: 60px;
-    border-top: 2px solid #1e90ff;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: white;
-}
-
-.logo {
-    font-size: 20px;
-}
-
-.menu-button {
-    border: none;
-    background: transparent;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.register-container {
+﻿.register-container {
     width: 70%;
     margin: 30px auto;
     text-align: center;

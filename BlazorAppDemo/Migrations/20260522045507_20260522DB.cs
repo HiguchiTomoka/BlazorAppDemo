@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlazorAppDemo.Migrations
 {
     /// <inheritdoc />
-    public partial class _20260521DB : Migration
+    public partial class _20260522DB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,15 +17,12 @@ namespace BlazorAppDemo.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ActiveKind = table.Column<int>(type: "int", nullable: false),
                     ActiveName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Reps = table.Column<int>(type: "int", nullable: true),
-                    Set = table.Column<int>(type: "int", nullable: true),
-                    RunningDistance = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Time = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    ActiveDetail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Time = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CaloriesBurned = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,6 +103,24 @@ namespace BlazorAppDemo.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MetsRecords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mets = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ActiveNameJa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DescriptionJa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActiveNameEn = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DescriptionEn = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MetsRecords", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserInfoRecords",
                 columns: table => new
                 {
@@ -142,6 +157,9 @@ namespace BlazorAppDemo.Migrations
 
             migrationBuilder.DropTable(
                 name: "MenuRecords");
+
+            migrationBuilder.DropTable(
+                name: "MetsRecords");
 
             migrationBuilder.DropTable(
                 name: "UserInfoRecords");
