@@ -1,4 +1,73 @@
 ﻿/* =========================
+   レイアウト全体
+========================= */
+.page {
+    position: relative;
+    min-height: 100vh;
+    background-color: #FCFDFE;
+}
+/* =========================
+   サイドバー
+========================= */
+.sidebar {
+    position: fixed;
+    top: 60px; /* header高さに合わせる */
+    left: -260px;
+    width: 250px;
+    height: calc(100vh - 60px);
+    background-color: white;
+    border-right: 1px solid #ddd;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 4px 0 12px rgba(0,0,0,0.08);
+}
+    /* メニュー開いた状態 */
+    .sidebar.open {
+        left: 0;
+    }
+/* =========================
+   オーバーレイ
+========================= */
+.overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: rgba(0,0,0,0.25);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+}
+/* =========================
+   メインコンテンツ
+========================= */
+main {
+    min-height: 100vh;
+    background-color: #FCFDFE;
+}
+
+/* Header分余白 */
+.content {
+    padding: 24px;
+}
+
+/* =========================
+   PC表示対応
+========================= */
+
+@media (min-width: 768px) {
+    .sidebar {
+        left: 0;
+    }
+    main {
+        margin-left: 250px;
+    }
+    .overlay {
+        display: none;
+    }
+}
+/* =========================
    ヘッダー部
 ========================= */
 /*上部バー*/

@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @using Microsoft.AspNetCore.Components.Authorization
+@using BlazorAppDemo.Components.Common
 
 <AuthorizeView>
 
@@ -7,11 +8,19 @@
     <Authorized>
         <div class="page">
             <!-- サイドバー表示 -->
-            <div class="sidebar">
+            <div class="sidebar @(isMenuOpen ? "open" : "")">
                 <NavMenu />
             </div>
 
+            @if (isMenuOpen)
+            {
+                <div class="overlay" @onclick="CloseMenu"></div>
+            }
+
             <main>
+                <!-- Headerへイベント渡す -->
+                <Header OnMenuClick="ToggleMenu" />
+
                 <div class="top-row px-4">
                     <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
                 </div>
@@ -33,3 +42,17 @@
 
 </AuthorizeView>
 
+@code{
+    // ハンバーガーメニュー開くフラグ
+    private bool isMenuOpen;
+
+    private void ToggleMenu()
+    {
+        isMenuOpen = !isMenuOpen;
+    }
+
+    private void CloseMenu()
+    {
+        isMenuOpen = false;
+    }
+}

@@ -1,0 +1,36 @@
+﻿@* ヘッダー定義 *@
+<div class="top-bar">
+    <button class="menu-btn" @onclick="OnMenuClick">
+        ☰
+    </button>
+    <div class="logo">健康管理アプリ</div>
+    @* <p>ようこそ！ @userName さん！</p> *@
+    <AppButton className="logout-button" buttonValue="ログアウト" OnClick="Logout" />
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnMenuClick { get; set; }
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = default!;
+
+    [Inject]
+    NavigationManager _NavigationManager { get; set; } = default!;
+
+    /// <summary>
+    /// ログアウト処理
+    /// Cookieの削除
+    /// ログイン画面に戻る
+    /// </summary>
+    /// <returns></returns>
+    private async Task Logout()
+    {
+        // APIでログアウト処理を実行
+        var success =
+            await JS.InvokeAsync<bool>("logout");
+
+        // loginページに移動
+        _NavigationManager.NavigateTo("/login", true);
+    }
+}
