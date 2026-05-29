@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\buttonComponent.css" />
     <Content Remove="wwwroot\css\chart.css" />
     <Content Remove="wwwroot\css\dashboad.css" />
     <Content Remove="wwwroot\css\header.css" />
@@ -30,6 +31,8 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\chart.css" />
+    <None Include="wwwroot\css\buttonComponent.css" />
+    <None Include="wwwroot\css\site.css" />
     <None Include="wwwroot\css\header.css" />
     <None Include="wwwroot\css\dashboad.css" />
     <None Include="wwwroot\css\registUserInfo.css" />

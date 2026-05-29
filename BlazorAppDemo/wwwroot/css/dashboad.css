@@ -13,7 +13,7 @@
 }
 
 .dashboard-card {
-    background-color: #CAF3CD;
+    background-color: var(--color-card);
     border-radius: 16px;
     height: 180px;
     display: flex;
@@ -22,11 +22,12 @@
     align-items: center;
     cursor: pointer;
     transition: 0.2s;
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
 
     .dashboard-card:hover {
         transform: translateY(-5px);
-        background-color: #739F3D;
+        background-color: var(--color-secondary);
     }
 
 .card-icon {

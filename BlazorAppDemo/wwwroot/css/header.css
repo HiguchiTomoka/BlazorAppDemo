@@ -4,26 +4,26 @@
 .page {
     position: relative;
     min-height: 100vh;
-    background-color: #FCFDFE;
+    background-color: var(--color-background);
 }
 /* =========================
    サイドバー
 ========================= */
-.sidebar {
+.header-sidebar {
     position: fixed;
     top: 60px; /* header高さに合わせる */
     left: -260px;
     width: 250px;
     height: calc(100vh - 60px);
-    background-color: white;
+    background-color: #ffffff !important;
     border-right: 1px solid #ddd;
     transition: left 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
-    box-shadow: 4px 0 12px rgba(0,0,0,0.08);
+    box-shadow: none;
 }
     /* メニュー開いた状態 */
-    .sidebar.open {
+    .header-sidebar.open {
         left: 0;
     }
 /* =========================
@@ -44,7 +44,7 @@
 ========================= */
 main {
     min-height: 100vh;
-    background-color: #FCFDFE;
+    background-color: var(--color-background);
 }
 
 /* Header分余白 */
@@ -57,12 +57,6 @@ main {
 ========================= */
 
 @media (min-width: 768px) {
-    .sidebar {
-        left: 0;
-    }
-    main {
-        margin-left: 250px;
-    }
     .overlay {
         display: none;
     }
@@ -73,7 +67,7 @@ main {
 /*上部バー*/
 .top-bar {
     height: 60px;
-    border-top: 2px solid #EE693F;
+    border-top: 2px solid var(--color-text);
     border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center;
@@ -92,14 +86,14 @@ main {
     background: none;
     border: none;
     font-size: 32px;
-    color: #739F3D;
+    color: var(--color-secondary);
     cursor: pointer;
     transition: 0.2s;
 }
 
     .menu-btn:hover {
         transform: scale(1.1);
-        color: #EE693F;
+        color: var(--color-text);
     }
 
 /* ログアウトボタン */
@@ -108,8 +102,8 @@ main {
     height: 40px;
     border: none;
     border-radius: 999px;
-    background-color: #F69454;
-    color: #FCFDFE;
+    background-color: var(--color-primary);
+    color: var(--color-background);
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
@@ -117,7 +111,7 @@ main {
 }
 
     .logout-button:hover {
-        background-color: #EE693F;
+        background-color: var(--color-text);
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
     }

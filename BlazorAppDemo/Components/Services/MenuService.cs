@@ -1,6 +1,5 @@
 using BlazorAppDemo.Components.Data;
 using BlazorAppDemo.Components.Data.DefineDB;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Components.Services
@@ -26,7 +25,7 @@ namespace BlazorAppDemo.Components.Services
         public async Task<List<MenulInfo>> FetchMenuInfo(int userId)
         {
             // 該当ユーザーが登録したメニュー
-            List<MenulInfo> menuRecords = 
+            List<MenulInfo> menuRecords =
                 await _dbContext.MenuRecords.Where(r => r.UserId == userId).ToListAsync();
 
             return menuRecords;

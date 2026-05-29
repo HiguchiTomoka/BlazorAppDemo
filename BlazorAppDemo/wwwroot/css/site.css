@@ -1,0 +1,11 @@
+﻿/* =========================
+   テーマカラー
+========================= */
+:root {
+    /* 庭の新鮮さ(Default) */
+    --color-text: #EE693F;
+    --color-background: #CAEBCD;
+    --color-primary: #F69454;
+    --color-secondary: #739F3D;
+    --color-card: #FCFDFE;
+}

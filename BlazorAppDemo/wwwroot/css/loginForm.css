@@ -3,9 +3,9 @@
 ========================= */
 body {
     margin: 0;
-    background-color: #FCFDFE;
+    background-color: var(--color-background);
     font-family: sans-serif;
-    color: #EE693F;
+    color: var(--color-text);
 }
 /* =========================
    ログイン画面中央寄せ
@@ -23,7 +23,7 @@ body {
 h1 {
     font-size: 64px;
     margin-bottom: 40px;
-    color: #EE693F;
+    color: var(--color-text);
     letter-spacing: 4px;
     font-weight: bold;
 }
@@ -33,14 +33,14 @@ h1 {
 ========================= */
 .login-card {
     width: 420px;
-    background: #CAEBCD;
+    background: var(--color-card);
     padding: 50px;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 22px;
-    box-shadow: 0 10px 30px rgba(238, 105, 63, 0.18);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--color-primary) 30%, transparent);
     box-sizing: border-box;
 }
 
@@ -55,14 +55,14 @@ h1 {
     padding: 0 24px;
     font-size: 16px;
     box-sizing: border-box;
-    background-color: #FCFDFE;
-    color: #EE693F;
+    background-color: var(--color-background);
+    color: var(--color-text);
     outline: none;
     transition: 0.2s;
 }
 
     .input-box::placeholder {
-        color: #F69454;
+        color: var(--color-primary);
     }
 
     .input-box:focus {
@@ -76,7 +76,7 @@ h1 {
     width: 100%;
     text-align: right;
     font-size: 13px;
-    color: #FCFDFE;
+    color: var(--color-background);
     cursor: pointer;
     transition: 0.2s;
 }
@@ -86,56 +86,13 @@ h1 {
     }
 
 /* =========================
-   確定ボタン
-========================= */
-.confirm-btn {
-    width: 100%;
-    height: 60px;
-    border: none;
-    border-radius: 999px;
-    background-color: #F69454;
-    color: #FCFDFE;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.25s;
-}
-
-    .confirm-btn:hover {
-        background-color: #EE693F;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
-    }
-
-/* =========================
-   戻るボタン
-========================= */
-.return-btn {
-    width: 100%;
-    height: 60px;
-    border: none;
-    border-radius: 999px;
-    background-color: #FCFDFE;
-    color: #EE693F;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.25s;
-}
-
-    .return-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
-    }
-
-/* =========================
    説明文
 ========================= */
 .description {
     font-size: 12px;
     text-align: center;
     line-height: 1.8;
-    color: #FCFDFE;
+    color: var(--color-background);
     opacity: 0.95;
 }
 
@@ -144,7 +101,7 @@ h1 {
 ========================= */
 .create-account {
     margin-top: 24px;
-    color: #739F3D;
+    color: var(--color-secondary);
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
@@ -152,5 +109,5 @@ h1 {
 }
 
     .create-account:hover {
-        color: #EE693F;
+        color: var(--color-text);
     }

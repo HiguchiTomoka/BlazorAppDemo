@@ -15,7 +15,7 @@ namespace BlazorAppDemo.Components.Data.DefineDB
         [Required]
         [EmailAddress]
         public string MailAddress { get; set; } = string.Empty; // ユーザーのメールアドレス
-        [Required] 
+        [Required]
         public string Gender { get; set; } = string.Empty; // 性別
         [Required]
         public double BodyWeight { get; set; } // 体重

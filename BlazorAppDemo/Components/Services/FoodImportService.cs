@@ -75,7 +75,7 @@ namespace BlazorAppDemo.Components.Services
         /// <returns></returns>
         public async Task<List<FoodCompositionTable>> SearchFood(string keyword)
         {
-            List<FoodCompositionTable> searchResults 
+            List<FoodCompositionTable> searchResults
                 = await _context.Foods.Where(x => x.FoodName.Contains(keyword))
                     .Take(10).ToListAsync();
 

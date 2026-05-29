@@ -37,7 +37,7 @@ namespace BlazorAppDemo.Components.Services
         /// <param name="mailaddress"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public UserInfo FetchMatchUserInfo(List<UserInfo> usersRecors,string mailaddress, string password)
+        public UserInfo FetchMatchUserInfo(List<UserInfo> usersRecors, string mailaddress, string password)
         {
             // 該当ユーザー1件のみ
             UserInfo userDetailRecords = usersRecors.FirstOrDefault(r => r.MailAddress == mailaddress && r.Password == password);

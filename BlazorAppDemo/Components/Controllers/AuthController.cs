@@ -33,8 +33,8 @@ namespace BlazorAppDemo.Components.Data
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             //メールアドレス検索
-           var user = _db.UserInfoRecords
-               .FirstOrDefault(x => x.MailAddress == request.Email);
+            var user = _db.UserInfoRecords
+                .FirstOrDefault(x => x.MailAddress == request.Email);
 
             //Claim作成(ログインユーザーの情報)
             var claims = new List<Claim>

@@ -3,81 +3,45 @@
 @inject BlazorAppDemo.Components.Services.ChartService ChartService
 @inject IJSRuntime JS
 
-<div class="meal-page">
-    <div class="page-header">
-        <h1>マイプロフィール</h1>
-        <p>変更</p>
-    </div>
 
-    @* 1段目 *@
-    <div class="chart-grid">
-        <!-- PFC比 -->
-        <div class="card">
-            <h2>PFC Balance</h2>
-            <div class="chart-container">
-                <canvas id="pfcRatio"></canvas>
-            </div>
-        </div>
+<select @onchange="ChangeTheme">
 
-        <!-- 目標との差 -->
-        <div class="card">
-            <h2>目標PFCとの差</h2>
-            <div class="chart-container">
-                <canvas id="goalChart"></canvas>
-            </div>
-        </div>
-    </div>
+    <option value="garden">庭の新鮮さ</option>
 
-    @* 2段目 *@
-    <!-- カロリー摂取推移 -->
-    <div class="chart-grid">
-        <div class="card">
-            <h2>摂取推移</h2>
-            <div class="chart-container">
-                <canvas id="trendChart"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
+    <option value="blueberry">ブルーベリー</option>
+    <option value="warmthAndSimplicity">温かみと素朴さ</option>
+    <option value="freshGreen">フレッシュグリーン</option>
+    <option value="spices">スパイスのような中間色</option>
+    <option value="citrus">陽気な柑橘系</option>
+    <option value="ruby">ルビー</option>
+    <option value="hazyGreen">霞んだ緑</option>
+    <option value="aquaBlue">アクアブルー</option>
+    <option value="arbanOasis">都会のオアシス</option>
+    <option value="cosmopolitan">コスモポリタン</option>
+    <option value="frienly">フレンドリー</option>
+    <option value="shineOfSea">海の輝き</option>
+    <option value="arcticDawn">北極の夜明け</option>
+    <option value="hazyGray">霞んだグレー</option>
+    <option value="glassland">草原</option>
+    <option value="smartModern">スマートモダン</option>
+    <option value="autumnOrange">秋のオレンジ</option>
+    <option value="smokedSilver">いぶし銀</option>
+    <option value="thinMiddle">薄い中間色</option>
+    <option value="darkHandsome">暗いハンサム</option>
+    <option value="urbanLiving">アーバンリビング</option>
+    <option value="dullPurple">くすんだ紫</option>
+    <option value="iceBlue">氷のような青とグレー</option>
+    <option value="Pretty">可憐</option>
+    <option value="coolBlue">クールブルー</option>
+
+</select>
+
 @code {
 
-    /// <summary>
-    /// 初期表示
-    /// </summary>
-    /// <param name="firstRender"></param>
-    /// <returns></returns>
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    private async Task ChangeTheme(ChangeEventArgs e)
     {
-        if (firstRender)
-        {
-            // 今日の食事記録,総カロリー摂取量,総炭水化物量,総タンパク質量,総脂質量を取得
-            // dashboardData = await NutritionManageService.FetchDashboardData();
-            // renderPFCRatioChart関数はwwwroot/js/chart.jsに定義されている
-            // await RenderChart();
-        }
-    }
+        var theme = e.Value?.ToString();
 
-    /// <summary>
-    /// グラフの描画処理
-    /// </summary>
-    /// <returns></returns>
-    private async Task RenderChart()
-    {
-        // PFC比の円グラフ描画
-        // await ChartService.RenderPfcChart(
-        //     dashboardData.TotalProtein,
-        //     dashboardData.TotalFat,
-        //     dashboardData.TotalCarbs
-        // );
-
-        // PFCそれぞれの目標摂取量の棒グラフ描画
-        // await ChartService.RenderGoalChart(
-        //     dashboardData.TotalProtein, 120,
-        //     dashboardData.TotalFat, 50,
-        //     dashboardData.TotalCarbs, 250
-        // );
-
-        // 摂取カロリーの推移線グラフ描画
-        // await ChartService.RenderTrendChart();
+        await JS.InvokeVoidAsync("changeTheme", theme);
     }
 }

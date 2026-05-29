@@ -73,7 +73,7 @@ namespace BlazorAppDemo.Components.Services
         private int FetchTotalCalories(List<MealRecordInfo> mealRecords)
         {
             // 総カロリー摂取量
-            return mealRecords.Sum(r =>(int) (r.Calories));
+            return mealRecords.Sum(r => (int)(r.Calories));
         }
 
         /// <summary>

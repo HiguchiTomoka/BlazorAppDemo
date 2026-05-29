@@ -1,0 +1,64 @@
+﻿/* =========================
+   ボタン設定CSS
+========================= */
+/* 保存するボタン */
+.save-button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .save-button:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+
+/* =========================
+   確定ボタン
+========================= */
+.confirm-btn {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+    .confirm-btn:hover {
+        background-color: var(--color-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
+    }
+
+/* =========================
+   戻るボタン
+========================= */
+.return-btn {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+    .return-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(115, 159, 61, 0.3);
+    }

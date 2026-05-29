@@ -1,7 +1,7 @@
 ﻿/* 画面全体 */
 body {
     margin: 0;
-    background-color: #f3f3f3;
+    background-color: var(--color-background);
     font-family: sans-serif;
 }
 

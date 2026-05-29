@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.Authorization
 @using BlazorAppDemo.Components.Common
 
@@ -7,19 +8,19 @@
     <!-- ログイン時 -->
     <Authorized>
         <div class="page">
-            <!-- サイドバー表示 -->
-            <div class="sidebar @(isMenuOpen ? "open" : "")">
+            @* サイドバー表示 *@
+            <div class="header-sidebar @(isMenuOpen ? "open" : "")">
                 <NavMenu />
             </div>
-
+            <!-- サイドバー表示の場合 -->
             @if (isMenuOpen)
             {
                 <div class="overlay" @onclick="CloseMenu"></div>
-            }
+            } 
 
             <main>
                 <!-- Headerへイベント渡す -->
-                <Header OnMenuClick="ToggleMenu" />
+                <AppHeader OnMenuClick="ToggleMenu" />
 
                 <div class="top-row px-4">
                     <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
@@ -44,10 +45,11 @@
 
 @code{
     // ハンバーガーメニュー開くフラグ
-    private bool isMenuOpen;
+    private bool isMenuOpen = false;
 
     private void ToggleMenu()
     {
+        Console.WriteLine("ToggleMenu 実行");
         isMenuOpen = !isMenuOpen;
     }
 

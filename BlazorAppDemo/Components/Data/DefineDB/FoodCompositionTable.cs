@@ -1,5 +1,3 @@
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 namespace BlazorAppDemo.Components.Data.DefineDB
 {
     /// <summary>

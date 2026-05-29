@@ -4,57 +4,53 @@
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+<nav class="nav flex-column">
+    @* ホーム *@
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="home">
+            <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+        </NavLink>
+    </div>
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        @* ホーム *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="home">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+    @* ダッシュボード *@
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="dashBord">
+            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> ダッシュボード
+        </NavLink>
+    </div>
 
-        @* ダッシュボード *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="dashBord">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> ダッシュボード
-            </NavLink>
-        </div>
+    @* 食事管理(食事記録を見る・登録)タブ *@
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="dietaryManagement">
+            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 食事管理
+        </NavLink>
+    </div>
 
-        @* 食事管理(食事記録を見る・登録)タブ *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="dietaryManagement">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 食事管理
-            </NavLink>
-        </div>
+    @* 運動管理(運動記録を見る・登録)タブ *@
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="exerciseManagement">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 運動管理
+        </NavLink>
+    </div>
 
-        @* 運動管理(運動記録を見る・登録)タブ *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="exerciseManagement">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 運動管理
-            </NavLink>
-        </div>
+    @* レシピタブ *@
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="recipe">
+            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> レシピ
+        </NavLink>
+    </div>
 
-        @* レシピタブ *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="recipe">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> レシピ
-            </NavLink>
-        </div>
+    @* 歩数タブ *@
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="numberOfSteps">
+            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 歩数
+        </NavLink>
+    </div>
 
-        @* 歩数タブ *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="numberOfSteps">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 歩数
-            </NavLink>
-        </div>
-
-        @* マイプロフィールタブ *@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="profile">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> プロフィール
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    @* マイプロフィールタブ *@
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="profile">
+            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> プロフィール
+        </NavLink>
+    </div>
+</nav>

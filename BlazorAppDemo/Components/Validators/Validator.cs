@@ -90,5 +90,5 @@ namespace BlazorAppDemo.Components.Validators
             return false;
         }
     }
-       
+
 }

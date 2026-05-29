@@ -70,7 +70,7 @@ namespace BlazorAppDemo.Components.Services
         /// <returns></returns>
         public decimal FetchMets(List<MetsInfo> metsInfo, string activeName, string activeDetail)
         {
-            MetsInfo hitMetsuInfo = 
+            MetsInfo hitMetsuInfo =
                 metsInfo.FirstOrDefault(r => r.ActiveNameJa == activeName && r.DescriptionJa == activeDetail);
 
             decimal metsu = hitMetsuInfo.Mets;

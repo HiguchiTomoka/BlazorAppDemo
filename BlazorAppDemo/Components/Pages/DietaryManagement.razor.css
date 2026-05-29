@@ -20,18 +20,6 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border: 1px solid #e5e5e5;
 }
-/*タイトル*/
-.section-title {
-    font-size: 42px;
-    font-weight: bold;
-    color: #0d4d8b;
-    margin-bottom: 10px;
-}
-/*サブタイトル*/
-.section-subtitle {
-    color: #666;
-    margin-bottom: 30px;
-}
 /*フォームエリア*/
 .form-area {
     display: flex;
@@ -47,42 +35,7 @@
     padding: 0 16px;
     font-size: 16px;
 }
-/*ボタン*/
-.primary-button {
-    width: 100%;
-    height: 52px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient( 135deg, #114c89, #1c6bb8 );
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.primary-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.92;
-}
 /*一覧テーブル*/
 .table-card {
     overflow-x: auto;
-}
-
-/*テーブル*/
-.food-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.food-table th {
-    background-color: #114c89;
-    color: white;
-    padding: 16px;
-}
-
-.food-table td {
-    padding: 16px;
-    border-bottom: 1px solid #e5e5e5;
 }

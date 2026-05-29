@@ -9,5 +9,5 @@ namespace BlazorAppDemo.Components.Data
 
         public double physicalActivityLevel { get; set; }
     }
-        
+
 }
