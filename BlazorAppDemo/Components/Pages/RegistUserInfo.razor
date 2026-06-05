@@ -104,7 +104,10 @@
         else
         {
             <AppButton buttonValue="修正" className="return-btn" OnClick="correctData" />
-            <AppButton buttonValue="登録" className="confirm-btn" OnClick="registUserInfo" />
+            <button class="confirm-btn" @onclick="registUserInfo" disabled ="@disable">
+                登録
+            </button>
+            @* <AppButton buttonValue="登録" className="confirm-btn" OnClick="registUserInfo" /> *@
         }
     } 
     @* 未入力の場合 *@
@@ -135,6 +138,7 @@
     private bool isModalOpen;// モーダル開くフラグ
     private bool isInputCompleted = false;// 入力完了フラグ
     private bool isPasswordVisible = false; // パスワード表示・非表示フラグ
+    private bool disable = false; // ボタンテストフラグ
 
     @* モーダル参照用 *@
     private string message = string.Empty; // モーダルに送るメッセージ
@@ -185,6 +189,24 @@
     /// <returns></returns>
     private async Task registUserInfo()
     {
+        // ダブルクリック防止フラグ
+        disable = true;
+
+        // 同一人物がいないかチェック
+        List<UserInfo> usersRecors = await _UserService.FetchUserInfo();
+
+        // 取得したデータから該当者を探す
+        UserInfo user = _UserService.FetchMatchUserInfo(usersRecors, mailaddress, password);
+
+        // 該当者が存在する場合
+        if (user != null)
+        {
+            //「既に使われています」と表示
+            isModalOpen = true;
+            message = "既に使われています";
+            return;
+        }
+
         // 基礎代謝量算出
         var basalMetabolismForMale = 13.397 * bodyWeight + 4.799 * bodyheight - 5.677 * age + 88.362;
         var basalMetabolismForFemale = 9.247 * bodyWeight + 3.098 * bodyheight - 4.33 * age + 447.593;
@@ -214,8 +236,12 @@
         // 登録処理
         await _UserService.RegistUserInfo(inputData);
 
+        // ダブルクリック防止フラグ
+        disable = false;
+
         // フラグの変更
         isInputCompleted = true;
+        
     }
 
     /// <summary>

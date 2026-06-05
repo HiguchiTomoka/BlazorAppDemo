@@ -256,6 +256,8 @@
     {
         // チェック処理
 
+        var vitaminA = selectedFood.Retinol + selectedFood.Bcarotene / 12;
+
         // 登録値の組み立て
         MenulInfo selfCateringDishes = new MenulInfo
         {
@@ -263,16 +265,16 @@
             DishName = dishName,
             MaterialName = selectedFood.FoodName,
             MaterialWeight = usageWeight,
-            Calories = selectedFood.Energy,
-            Protein = selectedFood.Protein,
-            Fat = selectedFood.Fat,
-            Carbs = selectedFood.Carbohydrate,
-            VitaminA = selectedFood.Retinol + selectedFood.Bcarotene/12,
-            VitaminB1 = selectedFood.VitaminB1,
-            VitaminB2 = selectedFood.VitaminB2,
-            VitaminC = selectedFood.VitaminC,
-            VitaminD = selectedFood.VitaminD,
-            VitaminE = selectedFood.VitaminE
+            Calories = selectedFood.Energy * (Decimal)usageWeight / 100,
+            Protein = selectedFood.Protein * (Decimal)usageWeight / 100,
+            Fat = selectedFood.Fat * (Decimal)usageWeight / 100,
+            Carbs = selectedFood.Carbohydrate * (Decimal)usageWeight / 100,
+            VitaminA = vitaminA * (Decimal)usageWeight / 100,
+            VitaminB1 = selectedFood.VitaminB1 * (Decimal)usageWeight / 100,
+            VitaminB2 = selectedFood.VitaminB2 * (Decimal)usageWeight / 100,
+            VitaminC = selectedFood.VitaminC * (Decimal)usageWeight / 100,
+            VitaminD = selectedFood.VitaminD * (Decimal)usageWeight / 100,
+            VitaminE = selectedFood.VitaminE * (Decimal)usageWeight / 100
         };
 
         // DBに登録

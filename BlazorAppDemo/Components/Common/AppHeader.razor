@@ -11,18 +11,8 @@
         健康管理アプリ
     </div>
 
+    <AppButton className="logout-button" buttonValue="ログアウト" OnClick="Logout" />
 </div>
-
-<!--
-<div class="top-bar">
-    <button class="menu-btn" @onclick="OnMenuClick">
-        ☰
-    </button>
-    <div class="logo">健康管理アプリ</div>
-    @* <p>ようこそ！ @userName さん！</p> *@
-    @* <AppButton className="logout-button" buttonValue="ログアウト" OnClick="Logout" /> *@
-</div>
--->
 
 @code {
     [Parameter]
@@ -52,8 +42,6 @@
 
     private async Task OpenMenu()
     {
-        Console.WriteLine("クリックされた！");
-
         await OnMenuClick.InvokeAsync();
     }
 }
