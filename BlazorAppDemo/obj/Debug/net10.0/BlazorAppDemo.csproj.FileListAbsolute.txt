@@ -221,10 +221,10 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\ExcelN
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\RBush.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\SixLabors.Fonts.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\System.IO.Packaging.dll
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\rfdwmh1m7d-{0}-njr6fa7rtf-njr6fa7rtf.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-4bpo7kz9ms-4bpo7kz9ms.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-4bpo7kz9ms-4bpo7kz9ms.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5dpee8pasc-{0}-roxu3zpgmt-roxu3zpgmt.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\xqby32625g-{0}-qb3bq2xf9q-qb3bq2xf9q.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\7f6v693xe0-{0}-24xavnimzm-24xavnimzm.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5dpee8pasc-{0}-scmrfs9u57-scmrfs9u57.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

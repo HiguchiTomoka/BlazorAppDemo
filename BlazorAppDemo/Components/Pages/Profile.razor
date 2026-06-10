@@ -1,8 +1,9 @@
 ﻿@page "/profile"
 @rendermode InteractiveServer
-@inject BlazorAppDemo.Components.Services.ChartService ChartService
-@inject IJSRuntime JS
-
+@using BlazorAppDemo.Components.Services
+@using BlazorAppDemo.Components.Data.DefineDB
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 
 <select @onchange="ChangeTheme">
 
@@ -13,6 +14,7 @@
     <option value="freshGreen">フレッシュグリーン</option>
     <option value="spices">スパイスのような中間色</option>
     <option value="citrus">陽気な柑橘系</option>
+    <option value="winterRed">冬の赤</option>
     <option value="ruby">ルビー</option>
     <option value="hazyGreen">霞んだ緑</option>
     <option value="aquaBlue">アクアブルー</option>
@@ -37,11 +39,60 @@
 </select>
 
 @code {
+    @* 認証情報 *@
+    private string userName;
+    private string email;
+    private int userId;
+    private string theme;
 
+    [Inject]
+    UserService _UserService { get; set; } = default!;
+    [Inject]
+    IJSRuntime JS { get; set; } = default!;
+    [Inject]
+    private AuthenticationStateProvider _AuthenticationStateProvider { get; set; } = default!;
+
+    /// <summary>
+    /// 初期表示時、認証情報の取得
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        var authState =
+            await _AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            userName = user.FindFirst(ClaimTypes.Name).Value;
+            email = user.FindFirst(ClaimTypes.Email)?.Value;
+            userId = int.Parse(user.FindFirst("UserId")?.Value);
+        }
+    }
+
+    /// <summary>
+    /// テーマの変更処理
+    /// </summary>
+    /// <param name="e"></param>
+    /// <returns></returns>
     private async Task ChangeTheme(ChangeEventArgs e)
     {
         var theme = e.Value?.ToString();
 
+        // 指定されたテーマの色に変更
         await JS.InvokeVoidAsync("changeTheme", theme);
+
+        // 更新情報の組み立て
+        UserInfo updateInfo = new UserInfo 
+        { 
+            UserName = userName, 
+            Id = userId, 
+            MailAddress = email, 
+            ThemeColor = theme 
+        };
+
+        // ユーザー情報に変更したテーマを登録
+        await _UserService.UpdateUserInfo(updateInfo);
     }
 }

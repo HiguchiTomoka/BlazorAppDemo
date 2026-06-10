@@ -28,5 +28,6 @@ namespace BlazorAppDemo.Components.Data.DefineDB
         [Required]
         public double PhysicalActivityLevel { get; set; } // 身体活動レベル
         public double TotalDailyEnergyExpenditure { get; set; } // 身体活動レベル
+        public string ThemeColor { get; set; } = "garden"; // 個別設定のテーマカラー(デフォルトは「庭の新鮮さ」)
     }
 }

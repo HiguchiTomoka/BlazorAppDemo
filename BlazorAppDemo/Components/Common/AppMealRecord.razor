@@ -1,8 +1,7 @@
 ﻿@rendermode InteractiveServer
 @using BlazorAppDemo.Components.Data.DefineDB
 @using BlazorAppDemo.Components.Data
-@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
-@inject IJSRuntime JS
+@using BlazorAppDemo.Components.Services
 
 @* 食事記録一覧コンポーネント *@
 <div class="card meal-list-card">
@@ -81,6 +80,11 @@
     private int userId;
 
     private MealDashboardData dashboardData;
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = default!;
+    [Inject]
+    private NutritionManageService NutritionManageService { get; set; } = default!;
 
     private void OpenModal(MealRecordInfo meal)
     {

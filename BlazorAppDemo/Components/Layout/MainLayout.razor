@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@implements IDisposable
 @rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.Authorization
 @using BlazorAppDemo.Components.Common
@@ -10,7 +11,7 @@
         <div class="page">
             @* サイドバー表示 *@
             <div class="header-sidebar @(isMenuOpen ? "open" : "")">
-                <NavMenu />
+                <NavMenu/>
             </div>
             <!-- サイドバー表示の場合 -->
             @if (isMenuOpen)
@@ -46,6 +47,30 @@
 @code{
     // ハンバーガーメニュー開くフラグ
     private bool isMenuOpen = false;
+
+    [Inject]
+    NavigationManager _NavigationManager { get; set; } = default!;
+
+    /// <summary>
+    /// コンポーネント初期化処理
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        _NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender,
+        Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        isMenuOpen = false;
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        _NavigationManager.LocationChanged -= OnLocationChanged;
+    }
 
     private void ToggleMenu()
     {

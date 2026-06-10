@@ -293,5 +293,16 @@ window.changeTheme = (theme) => {
 
             break;
 
+        // 冬の赤
+        case "winterRed":
+
+            root.style.setProperty("--color-text", "#A10115");
+            root.style.setProperty("--color-background", "#F0EFEA");
+            root.style.setProperty("--color-primary", "#D72C16");
+            root.style.setProperty("--color-secondary", "#C0B2B5");
+            root.style.setProperty("--color-card", "#FFFFFF");
+
+            break;
+
     }
 }

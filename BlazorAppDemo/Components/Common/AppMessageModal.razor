@@ -1,6 +1,5 @@
 ﻿@rendermode InteractiveServer
-@using BlazorAppDemo.Components.Data
-@inject BlazorAppDemo.Components.Services.NutritionManageService NutritionManageService
+@using BlazorAppDemo.Components.Services
 
 @* モーダルコンポーネント *@
 @if (isModalOpen)
@@ -27,6 +26,9 @@
 
     [Parameter]
     public EventCallback OnClick { get; set; }
+
+    [Inject]
+    private NutritionManageService NutritionManageService { get; set; } = default!;
 
     private void CloseModal()
     {

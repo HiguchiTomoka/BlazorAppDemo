@@ -1,7 +1,8 @@
 ﻿@page "/home"
-@using BlazorAppDemo.Components.Common
 @using Microsoft.AspNetCore.Components.Authorization
 @using System.Security.Claims
+@using BlazorAppDemo.Components.Services
+@using BlazorAppDemo.Components.Data.DefineDB
 @rendermode InteractiveServer
 
 @* ホーム画面 *@
@@ -45,7 +46,10 @@
 </div>
 
 @code {
+    @* 認証情報 *@
     private string userName = "";
+    private string email = "";
+    private string password = "";
 
     [Inject]
     NavigationManager _NavigationManager { get; set; } = default!;
@@ -59,26 +63,41 @@
     [Inject]
     private AuthenticationStateProvider _AuthenticationStateProvider { get; set; } = default!;
 
+    [Inject]
+    UserService _UserService { get; set; } = default!;
+
     /// <summary>
     /// 初期表示処理。クッキーからログイン情報を取得
     /// </summary>
     /// <returns></returns>
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var authState =
-            await _AuthenticationStateProvider.GetAuthenticationStateAsync();
-
-        var user = authState.User;
-
-        if (user.Identity?.IsAuthenticated == true)
+        // 1回目の描画の時のみ
+        if (firstRender)
         {
-            userName = user.FindFirst(ClaimTypes.Name)?.Value;
+            // 1.認証情報の取得
+            var authState =
+                await _AuthenticationStateProvider.GetAuthenticationStateAsync();
 
-            var email =
-                user.FindFirst(ClaimTypes.Email)?.Value;
+            var user = authState.User;
 
-            var userId =
-                user.FindFirst("UserId")?.Value;
+            var theme = "";
+
+            if (user.Identity?.IsAuthenticated == true)
+            {
+                userName = user.FindFirst(ClaimTypes.Name)?.Value;
+                email = user.FindFirst(ClaimTypes.Email)?.Value;
+                password = user.FindFirst("Password")?.Value;
+            }
+
+            // 2.DBからUsersテーブル全データを検索
+            List<UserInfo> usersRecors = await _UserService.FetchUserInfo();
+
+            // 3.取得したデータから該当者を探す
+            UserInfo userInfo = _UserService.FetchMatchUserInfo(usersRecors, email, password);
+
+            // 4.指定されたテーマの色に変更
+            await JS.InvokeVoidAsync("changeTheme", userInfo.ThemeColor);
         }
     }
 

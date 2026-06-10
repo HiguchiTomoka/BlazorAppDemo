@@ -63,6 +63,7 @@ namespace BlazorAppDemo.Components.Services
         /// <summary>
         /// ユーザー詳細情報の新規登録処理
         /// </summary>
+        /// <param name="inputUserData"></param>
         /// <returns></returns>
         public async Task RegistUserInfo(UserInfo inputUserData)
         {
@@ -72,6 +73,27 @@ namespace BlazorAppDemo.Components.Services
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// ユーザー情報の更新処理
+        /// </summary>
+        /// <param name="inputUserData"></param>
+        /// <returns></returns>
+        public async Task UpdateUserInfo(UserInfo inputUserData)
+        {
+            // 更新レコードの特定
+            var user = await _dbContext.UserInfoRecords.FirstOrDefaultAsync
+                (
+                  x => 
+                    x.UserName == inputUserData.UserName &&
+                    x.Id == inputUserData.Id &&
+                    x.MailAddress == inputUserData.MailAddress
+                );
 
+            // 更新内容の設定
+            user.ThemeColor = inputUserData.ThemeColor;
+
+            // 更新処理
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -42,6 +42,7 @@ namespace BlazorAppDemo.Components.Data
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Email, user.MailAddress),
                 new Claim("UserId", user.Id.ToString()),
+                new Claim("Password", user.Password.ToString())
             };
 
             // identity(身分証)の作成。作成したClaimをCookie認証で使用するとまとめている
