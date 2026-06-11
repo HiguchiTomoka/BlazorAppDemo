@@ -1,0 +1,6 @@
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\wwwroot\css\app.css
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\wwwroot\css\modal.css
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\wwwroot\css\site.css
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\wwwroot\js\auth.js
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\wwwroot\js\chart.js
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\wwwroot\js\theme.js

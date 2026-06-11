@@ -4,6 +4,7 @@
 @using Microsoft.EntityFrameworkCore
 @inject BlazorAppDemo.Components.Data.AppDbContext DbContext
 @inject BlazorAppDemo.Components.Data.UserInfo UserInfo
+@inject NavigationManager navigationManager
 
 
 <h3>Users CRUD デモ</h3>
@@ -105,12 +106,20 @@ else
         if (!string.IsNullOrWhiteSpace(newUserName))
         {
             var user = new UserInfo { Name = newUserName, IsDone = false };
-            DbContext.Users.Add(user);
+
+            // ～二重登録テスト～
+            await Task.Delay(5);
+
             // 登録処理
+            DbContext.Users.Add(user);
+            // 登録後更新処理
             await DbContext.SaveChangesAsync();
             // 再表示のため
             newUserName = "";
             await LoadUsers();
+
+            // 画面遷移
+            navigationManager.NavigateTo("/login");
         }
     }
 
