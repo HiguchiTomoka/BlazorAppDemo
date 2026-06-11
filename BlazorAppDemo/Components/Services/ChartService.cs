@@ -50,8 +50,11 @@ public class ChartService
     }
 
     // 摂取推移グラフ
-    public async Task RenderTrendChart()
+    public async Task RenderTrendChart(
+        int sundayCal, int mondayCal, int tuesdayCal, int wednesdayCal,
+        int thursdayCal, int fridayCal, int saturdayCal)
     {
-        await _js.InvokeVoidAsync("renderTrendChart");
+        await _js.InvokeVoidAsync("renderTrendChart",
+            sundayCal, mondayCal, tuesdayCal, wednesdayCal, thursdayCal, fridayCal, saturdayCal);
     }
 }

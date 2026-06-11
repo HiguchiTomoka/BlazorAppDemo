@@ -60,7 +60,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @code {
@@ -86,17 +85,24 @@
     private decimal totalProtein;// 総タンパク質量
     private decimal totalFat;// 総脂質量
     private decimal totalCarbs;// 総炭水化物量
+    private int sundayCal; // 日曜日の総カロリー摂取量
+    private int mondayCal; // 月曜日の総カロリー摂取量
+    private int tuesdayCal; // 火曜日の総カロリー摂取量
+    private int wednesdayCal; // 水曜日の総カロリー摂取量
+    private int thursdayCal; // 木曜日の総カロリー摂取量
+    private int fridayCal; // 金曜日の総カロリー摂取量
+    private int saturdayCal; // 土曜日の総カロリー摂取量
 
     [Inject]
-    private　NavigationManager NavigationManager { get; set; } = default!;
+    private　NavigationManager navigationManager { get; set; } = default!;
     [Inject]
-    private NutritionManageService NutritionManageService { get; set; } = default!;
+    private NutritionManageService nutritionManageService { get; set; } = default!;
     [Inject]
-    private ChartService ChartService { get; set; } = default!;
+    private ChartService chartService { get; set; } = default!;
     [Inject]
     private　IJSRuntime JS { get; set; } = default!;
     [Inject]
-    private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
+    private AuthenticationStateProvider authenticationStateProvider { get; set; } = default!;
 
     /// <summary>
     /// 初期表示処理
@@ -104,16 +110,16 @@
     /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
+        // 認証情報の取得
         var authState =
-            await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            await authenticationStateProvider.GetAuthenticationStateAsync();
 
         var user = authState.User;
 
         if (user.Identity?.IsAuthenticated == true)
         {
             // ユーザーID取得
-            var userIdString = user.FindFirst("UserId")?.Value;
-            userId = int.Parse(userIdString);
+            userId = int.Parse(user.FindFirst("UserId")?.Value);
         }
 
         await LoadMealRecords(userId);
@@ -129,7 +135,7 @@
         if (firstRender)
         {
             // renderPFCRatioChart関数はwwwroot/js/chart.jsに定義されている
-            await RenderChart();
+            await RenderChart(userId);
         }
     }
 
@@ -152,13 +158,13 @@
         };
 
         // DBへ保存処理
-        await NutritionManageService.AddMealRecord(registMealRecord);
+        await nutritionManageService.AddMealRecord(registMealRecord);
 
         // 最新のデータ取得
         await LoadMealRecords(userId);
 
         // グラフのレンダリング
-        await RenderChart();
+        await RenderChart(userId);
     }
 
     /// <summary>
@@ -168,31 +174,43 @@
     private async Task LoadMealRecords(int userId)
     {
         // 今日の食事記録,総カロリー摂取量,総炭水化物量,総タンパク質量,総脂質量を取得
-        dashboardData = await NutritionManageService.FetchDashboardData(userId);
+        dashboardData = await nutritionManageService.FetchDashboardData(userId);
     }
 
     /// <summary>
     /// グラフの描画処理
     /// </summary>
     /// <returns></returns>
-    private async Task RenderChart()
+    private async Task RenderChart(int userId)
     {
+        // 曜日ごとの総カロリー量をリストで取得
+        List<int> fff = await nutritionManageService.FetchCalorieList(userId);
+
+        // それぞれの曜日の総カロリー摂取量を取得
+        sundayCal = fff[0];
+        mondayCal = fff[1];
+        tuesdayCal = fff[2];
+        wednesdayCal = fff[3];
+        thursdayCal = fff[4];
+        fridayCal = fff[5];
+        saturdayCal = fff[6];
+
         // PFC比の円グラフ描画
-        await ChartService.RenderPfcChart(
+        await chartService.RenderPfcChart(
             dashboardData.TotalProtein,
             dashboardData.TotalFat,
             dashboardData.TotalCarbs
         );
 
         // PFCそれぞれの目標摂取量の棒グラフ描画
-        await ChartService.RenderGoalChart(
+        await chartService.RenderGoalChart(
             dashboardData.TotalProtein, 120,
             dashboardData.TotalFat, 50,
             dashboardData.TotalCarbs, 250
         );
 
         // 摂取カロリーの推移線グラフ描画
-        await ChartService.RenderTrendChart();
+        await chartService.RenderTrendChart(sundayCal, mondayCal, tuesdayCal, wednesdayCal, thursdayCal, fridayCal, saturdayCal);
     }
 
     /// <summary>
@@ -201,7 +219,7 @@
     /// <param name="url"></param>
     private void MovePage(string url)
     {
-        NavigationManager.NavigateTo(url);
+        navigationManager.NavigateTo(url);
     }
 
 }

@@ -192,7 +192,8 @@ window.renderDailyNutritionIntakeChart =
 [概要]
 摂取カロリー推移を線グラフで示します
 */
-window.renderTrendChart = () => {
+window.renderTrendChart =
+    (sundayCal, mondayCal, tuesdayCal, wednesdayCal, thursdayCal, fridayCal, saturdayCal) => {
 
     // ラベルの日付を選択
     // 今週の開始日（日曜日）
@@ -232,7 +233,7 @@ window.renderTrendChart = () => {
             datasets: [
                 {
                     label: '摂取カロリー',
-                    data: [2100,1950,2400,2250,2050,2300,2150],
+                    data: [sundayCal, mondayCal, tuesdayCal, wednesdayCal, thursdayCal, fridayCal, saturdayCal],
                     borderColor: '#135389',
                     backgroundColor: 'rgba(19, 83, 137, 0.2)',
                     tension: 0.3,

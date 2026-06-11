@@ -207,9 +207,6 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\refint
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\BlazorAppDemo.pdb
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\BlazorAppDemo.genruntimeconfig.cache
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\ref\BlazorAppDemo.dll
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\o7xj9p9jqp-{0}-ej96puwv3k-ej96puwv3k.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\jkq387rpir-{0}-cj5793hgrt-cj5793hgrt.gz
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\hra6k8cmoq-{0}-j9s713rdxp-j9s713rdxp.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\xfwnwy6iiy-{0}-wy03k5ybbe-wy03k5ybbe.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\scopedcss\Components\Pages\DietaryManagement.razor.rz.scp.css
@@ -228,3 +225,6 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compre
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\7f6v693xe0-{0}-24xavnimzm-24xavnimzm.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5dpee8pasc-{0}-scmrfs9u57-scmrfs9u57.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\o7xj9p9jqp-{0}-ne14ti1q68-ne14ti1q68.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\jkq387rpir-{0}-ig5xotzpx5-ig5xotzpx5.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\hra6k8cmoq-{0}-igmn6quw6l-igmn6quw6l.gz
