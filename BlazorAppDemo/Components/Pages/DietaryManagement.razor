@@ -77,8 +77,6 @@
                     <thead>
                         <tr>
                             <th>料理名</th>
-                            <th>食品名</th>
-                            <th>使用重量</th>
                             <th>kcal</th>
                             <th>タンパク質</th>
                             <th>脂質</th>
@@ -120,27 +118,24 @@
                         {
                             <tr @onclick="() => OpenModal(meal)">
                                 <td>@meal.DishName</td>
-                                <td>@meal.MaterialName</td>
-                                <td>@meal.MaterialWeight</td>
-                                <td>@meal.Calories</td>
-                                <td>@meal.Protein</td>
-                                <td>@meal.Fat</td>
-                                <td>@meal.Carbs</td>
-                                <td>@meal.VitaminA</td>
-                                <td>@meal.VitaminB1</td>
-                                <td>@meal.VitaminB2</td>
-                                <td>@meal.VitaminC</td>
-                                <td>@meal.VitaminD</td>
-                                <td>@meal.VitaminE</td>
-                                <td>@meal.SaltEquivalent</td>
+                                <td>@meal.TotalCalories</td>
+                                <td>@meal.TotalProtein</td>
+                                <td>@meal.TotalFat</td>
+                                <td>@meal.TotalCarbs</td>
+                                <td>@meal.TotalVitaminA</td>
+                                <td>@meal.TotalVitaminB1</td>
+                                <td>@meal.TotalVitaminB2</td>
+                                <td>@meal.TotalVitaminC</td>
+                                <td>@meal.TotalVitaminD</td>
+                                <td>@meal.TotalVitaminE</td>
+                                <td>@meal.TotalSaltEquivalent</td>
                             </tr>
                         }
                         @if (selfCateringDishesList.Any())
                         {
                             <tr>
                                 <td>合計</td>
-                                <td></td>
-                                <td></td>
+                       
                                 <td>@totalCal</td>
                                 <td>@totalProtein</td>
                                 <td>@totalFat</td>
@@ -178,7 +173,7 @@
 
     @* 食品検索 *@
     private string keyword = ""; // 食品検索キーワード
-    private MenulInfo? selectedMeal; // 選択した食事レコード
+    private MenuInfoForShowTable? selectedMeal; // 選択した食事レコード
     private FoodCompositionTable? selectedFood;// 選択した食品情報
     private List<FoodCompositionTable> searchResults = new();
 
@@ -190,7 +185,7 @@
     private int userId; // クッキーから取得したユーザーID
 
     @* 自炊料理情報 *@
-    private List<MenulInfo> selfCateringDishesList = new List<MenulInfo>();// 登録した自炊料理のリスト
+    private List<MenuInfoForShowTable> selfCateringDishesList = new List<MenuInfoForShowTable>();// 登録した自炊料理のリスト
     private decimal? totalCal = 0; // 自炊料理の合計カロリー
     private decimal? totalProtein = 0; // 自炊料理の合計タンパク質
     private decimal? totalFat = 0; // 自炊料理の合計脂質
@@ -280,21 +275,21 @@
         // DBに登録
         await menuService.RegistMenuInfo(selfCateringDishes);
         // 自炊表を更新
-        selfCateringDishesList = await menuService.FetchMenuInfo(userId);
+        selfCateringDishesList = await menuService.FetchMenuInfoForTable(userId);
 
         // 合計値の算出
-        foreach (MenulInfo record in selfCateringDishesList)
+        foreach (MenuInfoForShowTable record in selfCateringDishesList)
         {
-            totalCal = totalCal + record.Calories;
-            totalProtein = totalProtein + record.Protein;
-            totalFat = totalFat + record.Fat;
-            totalCarbs = totalCarbs + record.Carbs;
-            totalVitaminA = totalVitaminA + record.VitaminA;
-            totalVitaminB1 = totalVitaminB1 + record.VitaminB1;
-            totalVitaminB2 = totalVitaminB2 + record.VitaminB2;
-            totalVitaminC = totalVitaminC + record.VitaminC;
-            totalVitaminD = totalVitaminD + record.VitaminD;
-            totalVitaminE = totalVitaminE + record.VitaminE;
+            totalCal = totalCal + record.TotalCalories;
+            totalProtein = totalProtein + record.TotalProtein;
+            totalFat = totalFat + record.TotalFat;
+            totalCarbs = totalCarbs + record.TotalCarbs;
+            totalVitaminA = totalVitaminA + record.TotalVitaminA;
+            totalVitaminB1 = totalVitaminB1 + record.TotalVitaminB1;
+            totalVitaminB2 = totalVitaminB2 + record.TotalVitaminB2;
+            totalVitaminC = totalVitaminC + record.TotalVitaminC;
+            totalVitaminD = totalVitaminD + record.TotalVitaminD;
+            totalVitaminE = totalVitaminE + record.TotalVitaminE;
         }
     }
 
@@ -304,22 +299,23 @@
     private async Task DeleteFoodFromMenuList()
     {
         // DBで削除処理実行
-        await menuService.DeleteMenuInfo(selectedMeal.Id);
+        await menuService.DeleteMenuInfo(selectedMeal.DishName);
         // 自炊表を更新
-        selfCateringDishesList = await menuService.FetchMenuInfo(userId);
+        selfCateringDishesList = await menuService.FetchMenuInfoForTable(userId);
         // 合計値の算出
-        foreach (MenulInfo record in selfCateringDishesList)
+        // 合計値の算出
+        foreach (MenuInfoForShowTable record in selfCateringDishesList)
         {
-            totalCal = totalCal + record.Calories;
-            totalProtein = totalProtein + record.Protein;
-            totalFat = totalFat + record.Fat;
-            totalCarbs = totalCarbs + record.Carbs;
-            totalVitaminA = totalVitaminA + record.VitaminA;
-            totalVitaminB1 = totalVitaminB1 + record.VitaminB1;
-            totalVitaminB2 = totalVitaminB2 + record.VitaminB2;
-            totalVitaminC = totalVitaminC + record.VitaminC;
-            totalVitaminD = totalVitaminD + record.VitaminD;
-            totalVitaminE = totalVitaminE + record.VitaminE;
+            totalCal = totalCal + record.TotalCalories;
+            totalProtein = totalProtein + record.TotalProtein;
+            totalFat = totalFat + record.TotalFat;
+            totalCarbs = totalCarbs + record.TotalCarbs;
+            totalVitaminA = totalVitaminA + record.TotalVitaminA;
+            totalVitaminB1 = totalVitaminB1 + record.TotalVitaminB1;
+            totalVitaminB2 = totalVitaminB2 + record.TotalVitaminB2;
+            totalVitaminC = totalVitaminC + record.TotalVitaminC;
+            totalVitaminD = totalVitaminD + record.TotalVitaminD;
+            totalVitaminE = totalVitaminE + record.TotalVitaminE;
         }
 
         // モーダル管理フラグを戻す
@@ -330,7 +326,7 @@
     /// 削除処理モーダルを開く処理
     /// </summary>
     /// <param name="meal"></param>
-    private void OpenModal(MenulInfo meal)
+    private void OpenModal(MenuInfoForShowTable meal)
     {
         selectedMeal = meal;
 
@@ -396,20 +392,20 @@
         // 今日の食事記録,総カロリー摂取量,総炭水化物量,総タンパク質量,総脂質量を取得
         dashboardData = await NutritionManageService.FetchDashboardData(userId);
         // 自炊料理を取得
-        selfCateringDishesList = await menuService.FetchMenuInfo(userId);
+        selfCateringDishesList = await menuService.FetchMenuInfoForTable(userId);
         // 合計値の算出
-        foreach (MenulInfo record in selfCateringDishesList)
+        foreach (MenuInfoForShowTable record in selfCateringDishesList)
         {
-            totalCal = totalCal + record.Calories;
-            totalProtein = totalProtein + record.Protein;
-            totalFat = totalFat + record.Fat;
-            totalCarbs = totalCarbs + record.Carbs;
-            totalVitaminA = totalVitaminA + record.VitaminA;
-            totalVitaminB1 = totalVitaminB1 + record.VitaminB1;
-            totalVitaminB2 = totalVitaminB2 + record.VitaminB2;
-            totalVitaminC = totalVitaminC + record.VitaminC;
-            totalVitaminD = totalVitaminD + record.VitaminD;
-            totalVitaminE = totalVitaminE + record.VitaminE;
+            totalCal = totalCal + record.TotalCalories;
+            totalProtein = totalProtein + record.TotalProtein;
+            totalFat = totalFat + record.TotalFat;
+            totalCarbs = totalCarbs + record.TotalCarbs;
+            totalVitaminA = totalVitaminA + record.TotalVitaminA;
+            totalVitaminB1 = totalVitaminB1 + record.TotalVitaminB1;
+            totalVitaminB2 = totalVitaminB2 + record.TotalVitaminB2;
+            totalVitaminC = totalVitaminC + record.TotalVitaminC;
+            totalVitaminD = totalVitaminD + record.TotalVitaminD;
+            totalVitaminE = totalVitaminE + record.TotalVitaminE;
         }
     }
 

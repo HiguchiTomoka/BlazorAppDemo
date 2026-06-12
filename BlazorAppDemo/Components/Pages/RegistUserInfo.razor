@@ -33,13 +33,13 @@
             <!-- 名前入力 -->
             <div class="form-row">
                 <label>名前 <span>必須</span></label>
-                <input type="text" @bind="userName" placeholder="あだ名やニックネームでもOK！" />
+                <input type="text" @bind="userName" placeholder="あだ名やニックネームでもOK！" disabled="@isFormDisabled"/>
             </div>
 
             <!-- メアド入力 -->
             <div class="form-row">
                 <label>メールアドレス <span>必須</span></label>
-                <input type="email" @bind="mailaddress" placeholder="example@gmail.com" />
+                <input type="email" @bind="mailaddress" placeholder="example@gmail.com" disabled="@isFormDisabled" />
             </div>
 
             <!-- パスワード入力 -->
@@ -47,7 +47,7 @@
                 <label>パスワード <span>必須</span></label>
 
                 <div class="password-box">
-                    <input type="@passwordInputType" @bind="password" placeholder="パスワード" />
+                    <input type="@passwordInputType" @bind="password" placeholder="パスワード" disabled="@isFormDisabled" />
                     <button type="button" @onclick="TogglePasswordVisibility">
                         @(isPasswordVisible ? "🙈" : "👁")
                     </button>
@@ -57,34 +57,34 @@
             <!-- 性別選択 -->
             <div class="form-row radio-group">
                 <label>性別 <span>必須</span></label>
-                <input type="radio" id="male" name="checkedGender" value="Male" checked @onchange="SelectRadio" />
+                <input type="radio" id="male" name="checkedGender" value="Male" checked @onchange="SelectRadio" disabled="@isFormDisabled" />
                 <label for="male"class="radio-label">男</label>
-                <input type="radio" id="female" name="checkedGender" value="Female" @onchange="SelectRadio" />
+                <input type="radio" id="female" name="checkedGender" value="Female" @onchange="SelectRadio" disabled="@isFormDisabled" />
                 <label for="female" class="radio-label">女</label>
             </div>
 
             <!-- 年齢入力 -->
             <div class="form-row">
                 <label>年齢 <span>必須</span></label>
-                <input type="text" @bind="age" placeholder="25" />
+                <input type="text" @bind="age" placeholder="25" disabled="@isFormDisabled" />
             </div>
 
             <!-- 身長入力 -->
             <div class="form-row">
                 <label>身長 <span>必須</span></label>
-                <input type="text" @bind="bodyheight" placeholder="170" />
+                <input type="text" @bind="bodyheight" placeholder="170" disabled="@isFormDisabled" />
             </div>
 
             <!-- 体重入力 -->
             <div class="form-row">
                 <label>体重 <span>必須</span></label>
-                <input type="text" @bind="bodyWeight" placeholder="65" />
+                <input type="text" @bind="bodyWeight" placeholder="65" disabled="@isFormDisabled"/>
             </div>
 
             <!-- 身体活動レベル選択 -->
             <div class="form-row">
                 <label>身体活動レベル <span>必須</span></label>
-                <select class="custom-select" @bind="SelectedPAl">
+                <select class="custom-select" @bind="SelectedPAl" disabled="@isFormDisabled">
                     @foreach (var item in physicalActivityLevelItems)
                     {
                         <option value="@item.physicalActivityLevel">@item.label</option>
@@ -107,7 +107,6 @@
             <button class="confirm-btn" @onclick="registUserInfo" disabled ="@disable">
                 登録
             </button>
-            @* <AppButton buttonValue="登録" className="confirm-btn" OnClick="registUserInfo" /> *@
         }
     } 
     @* 未入力の場合 *@
@@ -138,7 +137,9 @@
     private bool isModalOpen;// モーダル開くフラグ
     private bool isInputCompleted = false;// 入力完了フラグ
     private bool isPasswordVisible = false; // パスワード表示・非表示フラグ
+    private bool isFormDisabled = false; // フォーム入力値disableのフラグ
     private bool disable = false; // ボタンテストフラグ
+    
 
     @* モーダル参照用 *@
     private string message = string.Empty; // モーダルに送るメッセージ
@@ -241,7 +242,7 @@
 
         // フラグの変更
         isInputCompleted = true;
-        
+
     }
 
     /// <summary>
@@ -249,7 +250,10 @@
     /// </summary>
     public void correctData()
     {
+        // 未入力フラグ
         isInput = false;
+        // 
+        isFormDisabled = false;
     }
 
     /// <summary>
@@ -267,6 +271,9 @@
 
         // 2.フラグを変更し、修正ボタンを出す
         isInput = true;
+
+        // 3.入力フォームのdisableを登録
+        isFormDisabled = true;
     }
 
     /// <summary>
