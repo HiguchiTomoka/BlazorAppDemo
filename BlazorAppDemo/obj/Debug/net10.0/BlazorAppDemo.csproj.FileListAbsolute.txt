@@ -218,7 +218,6 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\ExcelN
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\RBush.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\SixLabors.Fonts.dll
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\bin\Debug\net10.0\System.IO.Packaging.dll
-C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\rfdwmh1m7d-{0}-njr6fa7rtf-njr6fa7rtf.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\dyi7m3skp8-{0}-4bpo7kz9ms-4bpo7kz9ms.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\5v6t04gzh5-{0}-4bpo7kz9ms-4bpo7kz9ms.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\xqby32625g-{0}-qb3bq2xf9q-qb3bq2xf9q.gz
@@ -228,3 +227,4 @@ C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\static
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\o7xj9p9jqp-{0}-ne14ti1q68-ne14ti1q68.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\jkq387rpir-{0}-ig5xotzpx5-ig5xotzpx5.gz
 C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\hra6k8cmoq-{0}-igmn6quw6l-igmn6quw6l.gz
+C:\Users\to-hi\source\repos\BlazorAppDemo\BlazorAppDemo\obj\Debug\net10.0\compressed\rfdwmh1m7d-{0}-rs61eeck3p-rs61eeck3p.gz

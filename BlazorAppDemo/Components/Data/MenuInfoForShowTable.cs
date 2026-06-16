@@ -1,4 +1,4 @@
-namespace BlazorAppDemo.Components.Data.DefineDB
+namespace BlazorAppDemo.Components.Data
 {
     /// <summary>
     /// 自作料理の栄養価情報テーブルを表すクラス。

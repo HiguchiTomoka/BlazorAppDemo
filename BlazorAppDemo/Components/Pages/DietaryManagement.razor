@@ -18,11 +18,11 @@
         <div class="content-card table-card">
             <h2>食事登録</h2>
             <div class="form-group">
-                <AppButton buttonValue="既製品料理の登録" className="food-regist-button" OnClick="RegistReadyMadeMeal" />
+                <AppButton buttonValue="既製品料理の登録" className="base-button" OnClick="RegistReadyMadeMeal" />
             </div>
 
             <div class="form-group">
-                <AppButton buttonValue="手作り料理の栄養価を登録" className="food-regist-button" OnClick="RegistCookingMeal" />
+                <AppButton buttonValue="手作り料理の栄養価を登録" className="base-button" OnClick="RegistCookingMeal" />
             </div>
         </div>
 
@@ -98,15 +98,15 @@
 
                             <div class="delete-modal">
 
-                                <h3>削除確認</h3>
+                                <h3>追加確認</h3>
 
                                 <p>
-                                    「@selectedMeal?.DishName」 を削除しますか？
+                                    「@selectedMeal?.DishName」 を食事記録に追加しますか？
                                 </p>
 
                                 <div class="modal-buttons">
                                     <AppButton className="cancel-button" OnClick="CloseModal" buttonValue="キャンセル" />
-                                    <AppButton className="delete-button" OnClick=DeleteFoodFromMenuList buttonValue="削除する" />
+                                    <AppButton className="base-button" OnClick=AddFoodFromMenuList buttonValue="追加する" />
                                 </div>
                             </div>
 
@@ -152,10 +152,6 @@
                     </tbody>
                 </table>
             </div>
-            @if (selfCateringDishesList.Any())
-            {
-                <AppButton className="cancel-button" buttonValue="食事記録へ追加" OnClick="PutMenuInfoFromMealRecord" />
-            }
         </div>
     }
 
@@ -294,6 +290,18 @@
     }
 
     /// <summary>
+    /// 自炊料理を食事記録に追加する処理
+    /// </summary>
+    /// <returns></returns>
+    private async Task AddFoodFromMenuList()
+    {
+        // DBで追加処理実行
+
+        // モーダル管理フラグを戻す
+        isModalOpen = false;
+    }
+
+    /// <summary>
     /// 手作り料理表から該当する食品を削除する
     /// </summary>
     private async Task DeleteFoodFromMenuList()
@@ -302,7 +310,6 @@
         await menuService.DeleteMenuInfo(selectedMeal.DishName);
         // 自炊表を更新
         selfCateringDishesList = await menuService.FetchMenuInfoForTable(userId);
-        // 合計値の算出
         // 合計値の算出
         foreach (MenuInfoForShowTable record in selfCateringDishesList)
         {

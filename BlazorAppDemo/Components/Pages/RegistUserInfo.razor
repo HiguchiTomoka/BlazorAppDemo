@@ -87,7 +87,7 @@
                 <select class="custom-select" @bind="SelectedPAl" disabled="@isFormDisabled">
                     @foreach (var item in physicalActivityLevelItems)
                     {
-                        <option value="@item.physicalActivityLevel">@item.label</option>
+                        <option value="@item.PhysicalActivityLevel">@item.Label</option>
                     }
                 </select>
             </div>
@@ -152,22 +152,22 @@
     UserService _UserService { get; set; } = default!;
 
     // 身体活動レベルセレクトボックスの組み立て
-    private List<physicalActivityLevelSelectBox> physicalActivityLevelItems = new()
+    private List<PhysicalActivityLevelSelectBox> physicalActivityLevelItems = new()
     {
         new() 
         {
-            label = "低い：デスクワーク中心、通勤や軽い家事のみ(1.5)",
-            physicalActivityLevel = 1.5
+            Label = "低い：デスクワーク中心、通勤や軽い家事のみ(1.5)",
+            PhysicalActivityLevel = 1.5
         },
         new()         
         {
-            label = "普通：座位中心だが、通勤・買い物・軽いスポーツ等を行う(1.75)",
-            physicalActivityLevel = 1.75
+            Label = "普通：座位中心だが、通勤・買い物・軽いスポーツ等を行う(1.75)",
+            PhysicalActivityLevel = 1.75
         },
         new()
         {
-            label = "強い：移動や立ち仕事が多く、余暇に活発な運動習慣がある(2.0)",
-            physicalActivityLevel = 2.0
+            Label = "強い：移動や立ち仕事が多く、余暇に活発な運動習慣がある(2.0)",
+            PhysicalActivityLevel = 2.0
         }
     };
 

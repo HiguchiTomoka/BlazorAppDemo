@@ -3,11 +3,11 @@ namespace BlazorAppDemo.Components.Data
     /// <summary>
     /// 身体活動レベルのセレクトボックスデータ保持クラス
     /// </summary>
-    public class physicalActivityLevelSelectBox
+    public class PhysicalActivityLevelSelectBox
     {
-        public string label { get; set; } = string.Empty;
+        public string Label { get; set; } = string.Empty;
 
-        public double physicalActivityLevel { get; set; }
+        public double PhysicalActivityLevel { get; set; }
     }
 
 }
