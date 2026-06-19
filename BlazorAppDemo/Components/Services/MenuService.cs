@@ -7,17 +7,8 @@ namespace BlazorAppDemo.Components.Services
     /// <summary>
     /// 自作料理管理サービス
     /// </summary>
-    public class MenuService
+    public class MenuService(AppDbContext dbContext)
     {
-        // AppDbContextのインスタンスを保持するフィールド
-        private readonly AppDbContext _dbContext;
-
-        // DIコンテナからAppDbContextを受け取るコンストラクタ
-        public MenuService(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         /// <summary>
         /// テーブル表示用データの取得
         /// </summary>
@@ -27,9 +18,9 @@ namespace BlazorAppDemo.Components.Services
         {
             // 該当ユーザーが登録したメニュー
             List<MenulInfo> menuRecords =
-                await _dbContext.MenuRecords.Where(r => r.UserId == userId).ToListAsync();
+                await dbContext.MenuRecords.Where(r => r.UserId == userId).ToListAsync();
 
-             List<MenuInfoForShowTable> dataForTableDisplay = menuRecords.GroupBy(x => x.DishName).Select(g => new MenuInfoForShowTable
+             List<MenuInfoForShowTable> dataForTableDisplay = [.. menuRecords.GroupBy(x => x.DishName).Select(g => new MenuInfoForShowTable
              {
                 DishName = g.Key,
                 TotalCalories = g.Sum(x => x.Calories),
@@ -43,8 +34,7 @@ namespace BlazorAppDemo.Components.Services
                 TotalVitaminD = g.Sum(x => x.VitaminD),
                 TotalVitaminE = g.Sum(x => x.VitaminE),
                 TotalSaltEquivalent = g.Sum(x => x.SaltEquivalent)
-            })
-            .ToList();
+            })];
 
             return dataForTableDisplay;
         }
@@ -58,9 +48,9 @@ namespace BlazorAppDemo.Components.Services
         {
             // 該当ユーザーが登録したメニュー
             List<MenulInfo> menuRecords =
-                await _dbContext.MenuRecords.Where(r => r.UserId == userId).ToListAsync();
+                await dbContext.MenuRecords.Where(r => r.UserId == userId).ToListAsync();
 
-            List<MenuInfoForShowTable> dataForTableDisplay = menuRecords.GroupBy(x => x.DishName).Select(g => new MenuInfoForShowTable
+            List<MenuInfoForShowTable> dataForTableDisplay = [.. menuRecords.GroupBy(x => x.DishName).Select(g => new MenuInfoForShowTable
             {
                 DishName = g.Key,
                 TotalCalories = g.Sum(x => x.Calories),
@@ -74,8 +64,7 @@ namespace BlazorAppDemo.Components.Services
                 TotalVitaminD = g.Sum(x => x.VitaminD),
                 TotalVitaminE = g.Sum(x => x.VitaminE),
                 TotalSaltEquivalent = g.Sum(x => x.SaltEquivalent)
-            })
-           .ToList();
+            })];
 
             // TODO resultを入れ替えたい
             MenuInfoForShowTable menuInfo;
@@ -91,9 +80,9 @@ namespace BlazorAppDemo.Components.Services
         public async Task RegistMenuInfo(MenulInfo inputMenulInfo)
         {
             // 自作料理の情報を登録
-            _dbContext.MenuRecords.Add(inputMenulInfo);
+            dbContext.MenuRecords.Add(inputMenulInfo);
 
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -103,16 +92,16 @@ namespace BlazorAppDemo.Components.Services
         public async Task DeleteMenuInfo(string dishName)
         {
             // 指定されたIDのレコードを特定
-            var menu = await _dbContext.MenuRecords.FirstOrDefaultAsync(x => x.DishName == dishName);
+            var menu = await dbContext.MenuRecords.FirstOrDefaultAsync(x => x.DishName == dishName);
             // ない場合終了
             if (menu == null)
             {
                 return;
             }
             // 削除処理
-            _dbContext.MenuRecords.Remove(menu);
+            dbContext.MenuRecords.Remove(menu);
             // 変更の保存処理
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

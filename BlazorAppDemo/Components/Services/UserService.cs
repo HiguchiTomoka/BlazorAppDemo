@@ -7,17 +7,8 @@ namespace BlazorAppDemo.Components.Services
     /// <summary>
     /// ユーザー詳細情報管理サービス
     /// </summary>
-    public class UserService
+    public class UserService(AppDbContext dbContext)
     {
-        // AppDbContextのインスタンスを保持するフィールド
-        private readonly AppDbContext _dbContext;
-
-        // DIコンテナからAppDbContextを受け取るコンストラクタ
-        public UserService(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         /// <summary>
         /// ユーザー詳細情報の全件取得処理
         /// </summary>
@@ -25,7 +16,7 @@ namespace BlazorAppDemo.Components.Services
         public async Task<List<UserInfo>> FetchUserInfo()
         {
             // 全ユーザー検索
-            List<UserInfo> userDetailRecords = await _dbContext.UserInfoRecords.ToListAsync();
+            List<UserInfo> userDetailRecords = await dbContext.UserInfoRecords.ToListAsync();
 
             return userDetailRecords;
         }
@@ -68,9 +59,9 @@ namespace BlazorAppDemo.Components.Services
         public async Task RegistUserInfo(UserInfo inputUserData)
         {
             // 該当ユーザーの人数
-            _dbContext.UserInfoRecords.Add(inputUserData);
+            dbContext.UserInfoRecords.Add(inputUserData);
 
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -81,7 +72,7 @@ namespace BlazorAppDemo.Components.Services
         public async Task UpdateUserInfo(UserInfo inputUserData)
         {
             // 更新レコードの特定
-            var user = await _dbContext.UserInfoRecords.FirstOrDefaultAsync
+            var user = await dbContext.UserInfoRecords.FirstOrDefaultAsync
                 (
                   x => 
                     x.UserName == inputUserData.UserName &&
@@ -93,7 +84,7 @@ namespace BlazorAppDemo.Components.Services
             user.ThemeColor = inputUserData.ThemeColor;
 
             // 更新処理
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

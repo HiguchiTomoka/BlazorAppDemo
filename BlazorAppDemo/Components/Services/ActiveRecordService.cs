@@ -7,24 +7,15 @@ namespace BlazorAppDemo.Components.Services
     /// <summary>
     /// 運動記録管理サービス
     /// </summary>
-    public class ActiveRecordService
+    public class ActiveRecordService(AppDbContext dbContext)
     {
-        // AppDbContextのインスタンスを保持するフィールド
-        private readonly AppDbContext _dbContext;
-
-        // DIコンテナからAppDbContextを受け取るコンストラクタ
-        public ActiveRecordService(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         /// <summary>
         /// 該当者の運動情報取得処理
         /// </summary>
         /// <returns></returns>
         public async Task<List<ActiveRecordInfo>> FetchActiveRecordInfo(int userId)
         {
-            List<ActiveRecordInfo> activeRecords = await _dbContext.ActiveRecords.ToListAsync();
+            List<ActiveRecordInfo> activeRecords = await dbContext.ActiveRecords.ToListAsync();
 
             return activeRecords;
         }
@@ -36,9 +27,9 @@ namespace BlazorAppDemo.Components.Services
         public async Task RegistActiveRecordInfo(ActiveRecordInfo inputActiveRecordInfo)
         {
             // 該当ユーザーの人数
-            _dbContext.ActiveRecords.Add(inputActiveRecordInfo);
+            dbContext.ActiveRecords.Add(inputActiveRecordInfo);
 
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

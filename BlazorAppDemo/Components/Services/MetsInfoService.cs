@@ -7,24 +7,15 @@ namespace BlazorAppDemo.Components.Services
     /// <summary>
     /// METS管理サービス
     /// </summary>
-    public class MetsInfoService
+    public class MetsInfoService(AppDbContext dbContext)
     {
-        // AppDbContextのインスタンスを保持するフィールド
-        private readonly AppDbContext _dbContext;
-
-        // DIコンテナからAppDbContextを受け取るコンストラクタ
-        public MetsInfoService(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         /// <summary>
         /// METS情報全件取得処理
         /// </summary>
         /// <returns></returns>
         public async Task<List<MetsInfo>> FetchMetsInfo()
         {
-            List<MetsInfo> metsInfo = await _dbContext.MetsRecords.ToListAsync();
+            List<MetsInfo> metsInfo = await dbContext.MetsRecords.ToListAsync();
 
             return metsInfo;
         }

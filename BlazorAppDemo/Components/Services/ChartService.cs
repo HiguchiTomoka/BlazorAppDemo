@@ -4,23 +4,17 @@ namespace BlazorAppDemo.Components.Services;
 
 /// <summary>
 /// グラフの描画を管理するサービスです
+/// ※引数に「IJSRuntime」を渡すことにより、明示的にDIを書かなくてもDI可能
 /// </summary>
-public class ChartService
+public class ChartService(IJSRuntime js)
 {
-    private readonly IJSRuntime _js;
-
-    public ChartService(IJSRuntime js)
-    {
-        _js = js;
-    }
-
     // PFC円グラフ
     public async Task RenderPfcChart(
         decimal protein,
         decimal fat,
         decimal carbs)
     {
-        await _js.InvokeVoidAsync(
+        await js.InvokeVoidAsync(
             "renderPFCRatioChart",
             protein,
             fat,
@@ -36,7 +30,7 @@ public class ChartService
         decimal carbs,
         decimal carbsTarget)
     {
-        await _js.InvokeVoidAsync(
+        await js.InvokeVoidAsync(
             "renderDailyNutritionIntakeChart",
 
             protein,
@@ -54,7 +48,7 @@ public class ChartService
         int sundayCal, int mondayCal, int tuesdayCal, int wednesdayCal,
         int thursdayCal, int fridayCal, int saturdayCal)
     {
-        await _js.InvokeVoidAsync("renderTrendChart",
+        await js.InvokeVoidAsync("renderTrendChart",
             sundayCal, mondayCal, tuesdayCal, wednesdayCal, thursdayCal, fridayCal, saturdayCal);
     }
 }

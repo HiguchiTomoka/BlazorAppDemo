@@ -30,7 +30,7 @@
     border-radius: 10px;
     cursor: pointer;
 }
-/*既成商品登録ボタン、自炊料理登録ボタン*/
+/*基本的な実行ボタン*/
 .base-button {
     border: none;
     background-color: var(--color-primary);

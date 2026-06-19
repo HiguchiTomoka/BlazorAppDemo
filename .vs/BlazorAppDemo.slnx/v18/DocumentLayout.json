@@ -3,36 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\common\\appmealrecord.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\common\\appmealrecord.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\dietarymanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\dietarymanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\exercisemanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\exercisemanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\wwwroot\\css\\modal.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\wwwroot\\css\\modal.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\services\\menuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\services\\menuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\dietarymanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\dietarymanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\registuserinfo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\registuserinfo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\data\\menuinfoforshowtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\data\\menuinfoforshowtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\services\\nutritionmanageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\services\\nutritionmanageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|c:\\users\\to-hi\\source\\repos\\blazorappdemo\\blazorappdemo\\components\\pages\\exercisemanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53732EB6-4C35-F24C-D5CE-08E10B932C57}|BlazorAppDemo\\BlazorAppDemo.csproj|solutionrelative:blazorappdemo\\components\\pages\\exercisemanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,47 +42,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 452,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExerciseManagement.razor",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
-              "ViewState": "AgIAAEAAAAAAAAAAAADwv00AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-16T05:39:17.123Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DietaryManagement.razor",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
-              "ViewState": "AgIAAFwAAAAAAAAAAADwv2wAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-16T05:39:10.524Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppMealRecord.razor",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppMealRecord.razor",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Common\\AppMealRecord.razor",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Common\\AppMealRecord.razor",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Common\\AppMealRecord.razor",
-              "ViewState": "AgIAAAoAAAAAAAAAAADwvxsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-16T05:38:46.793Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -93,68 +54,104 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "modal.css",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\wwwroot\\css\\modal.css",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\wwwroot\\css\\modal.css",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\wwwroot\\css\\modal.css",
-              "RelativeToolTip": "BlazorAppDemo\\wwwroot\\css\\modal.css",
-              "ViewState": "AgIAABYAAAAAAAAAAAAcwCgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-06-16T05:15:41.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MenuInfoForShowTable.cs",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Data\\MenuInfoForShowTable.cs",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Data\\MenuInfoForShowTable.cs",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Data\\MenuInfoForShowTable.cs",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Data\\MenuInfoForShowTable.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-16T04:58:56.276Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RegistUserInfo.razor",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
-              "ViewState": "AgIAAJMAAAAAAAAAAADwv6YAAAANAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\App.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\App.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-16T04:57:11.806Z",
+              "WhenOpened": "2026-06-19T04:13:57.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\_Imports.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\_Imports.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-19T04:13:56.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Routes.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Routes.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Routes.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-19T04:13:54.272Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "MenuService.cs",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Services\\MenuService.cs",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Services\\MenuService.cs",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Services\\MenuService.cs",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Services\\MenuService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAuAAAAAAAAAA==",
+              "Title": "modal.css",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\wwwroot\\css\\modal.css",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\wwwroot\\css\\modal.css",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\wwwroot\\css\\modal.css",
+              "RelativeToolTip": "BlazorAppDemo\\wwwroot\\css\\modal.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-06-19T04:13:46.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Startup.cs",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Startup.cs",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Startup.cs",
+              "RelativeToolTip": "BlazorAppDemo\\Startup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-12T00:27:03.296Z",
+              "WhenOpened": "2026-06-19T04:13:15.062Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "NutritionManageService.cs",
-              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Services\\NutritionManageService.cs",
-              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Services\\NutritionManageService.cs",
-              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Services\\NutritionManageService.cs",
-              "RelativeToolTip": "BlazorAppDemo\\Components\\Services\\NutritionManageService.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAnwC8AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-16T00:22:04.323Z",
-              "EditorCaption": ""
+              "Title": "ExerciseManagement.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\ExerciseManagement.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-16T05:39:17.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DietaryManagement.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\DietaryManagement.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-16T05:39:10.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RegistUserInfo.razor",
+              "DocumentMoniker": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
+              "RelativeDocumentMoniker": "BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
+              "ToolTip": "C:\\Users\\to-hi\\source\\repos\\BlazorAppDemo\\BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
+              "RelativeToolTip": "BlazorAppDemo\\Components\\Pages\\RegistUserInfo.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-16T04:57:11.806Z"
             }
           ]
         }

@@ -7,15 +7,8 @@ namespace BlazorAppDemo.Components.Services
     /// <summary>
     /// 食品成分表CSVデータを管理するサービス
     /// </summary>
-    public class FoodImportService
+    public class FoodImportService(AppDbContext context)
     {
-        private readonly AppDbContext _context;
-
-        public FoodImportService(AppDbContext context)
-        {
-            _context = context;
-        }
-
         /// <summary>
         /// 食品成分表CSVからDBに登録する処理
         /// </summary>
@@ -24,9 +17,9 @@ namespace BlazorAppDemo.Components.Services
         public async Task ImportAsync(string path)
         {
             // 既存データ削除
-            _context.Foods.RemoveRange(_context.Foods);
+            context.Foods.RemoveRange(context.Foods);
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
 
             // CSV読み込み
             var lines = File.ReadAllLines(path);
@@ -63,10 +56,10 @@ namespace BlazorAppDemo.Components.Services
                     SaltEquivalent = ParseDecimal(cols[60]),
                 };
 
-                _context.Foods.Add(food);
+                context.Foods.Add(food);
             }
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
         /// <summary>
         /// オートコンプリート処理(検索処理)
@@ -76,7 +69,7 @@ namespace BlazorAppDemo.Components.Services
         public async Task<List<FoodCompositionTable>> SearchFood(string keyword)
         {
             List<FoodCompositionTable> searchResults
-                = await _context.Foods.Where(x => x.FoodName.Contains(keyword))
+                = await context.Foods.Where(x => x.FoodName.Contains(keyword))
                     .Take(10).ToListAsync();
 
             return searchResults;

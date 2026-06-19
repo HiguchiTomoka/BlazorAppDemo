@@ -8,23 +8,14 @@ namespace BlazorAppDemo.Components.Services
     /// <summary>
     /// 食事記録管理サービス
     /// </summary>
-    public class NutritionManageService
+    public class NutritionManageService(AppDbContext dbContext)
     {
-        // AppDbContextのインスタンスを保持するフィールド
-        private readonly AppDbContext _dbContext;
-
-        // DIコンテナからAppDbContextを受け取るコンストラクタ
-        public NutritionManageService(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         /// <summary>
         /// これまでの食事全記録情報を取得する
         /// </summary>
         public async Task<List<MealRecordInfo>> FetchMealRecordInfo(int userId)
         {
-            return await _dbContext.MealRecords.Where(r => r.UserId == userId).ToListAsync();
+            return await dbContext.MealRecords.Where(r => r.UserId == userId).ToListAsync();
         }
 
         /// <summary>
@@ -35,7 +26,7 @@ namespace BlazorAppDemo.Components.Services
             // 本日の日付を取得
             var today = DateTime.Today;
             // 食事日が本日の日付と一致する記録をデータベースから取得
-            return await _dbContext.MealRecords.Where(r => r.MealDate >= today && r.MealDate < today.AddDays(1)).ToListAsync();
+            return await dbContext.MealRecords.Where(r => r.MealDate >= today && r.MealDate < today.AddDays(1)).ToListAsync();
         }
 
         /// <summary>
@@ -180,9 +171,9 @@ namespace BlazorAppDemo.Components.Services
         public async Task AddMealRecord(MealRecordInfo record)
         {
             // 登録処理
-            _dbContext.MealRecords.Add(record);
+            dbContext.MealRecords.Add(record);
             // 変更の保存処理
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -193,9 +184,9 @@ namespace BlazorAppDemo.Components.Services
         public async Task DeleteMealRecord(MealRecordInfo record)
         {
             // 削除処理
-            _dbContext.MealRecords.Remove(record);
+            dbContext.MealRecords.Remove(record);
             // 変更の保存処理
-            await _dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
     }
 }
