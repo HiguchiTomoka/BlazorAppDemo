@@ -92,7 +92,7 @@
                     </thead>
 
                     @* モーダル *@
-                    @if (isModalOpen)
+                    @if (isAddMenuModalOpen)
                     {
                         <div class="modal-overlay">
 
@@ -174,6 +174,7 @@
     private List<FoodCompositionTable> searchResults = new();
 
     @* フラグ *@
+    private bool isAddMenuModalOpen;// 手料理追加モーダル開くかフラグ
     private bool isModalOpen;// モーダル開くかフラグ
     private bool isReadyMadeMeal = false;// 登録する食事は既製品か？
 
@@ -298,7 +299,7 @@
         // DBで追加処理実行
 
         // モーダル管理フラグを戻す
-        isModalOpen = false;
+        isAddMenuModalOpen = false;
     }
 
     /// <summary>

@@ -337,7 +337,7 @@
             message = "年齢を入力してください";
             return true;
         }
-        if (!Validator.IsOnlyNumeric(age.ToString()))
+        if (!Validator.IsOnlyInteger(age.ToString()))
         {
             isModalOpen = true;
             message = "数字を入力してください";

@@ -63,10 +63,27 @@ namespace BlazorAppDemo.Components.Validators
         /// true:半角数字である
         /// false:半角数字でない
         /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsOnlyInteger(string str)
+        {
+            if (Regex.IsMatch(str, @"^[0-9]+$"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 半角数字&小数点チェック
+        /// true:半角数字である
+        /// false:半角数字でない
+        /// </summary>
+        /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsOnlyNumeric(string str)
         {
-            if (Regex.IsMatch(str, @"^[0-9]+$"))
+            if (Regex.IsMatch(str, @"^[0-9]+(?:\.[0-9]+)?$"))
             {
                 return true;
             }
