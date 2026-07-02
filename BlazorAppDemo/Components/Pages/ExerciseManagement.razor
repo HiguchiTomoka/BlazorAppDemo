@@ -1,10 +1,10 @@
 ﻿@page "/exerciseManagement"
+@rendermode InteractiveServer
 @using BlazorAppDemo.Components.Common
 @using BlazorAppDemo.Components.Services
 @using BlazorAppDemo.Components.Data.DefineDB
 @using BlazorAppDemo.Components.Validators
 @using Microsoft.AspNetCore.Components.Authorization
-@rendermode InteractiveServer
 
 <div class="meal-page">
 
@@ -30,7 +30,7 @@
                 </select>
 
                 <!-- 活動詳細 -->
-                    <select class="custom-select" @bind="activeDatail">
+                <select class="custom-select" @bind="activeDatail">
                     @foreach (var activeDetail in ActiveDatailInfo)
                     {
                         <option value="@activeDetail">@activeDetail</option>
